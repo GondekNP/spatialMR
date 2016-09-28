@@ -1,0 +1,512 @@
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+mdD<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+plot(mdD~names(mdD))
+bargraph(mdD~names(mdD))
+mdD
+bargraph(mdD~c(1:17)
+)
+bargraph(mdD
+)
+barplot(mdD~names(mdD))
+barplot(height=mdD)
+barplot(height=mdE)
+mdD<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"))
+plot(mdD~names(mdD))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), type=c("p","r"))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+#Significant slope for spread.one
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+mdD<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+plot(mdD~names(mdD))
+#Significant slope for spread.one
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point()
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+stat_smooth()
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline()
+lm(densEstimate~Size,data=sizesum)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm(densEstimate~Size,data=sizesum)$Coeffecients[1], intercept = lm(densEstimate~Size,data=sizesum)$Coeffecients[2])
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm(densEstimate~Size,data=sizesum)$Coeffecients[2], intercept = lm(densEstimate~Size,data=sizesum)$Coeffecients[1])
+lm(densEstimate~Size,data=sizesum)$Coeffecients[2]
+lm(densEstimate~Size,data=sizesum)$Coeffecients
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm(densEstimate~Size,data=sizesum)$coeffecients[2], intercept = lm(densEstimate~Size,data=sizesum)$coeffecients[1])
+lm(densEstimate~Size,data=sizesum)$coeffecients
+lm(densEstimate~Size,data=sizesum)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm(densEstimate~Size,data=sizesum)$Coefficients[2], intercept = lm(densEstimate~Size,data=sizesum)$Coefficients[1])
+lm(densEstimate~Size,data=sizesum)$Coefficients
+lm(densEstimate~Size,data=sizesum)
+lm(densEstimate~Size,data=sizesum)$Coefficients
+lm(densEstimate~Size,data=sizesum)[2]
+lm.modD.spread<-lm(densEstimate~Size,data=sizesum)
+lm.modD.spread$coefficients
+lm.modD.spread<-lm(densEstimate~Size,data=sizesum)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+lm.modD.spread<-lm(densEstimate~Size,data=sizesum)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+#geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+stat_smooth()
+lm.modD.spread<-lm(densEstimate~Size,data=sizesum)
+ggplot(data=filter(sizesum, Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+#geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+stat_smooth()
+lm.modD.spread<-lm(densEstimate~Size,data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+#geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+stat_smooth()
+lm.modD.spread<-lm(densEstimate~Size,data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+#stat_smooth()
+lm.modD.spread<-lm(densEstimate~Size,data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+#geom_abline(slope = lm.modD.spread$coefficients[2], intercept = lm.modD.spread$coefficients[1])
+stat_smooth()
+16*16
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+lm.modD.spread<-lm(densEstimate~Size,data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=2)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1)
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+lm.modD.spread<-lm(densEstimate~Size,data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1)
+sqrt(((117/213)(1 - (117/223)))/213)
+sqrt(((117/213)*(1 - (117/223)))/213)
+.549 + c(1,-1) * .035
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size" ) +
+ylab()+
+xlab()
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size") +
+ylab()+
+xlab()
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size" ) +
+ylab()+
+xlab()
+library(ggplot2)
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size" ) +
+ylab()+
+xlab()
+sizesum<-read.csv("../data/SizeData/FinalBearEst.csv")
+library(mosaic)
+library(ggplot2)
+colnames(sizesum)<-c("SubsampleID", "densEstimate", "lcl", "ucl", "Subtype", "Model", "Size")
+tally(Subtype~Size + Model, data=sizesum)
+#Insignificant slope for simple random
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), type=c("p","r"))
+mdD<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"))
+plot(mdD~names(mdD))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), type=c("p","r"))
+mdE<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"))
+plot(mdE~names(mdE))
+#Significant slope for spread.one
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), type=c("p","r"))
+mdD<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"))
+plot(mdD~names(mdD))
+summary(lm(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one")))
+xyplot(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), type=c("p","r"))
+mdE<-sd(densEstimate~Size, data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"))
+plot(mdE~names(mdE))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size" ) +
+ylab()+
+xlab()
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size" ) +
+ylab("DensEstimate")+
+xlab("Size")
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size", point=2) +
+ylab("DensEstimate")+
+xlab("Size")
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size", point=2) +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=FALSE, col="red", size=1) +
+ggtitle("DensEstimate vs Size") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("DensEstimate vs Size") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+par(mfrow=c(2,2))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+par(mfrow=c(2,2))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+d1<-ggplot(data=filter(sizesum, Model=="Model D", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+d2<-ggplot(data=filter(sizesum, Model=="Model D", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model D - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+e1<-ggplot(data=filter(sizesum, Model=="Model E", Subtype=="Spread.one"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Spread") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+e2<-ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"), aes(x=Size, y=densEstimate)) +
+geom_point() +
+geom_smooth(method=lm, se=TRUE, col="red", size=1) +
+ggtitle("Model E - Simple Random") +
+ylab("DensEstimate")+
+xlab("Size") +
+theme(plot.title = element_text(size=22))
+library(cowplot)
+plot_grid(d1, d2, e1, e2, ncol = 2, nrow = 2)
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+source('~/Google Drive/spatialMR/Rscripts/HuggyBear.R')
+source('~/Google Drive/spatialMR/Rscripts/HuggyBear.R')
+install.packages("RMark")
+install.packages("FSA")
+#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)
+#opts_knit$set(comment=NA, fig.height=8, fig.width=12)
+rm(list = ls()) # clear out memory
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(RMark) # for fitting models
+library(FSA) # for converting between data types
+options(width=160)
+#' Read in data created using "Data Exploration.R" file
+sampobs<-read.csv("../data/samps1.csv")
+#' Gender: Sex = 204.25 -> Male, Sex= 250.25 ->Female
+sampobs$Sex2<-rep("1",nrow(sampobs))
+sampobs$Sex2[sampobs$Sex==250.25]<-0
+View(sampobs)
+c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689)
+sampobs[c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689)]
+sampobs[c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689),]
+test<-sampobs[c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689),]
+View(test)
+View(sampobs)
+samps<-read.csv("../data/samplesCorrected.csv")
+View(samps)
+sampobs1<-filter(samps, Class=="sample")
+sampobs$Period[sampobs$Period=="6?"]<-"6"
+sampobs<-filter(sampobs, Period!="")
+sampobs1<-filter(sampobs, Period!="")
+sampobs1==sampobs
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+#' Use the existing subsample from the original data
+View(sampobs)
+sampobs<-sampobs["Lab.ID"==sub]
+sampobs<-sampobs["Lab.ID"==1]
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(RMark) # for fitting models
+library(FSA) # for converting between data types
+options(width=160)
+#' Read in data created using "Data Exploration.R" file
+sampobs<-read.csv("../data/samps1.csv")
+#' Gender: Sex = 204.25 -> Male, Sex= 250.25 ->Female
+sampobs$Sex2<-rep("1",nrow(sampobs))
+sampobs$Sex2[sampobs$Sex==250.25]<-0
+#' Filter obs without a period
+sampobs<-filter(sampobs, Period!="")
+sampobs["Lab.ID"==20]
+sampobs[,"Lab.ID"==20]
+sampobs["Lab.ID"==20,]
+filter(sampobs, Lab.ID==1)
+filter(sampobs, Lab.ID==c(1,2))
+sampobs[which(sampobs$Lab.ID == 1)]
+sampobs[which(sampobs$Lab.ID == 1),]
+sampobs[which(sampobs$Lab.ID == c(1,2)),]
+x %in% c(1:5)
+%in% c(1:5)
+x %in% c(1:5)
+x <-0
+x %in% c(1:5)
+x <-2
+x %in% c(1:5)
+c(1:6) %in% c(1:5)
+testsub<-c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689)
+sampobs$\
+testsub %in% sampobs$Lab.ID
+sampobs$Lab.ID %in% testsub
+sampobs[sampobs$Lab.ID %in% testsub]
+sampobs[sampobs$Lab.ID %in% testsub,]
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+sampobs<-sampobs[,"Lab.ID"==sub]
+sampobs<-sampobs[,"Lab.ID"==testsub]
+#' ## Fit Huggins model using RMark
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(RMark) # for fitting models
+library(FSA) # for converting between data types
+options(width=160)
+#' Read in data created using "Data Exploration.R" file
+sampobs<-read.csv("../data/samps1.csv")
+#' Gender: Sex = 204.25 -> Male, Sex= 250.25 ->Female
+sampobs$Sex2<-rep("1",nrow(sampobs))
+sampobs$Sex2[sampobs$Sex==250.25]<-0
+#' Filter obs without a period
+sampobs<-filter(sampobs, Period!="")
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+View(test)
+sampobs[,"Lab.ID"==sub]
+sampobs[,"Lab.ID"=="`]
+sampobs[,"Lab.ID"=="`]
+sampobs[,"Lab.ID"==1]
+sampobs["Lab.ID"==1,]
+sampobs["Lab.ID"==2]
+sampobs[,"Lab.ID"==2]
+sampobs[which(sampobs$Lab.ID == 1),]
+sampobs[which(sampobs$Lab.ID == 1),]
+which(sampobs$Lab.ID == 1)
+library(FSA) # for converting between data types
+options(width=160)
+#' Read in data created using "Data Exploration.R" file
+sampobs0<-read.csv("../data/samps1.csv")
+#' Gender: Sex = 204.25 -> Male, Sex= 250.25 ->Female
+sampobs0$Sex2<-rep("1",nrow(sampobs0))
+sampobs0$Sex2[sampobs0$Sex==250.25]<-0
+#' Filter obs without a period
+sampobs0<-filter(sampobs0, Period!="")
+sampobs<-NULL
+testsub<-c(792,865,23,827,954,68,79,3,6,20,85,17,12,75,14,797,90,30,11,69,737,793,780,965,81,80,5,927,731,779,767,76,1100,992,1032,29,523,820,732,25,26,1025,961,77,24,900,929,1024,82,95,863,983,28,683,885,10,892,13,924,733,297,799,856,917,1087,2,805,18,804,659,1,932,87,376,84,39,939,256,1016,43,783,972,165,63,745,190,1033,955,887,925,1070,724,138,560,730,113,868,901,937,324,105,891,78,170,150,160,200,199,110,870,36,58,656,127,1000,67,142,882,47,120,124,454,866,184,813,148,144,31,40,136,637,918,187,46,173,52,958,838,59,1036,137,151,42,83,857,62,154,50,182,163,1008,230,771,286,988,1092,274,258,211,261,306,262,693,876,89,226,236,923,270,224,912,289,198,251,273,253,973,292,316,842,1026,279,840,305,208,1061,930,962,1047,317,210,201,909,1049,16,321,219,564,283,73,787,244,243,326,829,293,312,1043,748,225,266,835,762,1010,277,922,227,203,240,718,238,969,237,222,245,344,1055,345,867,796,411,421,1108,356,915,756,467,409,374,434,370,931,388,364,457,468,430,879,807,341,453,424,426,1109,329,399,956,897,1019,447,816,895,672,74,391,946,351,338,1095,889,350,1060,1110,157,387,401,280,420,417,404,811,443,355,343,433,470,71,394,462,340,795,166,834,368,363,438,464,425,1091,412,480,146,517,1018,964,692,497,508,597,586,1021,789,502,777,600,603,548,848,1115,533,441,766,585,481,546,604,568,899,310,877,599,498,558,479,530,1072,232,515,775,487,569,1116,596,516,493,510,519,501,1077,1096,88,566,506,555,93,1076,620,1073,914,758,542,482,904,583,769,562,500,476,591,567,520,521,1041,953,499,987,679,606,668,709,625,721,1117,630,621,612,715,708,1090,717,699,706,413,626,894,1089,615,916,627,624,719,704,573,886,610,723,970,651,907,617,729,685,911,665,652,711,778,642,1088,678,1015,1005,632,716,663,703,96,722,903,686,570,623,712,697,633,628,616,698,631,833,707,641,991,687,898,979,759,613,1119,689)
+for (i in testsub){
+rbind(sampobs, sampobs0[which(sampobs0$Lab.ID == i),])
+}
+for (i in testsub){
+sampobs<-rbind(sampobs, sampobs0[which(sampobs0$Lab.ID == i),])
+}
+View(sampobs)
+sampobs$Lab.ID == testsub
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+BearHugginsParallel(sub=testsub)
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+source('~/Google Drive/spatialMR/Rscripts/MankatoScript.R')
+source('~/Google Drive/spatialMR/Rscripts/MankatoScript.R')
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+BearHugginsParallel()
+install.packages("RMark")
+install.packages("FSA")
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+BearHugginsParallel()
+BearHugginsParallel()
+source('~/Google Drive/spatialMR/Rscripts/BearHugginsParallel.R')
+getwd()
+BearHugginsParallel()
+BearHugginsParallel()

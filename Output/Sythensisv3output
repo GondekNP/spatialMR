@@ -1,0 +1,22 @@
+No errors found :-)
+[1] "2016-01-02 15:14:28 CST"
+        estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+esa   0.07996403          NA       NA       NA        NA         NA        NA
+D   500.22493372    85.61436 358.5345 697.9104 0.1613809 0.05700114 0.1711517
+Time difference of 2.394275 hours
+        estimate SE.estimate     lcl      ucl       CVn        CVa       CVD
+esa   0.08461754          NA      NA       NA        NA         NA        NA
+D   472.71523898    77.87925 343.007 651.4726 0.1612179 0.03392575 0.1647488
+[1] "2016-01-02 16:34:43 CST"
+        estimate SE.estimate      lcl      ucl       CVn       CVa       CVD
+esa   0.07852967          NA       NA       NA        NA        NA        NA
+D   509.36163197    87.72906 364.3267 712.1335 0.1611416 0.0608089 0.1722334
+Time difference of 4.307109 hours
+        estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+esa   0.08504804          NA       NA       NA        NA         NA        NA
+D   470.32242499    77.59463 341.1181 648.4652 0.1606488 0.03756284 0.1649818
+[1] "2016-01-02 17:38:32 CST"
+        estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+esa   0.07424573          NA       NA       NA        NA         NA        NA
+D   538.75154450    91.11013 387.6613 748.7289 0.1613935 0.05051222 0.1691135
+Time difference of 4.513498 hours

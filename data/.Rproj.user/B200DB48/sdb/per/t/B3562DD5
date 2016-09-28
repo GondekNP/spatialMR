@@ -1,0 +1,16 @@
+{
+    "contents" : "# File:  Make.R\n# Purpose:  to \"spin\" an R script file to create an RMarkdown file, from which we can create an html file, then clean up any mess.\n\n# Load knitr library\n  library(knitr)\n # wd <- ifelse(basename(getwd())==\"Scripts\", \n#               gsub(\"/Scripts\", \"\", getwd()),\n#               getwd())\n#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)\n#        wd <- ifelse(basename(getwd())==\"RScripts\", \n#               gsub(\"/Scripts\", \"\", getwd()),\n#               getwd())\n#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)\n  opts_knit$set(comment=NA, fig.height=8, fig.width=12)\n  \n# Spin the Script of interest to create an R markdown file and html file\n  o<-spin(\"../Rscripts/Data Exploration.R\")\n\n#' Move files as needed\n mfiles<-list.files(\"../Rscripts\", \"*.csv\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"../Rscripts/\",mfiles[i], sep=\"\"), paste(\"\", mfiles[i], sep=\"\"))\n }  \n  \n \n  \n  \n# Copy md files to Output directory \n mfiles<-list.files(\"./\", \"*.md\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"./\",mfiles[i], sep=\"\"), paste(\"../Output/\", mfiles[i], sep=\"\"))\n }  \n  \n  \n# copy html files over to Output directory \n mfiles<-list.files(\"./\", \"*.html\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(mfiles[i], paste(\"../Output/\", mfiles[i], sep=\"\"))\n }  \n  \n  \n#---------------------- End ------------------\n  \n  \n# Tell knitr where the root directory is...  \n  opts_knit$set(fig.path = '../Output/figure/')\n  opts_chunk$set(fig.path='\n\n# Spin the Script of interest to create an R markdown file\n#  o<-spin('../Scripts/Multiple_Regression_Lecture.R', knit=F)\n  o<-spin('../Scripts/Multiple_Regression_Lecture.R', knit=F)\n  knit2html(o, output=\"../Output/Multiple_Regression_Lecture.html\")  \n# Create an html file from the Rmarkdown file\n\n  \n# Problem is that Rstuio writes things out into multiple directories...\n#  The Rmd file is in the Scripts directory\n#  The md file is in the Data directory\n#  The .html file is in the Data directory (along w/ all Figures, withint a figure subdirectory)  \n\n# Clean things up, by copying all produced files to an output directory.\n  source('../Scripts/cleanR.R', echo=TRUE)\n\n# Record version of R used, which packages, etc.\n  print(sessionInfo(), locale = FALSE)\n\n ",
+    "created" : 1435940522657.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1910606919",
+    "id" : "B3562DD5",
+    "lastKnownWriteTime" : 1435941313,
+    "path" : "~/umn_Research/spatialMR/Rscripts/Make.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

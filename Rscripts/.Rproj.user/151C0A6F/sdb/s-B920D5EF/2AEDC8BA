@@ -1,0 +1,17 @@
+{
+    "contents" : "sizesum<-read.csv(\"../data/SizeData/FinalBearEst.csv\")\nlibrary(mosaic)\nlibrary(ggplot2)\ncolnames(sizesum)<-c(\"SubsampleID\", \"densEstimate\", \"lcl\", \"ucl\", \"Subtype\", \"Model\", \"Size\")\ntally(Subtype~Size + Model, data=sizesum)\n\n\n#Insignificant slope for simple random\nsummary(lm(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"SimpleRandom\")))\nxyplot(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"SimpleRandom\"), type=c(\"p\",\"r\"))\nmdD<-sd(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"SimpleRandom\"))\nplot(mdD~names(mdD))\n\nsummary(lm(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"SimpleRandom\")))\nxyplot(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"SimpleRandom\"), type=c(\"p\",\"r\"))\nmdE<-sd(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"SimpleRandom\"))\nplot(mdE~names(mdE))\n\n#Significant slope for spread.one\nsummary(lm(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"Spread.one\")))\nxyplot(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"Spread.one\"), type=c(\"p\",\"r\"))\nmdD<-sd(densEstimate~Size, data=filter(sizesum, Model==\"Model D\", Subtype==\"Spread.one\"))\nplot(mdD~names(mdD))\n\nsummary(lm(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"Spread.one\")))\nxyplot(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"Spread.one\"), type=c(\"p\",\"r\"))\nmdE<-sd(densEstimate~Size, data=filter(sizesum, Model==\"Model E\", Subtype==\"Spread.one\"))\nplot(mdE~names(mdE))\n\nggplot(data=filter(sizesum, Model==\"Model D\", Subtype==\"Spread.one\"), aes(x=Size, y=densEstimate)) +\n  geom_point() +\n  geom_smooth(method=lm, se=FALSE, col=\"red\", size=1) +\n  ggtitle(\"DensEstimate vs Size\") +\n  ylab()+\n  xlab() \n  \n",
+    "created" : 1455048027771.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1960185029",
+    "id" : "2AEDC8BA",
+    "lastKnownWriteTime" : 1455058461,
+    "path" : "~/Google Drive/spatialMR/Rscripts/SizeSummary.R",
+    "project_path" : "SizeSummary.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "#'This script will read in the existing Bear Est data and compare them, using a bwplot. \n#'(1/21/16)\nlibrary(mosaic)\n\nBearEst<-read.csv(\"../data/SubsamplingData/FinalBearEst.csv\")\ncolnames(BearEst)<-c(\"SubID\", \"densEstimate\", \"ucl\", \"lcl\", \"Subtype\", \"Model\")\n\n#'Number of Observations for each subtype X model. As of 1/21, there are ~16 for each.\ntally(Subtype~Model, data=BearEst)\n\n#'Treating all models the same, how does the subtype affect estimate\nbwplot(densEstimate~Subtype, data=BearEst, main=\"All Models\")\n\n\n#'Constructing a bwplot to see the difference between the different subtypes for each model\nbwplot(densEstimate~Subtype, data=filter(BearEst, Model==\"Model A\"), main=\"Model A\")\nbwplot(densEstimate~Subtype, data=filter(BearEst, Model==\"Model B\"), main=\"Model B\")\nbwplot(densEstimate~Subtype, data=filter(BearEst, Model==\"Model C\"), main=\"Model C\")\nbwplot(densEstimate~Subtype, data=filter(BearEst, Model==\"Model D\"), main=\"Model D\")\nbwplot(densEstimate~Subtype, data=filter(BearEst, Model==\"Model E\"), main=\"Model E\")\n\n#'To Do: Need a full sample estimate for each of the 5 models. Some discrepancies with\n#'John's \"structured or unstructured\", ie unscructured in code and structured in the \n#'output prepared for Dave. Need to simply rerun the 5 models that I chose, and use\n#'the entire set of samples. Probably use jfieberg server. \n\n#'Another useful look at the data: ANOVA to see if the estimates are significantly\n#'different from one another\nbearmod<-lm(densEstimate~Subtype, data=BearEst)\nAnova(bearmod)\n\n#'Now by model - Interesting, they are only significantly different in A, C, E (as of\n#'1/21/16) and those are the three that have behavior as a parameter for g0!\nAnova(lm(densEstimate~Subtype, data=filter(BearEst, Model==\"Model A\")))\nAnova(lm(densEstimate~Subtype, data=filter(BearEst, Model==\"Model B\")))\nAnova(lm(densEstimate~Subtype, data=filter(BearEst, Model==\"Model C\")))\nAnova(lm(densEstimate~Subtype, data=filter(BearEst, Model==\"Model D\")))\nAnova(lm(densEstimate~Subtype, data=filter(BearEst, Model==\"Model E\")))\n\n\n\n",
+    "created" : 1453405119577.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2466626170",
+    "id" : "F7A3174E",
+    "lastKnownWriteTime" : 1453409785,
+    "path" : "C:/Users/gonde012/Documents/Google Drive/spatialMR/Rscripts/EstimateSummary.R",
+    "project_path" : "EstimateSummary.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Initial SECR models</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Initial SECR models</h1>
+
+<p>Load libraries</p>
+
+<pre><code class="r">   library(dplyr) # for data manipulation
+   library(secr) 
+   library(secrdesign)
+   library(scrbook)
+   library(ggplot2)
+   options(width=160)
+</code></pre>
+
+<h2>Initial data explorations</h2>
+
+<p>Lets look at the trapping grid.   </p>
+
+<pre><code class="r">  trap.gr&lt;-read.csv(&quot;../data/detectorfileScaled.csv&quot;, header=FALSE)
+  names(trap.gr)&lt;-c(&quot;Trap&quot;, &quot;X&quot;, &quot;Y&quot;)
+  plot(trap.gr$X, trap.gr$Y, main=&quot;Trap Grid&quot;, xlab=&quot;X&quot;, ylab=&quot;Y&quot;) 
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<p>Read in data created using &ldquo;Data Exploration.R&rdquo; file, names(bearCH)&lt;-c(&ldquo;Session&rdquo;, &ldquo;ID&rdquo;, &ldquo;Occasion&rdquo;, &ldquo;Detector&rdquo;, &ldquo;Count&rdquo;, &ldquo;Sex&rdquo;)</p>
+
+<pre><code class="r">  bearCH&lt;-read.capthist(&quot;../data/BearCH.csv&quot;, &quot;../data/detectorfileScaled.csv&quot;,  detector= &#39;proximity&#39;, covnames=&quot;Sex&quot;)
+</code></pre>
+
+<pre><code>## No errors found :-)
+</code></pre>
+
+<p>Try plotting method from scrbook package </p>
+
+<pre><code class="r">  enc&lt;-read.csv(&quot;../data/BearCH.csv&quot;, header=F) # Encounter data
+  enc[,1]&lt;-as.numeric(1) # Treat individuals and periods as factor variables
+  enc[,2]&lt;-as.numeric(enc[,2])
+  traps&lt;-read.csv(&quot;../data/detectorfileScaled.csv&quot;, header=FALSE) # Trap data
+  traps.3d&lt;-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+  y3d&lt;-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+  spiderplot(y3d, traps[,2:3]) # plot centroids along with recpatures for each individual
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/> </p>
+
+<pre><code>## $xcent
+##  [1]  6.7879342  4.7523061  3.8101265  8.7284770  5.7085273  6.2290399  6.6124957  6.7781150  8.3458890  7.1316006  8.1768162  8.9864519  4.0063365  3.2587474
+## [15]  8.6366540  8.4282984  7.8533623  6.9462871  9.8142318  7.8373251  6.9821324  3.1551494  1.2375379  0.3893351  6.7128891  3.7510853 10.0896873  8.7284770
+## [29]  4.9545165  4.1802003  8.0468022  6.8244947  9.3026417  4.0909616  7.2882166  8.8738312  3.3888988  5.5522468  9.5560640  2.3204930  8.7004208  8.7872839
+## [43]  3.5282345
+## 
+## $avg.s
+##              [,1]        [,2]
+##  [1,] -0.62976213  6.75865748
+##  [2,]  4.34596964  1.92274823
+##  [3,]  2.67358208 -2.71459437
+##  [4,]  0.21479718  8.72583365
+##  [5,] -3.99783112 -4.07487792
+##  [6,]  2.48749144 -5.71080773
+##  [7,] -1.26822052  6.48973933
+##  [8,]  0.06587713  6.77779482
+##  [9,]  7.22379217  4.17979538
+## [10,] -4.42207240 -5.59508741
+## [11,]  1.09953178  8.10255225
+## [12,]  7.03015501 -5.59761000
+## [13,]  3.96863606 -0.54832438
+## [14,] -0.72255556 -3.17763245
+## [15,] -6.69593390  5.45493003
+## [16,] -7.67086560  3.49199590
+## [17,] -7.84975089  0.23813835
+## [18,] -6.66932653  1.94190331
+## [19,]  1.72712845  9.66106481
+## [20,]  0.45082255  7.82434813
+## [21,] -5.41963003  4.40202041
+## [22,]  0.05637236 -3.15464573
+## [23,] -0.24354523 -1.21333661
+## [24,]  0.16181416  0.35411580
+## [25,] -4.26628044 -5.18283040
+## [26,] -3.74436059 -0.22450927
+## [27,] -9.98628044 -1.44083040
+## [28,]  0.21479718  8.72583365
+## [29,] -0.80214912 -4.88915031
+## [30,]  0.47355096 -4.15329070
+## [31,]  6.49753406 -4.74690180
+## [32,]  6.76452732  0.90271721
+## [33,]  7.20769533 -5.88117940
+## [34,]  3.40642523  2.26544340
+## [35,]  1.95744564 -7.02043503
+## [36,]  7.42470872  4.85989507
+## [37,] -0.47509209  3.35543181
+## [38,] -5.49573151  0.79017725
+## [39,]  7.81029424  5.50614768
+## [40,]  2.06858650  1.05149298
+## [41,] -8.55228044 -1.59869339
+## [42,] -8.24589634  3.03670070
+## [43,] -3.52761784  0.06596146
+## 
+## $center
+## [1] -2.479339e-10  1.735537e-10
+</code></pre>
+
+<h3>Summary of the data provided by SECR</h3>
+
+<ul>
+<li>n = number of individuals detected on each occasion</li>
+<li>u = number of individuals detected for the first time on each occasion</li>
+<li>f =  number of individuals detected exactly f times</li>
+<li>M(t+1) =  cumulative number of individuals detected</li>
+<li>losses    = number of individuals reported as not released on each occasion</li>
+<li>detections    = number of detections, including within-occasion recaptures&#39;</li>
+<li>detectors visited = number of detectors at which at least one detection was recorded</li>
+<li>detectors used =  number of detectors, excluding any not set&#39; in usage attribute of traps attribute</li>
+</ul>
+
+<pre><code class="r">  summary(bearCH)
+</code></pre>
+
+<pre><code>## Object class      capthist 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## Counts by occasion 
+##                     1   2   3   4   5   6 Total
+## n                  14  23  24  28  25  21   135
+## u                  14  13   8   3   1   4    43
+## f                  13   6   3  10   5   6    43
+## M(t+1)             14  27  35  38  39  43    43
+## losses              0   0   0   0   0   0     0
+## detections         29  92  84 122 104  76   507
+## detectors visited  22  64  59  75  74  53   347
+## detectors used    121 121 121 121 121 121   726
+</code></pre>
+
+<pre><code class="r">  str(bearCH)
+</code></pre>
+
+<pre><code>##  capthist [1:43, 1:6, 1:121] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 3
+##   ..$ : chr [1:43] &quot;0056&quot; &quot;10-86-01&quot; &quot;12-106-02&quot; &quot;120-4-2&quot; ...
+##   ..$ : chr [1:6] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   ..$ : chr [1:121] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  - attr(*, &quot;covariates&quot;)=&#39;data.frame&#39;:   43 obs. of  1 variable:
+##   ..$ Sex: Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 1 2 2 2 1 1 2 2 1 2 ...
+##  - attr(*, &quot;traps&quot;)=Classes &#39;traps&#39; and &#39;data.frame&#39;:    121 obs. of  2 variables:
+##   ..$ x: num [1:121] -3.428 -2.414 -0.233 1.863 2.893 ...
+##   ..$ y: num [1:121] -8.99 -9.42 -9.85 -9.04 -10.13 ...
+##   ..- attr(*, &quot;detector&quot;)= chr &quot;proximity&quot;
+##   ..- attr(*, &quot;spacex&quot;)= num 0.000643
+##   ..- attr(*, &quot;spacey&quot;)= num 0.00263
+##   ..- attr(*, &quot;spacing&quot;)= num 1.08
+##  - attr(*, &quot;session&quot;)= chr &quot;BearMR&quot;
+##  - attr(*, &quot;inject.time&quot;)= num [1:507] 0 0 0 0 0 0 0 0 0 0 ...
+</code></pre>
+
+<h2>Models</h2>
+
+<p>First, explore the effect of scaling the trapping grid coordinates</p>
+
+<ul>
+<li>Model detection as a function of period, movement as function of sex</li>
+<li>Compare models fit using scaled and unscaled grid</li>
+</ul>
+
+<p>Model detection as a function of capture Period and movement as a function of sex of the animal.
+ Buffer if scaled = 10, if unscaled = 10*10000 = 10,000</p>
+
+<pre><code class="r">  secr0 &lt;- secr.fit(bearCH, model =list(g0~t, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  plot(secr0$mask)
+  plot(bearCH, tracks=T, add=T)
+</code></pre>
+
+<pre><code>## Warning in plot.capthist(bearCH, tracks = T, add = T): track for repeat detections on same occasion joins points in arbitrary sequence
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7"/> </p>
+
+<p>Calculate density estimate (a derived parameter)</p>
+
+<pre><code class="r">  ds&lt;-derived(secr0)
+</code></pre>
+
+<p>What if we use the unscaled and uncentered trap locations?</p>
+
+<pre><code class="r"> bearCH.us&lt;-read.capthist(&quot;../data/BearCH.csv&quot;, &quot;../data/detectorfileUnScaled.csv&quot;,  detector= &#39;proximity&#39;, covnames=&quot;Sex&quot;)
+</code></pre>
+
+<pre><code>## No errors found :-)
+</code></pre>
+
+<pre><code class="r"> summary(bearCH.us)
+</code></pre>
+
+<pre><code>## Object class      capthist 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1078.547 m 
+## x-range           444166.1 462583.8 m 
+## y-range           5253349 5273332 m 
+## Usage range by occasion
+##     1 2 3 4 5 6 7 8
+## min 1 1 1 1 1 1 1 1
+## max 1 1 1 1 1 1 1 1
+## Counts by occasion 
+##                     1   2   3   4   5   6   7   8 Total
+## n                  14  23  24  28  25  21   0   0   135
+## u                  14  13   8   3   1   4   0   0    43
+## f                  13   6   3  10   5   6   0   0    43
+## M(t+1)             14  27  35  38  39  43  43  43    43
+## losses              0   0   0   0   0   0   0   0     0
+## detections         29  92  84 122 104  76   0   0   507
+## detectors visited  22  64  59  75  74  53   0   0   347
+## detectors used    121 121 121 121 121 121 121 121   968
+</code></pre>
+
+<pre><code class="r"> secr0.US &lt;- secr.fit(bearCH.us, model =list(g0~t, sigma~Sex), buffer = 10000, trace = FALSE, CL=TRUE) # null model
+ dUS&lt;-derived(secr0.US)
+</code></pre>
+
+<p>Compare density estimates (just different scales)  </p>
+
+<pre><code class="r"> dUS # unscaled
+</code></pre>
+
+<pre><code>##         estimate  SE.estimate          lcl          ucl       CVn        CVa       CVD
+## esa 8.874491e+04           NA           NA           NA        NA         NA        NA
+## D   4.845348e-04 7.670603e-05 0.0003559635 0.0006595451 0.1564504 0.02418448 0.1583086
+</code></pre>
+
+<pre><code class="r"> ds  # scaled
+</code></pre>
+
+<pre><code>##         estimate SE.estimate     lcl      ucl       CVn        CVa       CVD
+## esa   0.08874528          NA      NA       NA        NA         NA        NA
+## D   484.53281519    76.70293 355.966 659.5351 0.1564502 0.02414779 0.1583029
+</code></pre>
+
+<p>Now, N in the region (these depend critically on the size of the buffer!).  Early on, I used a buffer size of 10 (for scaled) and a buffer
+ size of 50,000 for the unscaled. The latter buffer was much bigger (proporationally) and resulted in a much bigger N! Here, buffers are similar
+ and there is little to no difference between the estimates.</p>
+
+<pre><code class="r">  region.N(secr0)
+</code></pre>
+
+<pre><code>##     estimate SE.estimate      lcl      ucl  n
+## E.N 59.34399    9.394324 43.59755 80.77770 43
+## R.N 68.83806    5.376740 60.25854 81.68261 43
+</code></pre>
+
+<pre><code class="r">  region.N(secr0.US)
+</code></pre>
+
+<pre><code>##     estimate SE.estimate      lcl      ucl  n
+## E.N 59.34424    9.394704 43.59725 80.77893 43
+## R.N 68.83843    5.377380 60.25808 81.68477 43
+</code></pre>
+
+<p>Before moving forward, lets check the buffer = 10</p>
+
+<pre><code class="r">  mask.check(secr0) #looks OK
+</code></pre>
+
+<pre><code>## Computing log likelihoods... 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292 
+## beta vector : -2.473702 0.9554292
+</code></pre>
+
+<pre><code>##          spacing
+## buffer    0.600276317453125 0.450207238089844 0.300138158726563
+##   9.8842              1e+10             1e+10             1e+10
+##   14.8263             1e+10             1e+10             1e+10
+##   19.7684             1e+10             1e+10             1e+10
+</code></pre>
+
+<h2>Additional Models</h2>
+
+<p>In all of these models, I will assume sigma~sex (males move more than females)</p>
+
+<ul>
+<li>g0 ~ T (time trend in detection probabilities)</li>
+<li>g0 ~ b (behavioral response following initial detection)</li>
+<li>g0 ~ b + t (time specific detections &amp; behavioral response)</li>
+<li>g0 ~ b + T (time trend and behavioral response)</li>
+</ul>
+
+<h4>Time trend in detection</h4>
+
+<pre><code class="r">  secr1 &lt;- secr.fit(bearCH, model =list(g0~T, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  (d1&lt;-derived(secr1))
+</code></pre>
+
+<pre><code>##         estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+## esa   0.08880523          NA       NA       NA        NA         NA        NA
+## D   484.20572910    76.66908 355.7003 659.1368 0.1564894 0.02413686 0.1583399
+</code></pre>
+
+<h4>Behavioral response</h4>
+
+<pre><code class="r">  secr2 &lt;- secr.fit(bearCH, model =list(g0~b, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  (d2&lt;-derived(secr2))
+</code></pre>
+
+<pre><code>##         estimate SE.estimate     lcl      ucl       CVn        CVa       CVD
+## esa   0.07823719          NA      NA       NA        NA         NA        NA
+## D   549.61076933    88.21128 402.075 751.2828 0.1570845 0.03292395 0.1604977
+</code></pre>
+
+<h4>Time specific detection and behavioral response</h4>
+
+<pre><code class="r">  secr3 &lt;- secr.fit(bearCH, model =list(g0~b+t, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  (d3&lt;-derived(secr3))
+</code></pre>
+
+<pre><code>##         estimate SE.estimate      lcl      ucl       CVn        CVa      CVD
+## esa   0.08186511          NA       NA       NA        NA         NA       NA
+## D   525.25429871    84.88374 383.4395 719.5193 0.1569256 0.03860761 0.161605
+</code></pre>
+
+<h4>Time trend and behavioral response</h4>
+
+<pre><code class="r">  secr4 &lt;- secr.fit(bearCH, model =list(g0~b+T, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  (d4&lt;-derived(secr4))
+</code></pre>
+
+<pre><code>##         estimate SE.estimate      lcl      ucl       CVn        CVa      CVD
+## esa   0.07623517          NA       NA       NA        NA         NA       NA
+## D   564.04414241    91.27419 411.5854 772.9764 0.1571768 0.03849026 0.161821
+</code></pre>
+
+<p>Compare models using AIC  </p>
+
+<pre><code class="r">  AIC(secr0, secr1, secr2, secr3, secr4)
+</code></pre>
+
+<pre><code>##                    model   detectfn npar    logLik      AIC     AICc  dAICc AICcwt
+## secr3 g0~b + t sigma~Sex halfnormal    9 -1739.065 3496.131 3501.585  0.000  0.945
+## secr0     g0~t sigma~Sex halfnormal    8 -1743.518 3503.036 3507.271  5.686  0.055
+## secr2     g0~b sigma~Sex halfnormal    4 -1753.140 3514.280 3515.332 13.747  0.000
+## secr4 g0~b + T sigma~Sex halfnormal    5 -1752.099 3514.198 3515.820 14.235  0.000
+## secr1     g0~T sigma~Sex halfnormal    4 -1772.627 3553.254 3554.306 52.721  0.000
+</code></pre>
+
+<h2>Parameter estimates</h2>
+
+<h4>Time specific detection</h4>
+
+<pre><code class="r">  secr0
+</code></pre>
+
+<pre><code>## 
+## secr.fit(capthist = bearCH, model = list(g0 ~ t, sigma ~ Sex), 
+##     buffer = 10, CL = TRUE, trace = FALSE)
+## secr 2.9.5, 15:45:36 10 Aug 2015
+## 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## N animals       :  43  
+## N detections    :  507 
+## N occasions     :  6 
+## Mask area       :  0.1224767 ha 
+## 
+## Model           :  g0~t sigma~Sex 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  8 
+## Log likelihood  :  -1743.518 
+## AIC             :  3503.036 
+## AICc            :  3507.271 
+## 
+## Beta parameters (coefficients) 
+##                  beta    SE.beta        lcl        ucl
+## g0         -2.4737024 0.20408735 -2.8737062 -2.0736985
+## g0.t2       1.3528903 0.23627718  0.8897955  1.8159851
+## g0.t3       1.2594920 0.23840972  0.7922175  1.7267664
+## g0.t4       1.7544987 0.23306718  1.2976955  2.2113020
+## g0.t5       1.5244840 0.23447043  1.0649304  1.9840376
+## g0.t6       1.1071518 0.24007726  0.6366090  1.5776946
+## sigma       0.9554292 0.04457587  0.8680621  1.0427963
+## sigma.SexM  0.4795969 0.05552869  0.3707627  0.5884311
+## 
+## Variance-covariance matrix of beta parameters 
+##                       g0         g0.t2         g0.t3         g0.t4         g0.t5
+## g0          4.165165e-02 -3.853638e-02 -3.853983e-02 -3.824232e-02 -3.844502e-02
+## g0.t2      -3.853638e-02  5.582690e-02  3.907747e-02  3.912482e-02  3.908825e-02
+## g0.t3      -3.853983e-02  3.907747e-02  5.683919e-02  3.913277e-02  3.909363e-02
+## g0.t4      -3.824232e-02  3.912482e-02  3.913277e-02  5.432031e-02  3.915940e-02
+## g0.t5      -3.844502e-02  3.908825e-02  3.909363e-02  3.915940e-02  5.497638e-02
+## g0.t6      -3.869011e-02  3.904610e-02  3.905049e-02  3.908676e-02  3.906097e-02
+## sigma      -1.127670e-03 -1.635756e-04 -2.173578e-04 -3.343171e-04 -2.524477e-04
+## sigma.SexM  2.281779e-05 -2.618182e-05 -7.768298e-06 -4.566275e-05  1.110511e-05
+##                    g0.t6         sigma    sigma.SexM
+## g0         -3.869011e-02 -0.0011276700  2.281779e-05
+## g0.t2       3.904610e-02 -0.0001635756 -2.618182e-05
+## g0.t3       3.905049e-02 -0.0002173578 -7.768298e-06
+## g0.t4       3.908676e-02 -0.0003343171 -4.566275e-05
+## g0.t5       3.906097e-02 -0.0002524477  1.110511e-05
+## g0.t6       5.763709e-02 -0.0001431474  3.705375e-05
+## sigma      -1.431474e-04  0.0019870079 -1.725578e-03
+## sigma.SexM  3.705375e-05 -0.0017255785  3.083436e-03
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link   estimate SE.estimate        lcl       ucl
+## g0    logit 0.07772243  0.01462932 0.05346877 0.1116796
+## sigma   log 2.59978627  0.11594532 2.38228985 2.8371395
+</code></pre>
+
+<h4>Time trend in detection</h4>
+
+<pre><code class="r">  secr1
+</code></pre>
+
+<pre><code>## 
+## secr.fit(capthist = bearCH, model = list(g0 ~ T, sigma ~ Sex), 
+##     buffer = 10, CL = TRUE, trace = FALSE)
+## secr 2.9.5, 17:39:53 10 Aug 2015
+## 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## N animals       :  43  
+## N detections    :  507 
+## N occasions     :  6 
+## Mask area       :  0.1224767 ha 
+## 
+## Model           :  g0~T sigma~Sex 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  4 
+## Log likelihood  :  -1772.627 
+## AIC             :  3553.254 
+## AICc            :  3554.306 
+## 
+## Beta parameters (coefficients) 
+##                  beta    SE.beta         lcl        ucl
+## g0         -1.5920143 0.11656864 -1.82048461 -1.3635440
+## g0.T        0.1406189 0.03275643  0.07641748  0.2048203
+## sigma       0.9551351 0.04465460  0.86761368  1.0426565
+## sigma.SexM  0.4824436 0.05568054  0.37331174  0.5915754
+## 
+## Variance-covariance matrix of beta parameters 
+##                       g0          g0.T         sigma    sigma.SexM
+## g0          1.358825e-02 -2.749647e-03 -1.203079e-03  5.815161e-06
+## g0.T       -2.749647e-03  1.072984e-03 -4.512833e-05  1.009177e-05
+## sigma      -1.203079e-03 -4.512833e-05  1.994034e-03 -1.733117e-03
+## sigma.SexM  5.815161e-06  1.009177e-05 -1.733117e-03  3.100323e-03
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate       lcl       ucl
+## g0    logit 0.1691007  0.01637855 0.1393757 0.2036649
+## sigma   log 2.5990217  0.11611616 2.3812217 2.8367428
+</code></pre>
+
+<h4>Behavioral response</h4>
+
+<pre><code class="r">  secr2
+</code></pre>
+
+<pre><code>## 
+## secr.fit(capthist = bearCH, model = list(g0 ~ b, sigma ~ Sex), 
+##     buffer = 10, CL = TRUE, trace = FALSE)
+## secr 2.9.5, 17:47:18 10 Aug 2015
+## 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## N animals       :  43  
+## N detections    :  507 
+## N occasions     :  6 
+## Mask area       :  0.1224767 ha 
+## 
+## Model           :  g0~b sigma~Sex 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  4 
+## Log likelihood  :  -1753.14 
+## AIC             :  3514.28 
+## AICc            :  3515.332 
+## 
+## Beta parameters (coefficients) 
+##                  beta    SE.beta        lcl        ucl
+## g0         -2.0601159 0.14467798 -2.3436796 -1.7765523
+## g0.bTRUE    1.0563123 0.14799011  0.7662570  1.3463676
+## sigma       0.9351576 0.04124569  0.8543176  1.0159977
+## sigma.SexM  0.4943951 0.05272727  0.3910516  0.5977387
+## 
+## Variance-covariance matrix of beta parameters 
+##                       g0      g0.bTRUE         sigma    sigma.SexM
+## g0          2.093172e-02 -0.0176505217 -0.0009698759 -8.499418e-05
+## g0.bTRUE   -1.765052e-02  0.0219010727 -0.0004578631  1.322172e-04
+## sigma      -9.698759e-04 -0.0004578631  0.0017012065 -1.431424e-03
+## sigma.SexM -8.499418e-05  0.0001322172 -0.0014314235  2.780165e-03
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate        lcl       ucl
+## g0    logit 0.1130342  0.01450505 0.08756947 0.1447294
+## sigma   log 2.5476150  0.10512283 2.34977026 2.7621177
+</code></pre>
+
+<h4>Time specific detection and behavioral response</h4>
+
+<pre><code class="r">  secr3
+</code></pre>
+
+<pre><code>## 
+## secr.fit(capthist = bearCH, model = list(g0 ~ b + t, sigma ~ 
+##     Sex), buffer = 10, CL = TRUE, trace = FALSE)
+## secr 2.9.5, 17:52:28 10 Aug 2015
+## 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## N animals       :  43  
+## N detections    :  507 
+## N occasions     :  6 
+## Mask area       :  0.1224767 ha 
+## 
+## Model           :  g0~b + t sigma~Sex 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  9 
+## Log likelihood  :  -1739.065 
+## AIC             :  3496.131 
+## AICc            :  3501.585 
+## 
+## Beta parameters (coefficients) 
+##                  beta    SE.beta         lcl        ucl
+## g0         -2.5034042 0.20449860 -2.90421414 -2.1025943
+## g0.bTRUE    0.6962092 0.23501397  0.23559023  1.1568281
+## g0.t2       0.9909011 0.26667275  0.46823212  1.5135701
+## g0.t3       0.6941049 0.30524959  0.09582672  1.2923831
+## g0.t4       1.0807758 0.32298173  0.44774329  1.7138084
+## g0.t5       0.8425335 0.32612488  0.20334048  1.4817265
+## g0.t6       0.4328228 0.32918930 -0.21237642  1.0780219
+## sigma       0.9387331 0.04193858  0.85653498  1.0209312
+## sigma.SexM  0.4919806 0.05329331  0.38752765  0.5964336
+## 
+## Variance-covariance matrix of beta parameters 
+##                       g0      g0.bTRUE         g0.t2         g0.t3         g0.t4
+## g0          4.181968e-02 -0.0025282315 -0.0371522598 -0.0364564342 -0.0357642893
+## g0.bTRUE   -2.528232e-03  0.0552315681 -0.0288987854 -0.0448166999 -0.0527475347
+## g0.t2      -3.715226e-02 -0.0288987854  0.0711143554  0.0624173452  0.0665859470
+## g0.t3      -3.645643e-02 -0.0448166999  0.0624173452  0.0931773107  0.0818034380
+## g0.t4      -3.576429e-02 -0.0527475347  0.0665859470  0.0818034380  0.1043171984
+## g0.t5      -3.593606e-02 -0.0534516959  0.0669165571  0.0823368997  0.0900735205
+## g0.t6      -3.618335e-02 -0.0530511430  0.0666820449  0.0819880889  0.0896323562
+## sigma      -1.062673e-03 -0.0011927098  0.0003330237  0.0007282303  0.0008208827
+## sigma.SexM -3.119493e-05  0.0007541858 -0.0002855317 -0.0006581436 -0.0007733562
+##                    g0.t5         g0.t6         sigma    sigma.SexM
+## g0         -0.0359360563 -0.0361833541 -0.0010626725 -3.119493e-05
+## g0.bTRUE   -0.0534516959 -0.0530511430 -0.0011927098  7.541858e-04
+## g0.t2       0.0669165571  0.0666820449  0.0003330237 -2.855317e-04
+## g0.t3       0.0823368997  0.0819880889  0.0007282303 -6.581436e-04
+## g0.t4       0.0900735205  0.0896323562  0.0008208827 -7.733562e-04
+## g0.t5       0.1063574389  0.0902884309  0.0009278173 -7.373038e-04
+## g0.t6       0.0902884309  0.1083655940  0.0010090406 -7.039741e-04
+## sigma       0.0009278173  0.0010090406  0.0017588442 -1.485112e-03
+## sigma.SexM -0.0007373038 -0.0007039741 -0.0014851124  2.840177e-03
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link   estimate SE.estimate        lcl       ucl
+## g0    logit 0.07561987  0.01429476 0.05194564 0.1088449
+## sigma   log 2.55674018  0.10727321 2.35498647 2.7757783
+</code></pre>
+
+<h4>Time trend and behavioral response</h4>
+
+<pre><code class="r">   secr4
+</code></pre>
+
+<pre><code>## 
+## secr.fit(capthist = bearCH, model = list(g0 ~ b + T, sigma ~ 
+##     Sex), buffer = 10, CL = TRUE, trace = FALSE)
+## secr 2.9.5, 18:44:40 10 Aug 2015
+## 
+## Detector type     proximity 
+## Detector number   121 
+## Average spacing   1.078547 m 
+## x-range           -10.24721 8.170471 m 
+## y-range           -10.32148 9.661065 m 
+## N animals       :  43  
+## N detections    :  507 
+## N occasions     :  6 
+## Mask area       :  0.1224767 ha 
+## 
+## Model           :  g0~b + T sigma~Sex 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  5 
+## Log likelihood  :  -1752.099 
+## AIC             :  3514.198 
+## AICc            :  3515.82 
+## 
+## Beta parameters (coefficients) 
+##                   beta    SE.beta        lcl         ucl
+## g0         -2.03911101 0.14609280 -2.3254476 -1.75277438
+## g0.bTRUE    1.24899143 0.19982068  0.8573501  1.64063276
+## g0.T       -0.06604832 0.04578481 -0.1557849  0.02368826
+## sigma       0.93193285 0.04093490  0.8517019  1.01216377
+## sigma.SexM  0.49641560 0.05243123  0.3936523  0.59917893
+## 
+## Variance-covariance matrix of beta parameters 
+##                       g0      g0.bTRUE          g0.T         sigma    sigma.SexM
+## g0          2.134311e-02 -0.0157997812 -6.885010e-04 -0.0010209951 -6.549599e-05
+## g0.bTRUE   -1.579978e-02  0.0399283032 -6.123245e-03 -0.0007871069  3.195423e-04
+## g0.T       -6.885010e-04 -0.0061232450  2.096249e-03  0.0001195718 -6.639277e-05
+## sigma      -1.020995e-03 -0.0007871069  1.195718e-04  0.0016756658 -1.404030e-03
+## sigma.SexM -6.549599e-05  0.0003195423 -6.639277e-05 -0.0014040295  2.749034e-03
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate        lcl       ucl
+## g0    logit 0.1151573  0.01488628 0.08903721 0.1476976
+## sigma   log 2.5394127  0.10399416 2.34363214 2.7515483
+</code></pre>
+
+<h2>Density estimates</h2>
+
+<p>Convert density esitmate to N/sq mile.  As reported on the help page for secr.fit:</p>
+
+<ul>
+<li>Density for the unscaled analysis is reported in terms of animals/ha (with distances measured in m). So&hellip;</li>
+<li>For the scaled analysis, density will be reported in terms of animals/(1000x1000)ha (with distances measured 
+in terms of km).<br/></li>
+</ul>
+
+<p>There are 3861.022 square miles in 1000x1000 ha.  To convert, we use:</p>
+
+<p>D (per 100 \(mi^2\)) = (N/ha)*(1000ha/3.861022 mi<sup>2)*100</sup>  </p>
+
+<pre><code class="r"> desnconv&lt;-function(x){
+   100*x/3861.022
+   }
+  desnconv(ds[2,c(1,3,4)]) # point estimate anbd 95% CU **time varying detection model**
+</code></pre>
+
+<pre><code>##   estimate      lcl      ucl
+## D 12.54934 9.219475 17.08188
+</code></pre>
+
+<pre><code class="r">  desnconv(d1[2,c(1,3,4)]) # point estimate anbd 95% CU **trend in detection model**
+</code></pre>
+
+<pre><code>##   estimate      lcl      ucl
+## D 12.54087 9.212595 17.07156
+</code></pre>
+
+<pre><code class="r">  desnconv(d2[2,c(1,3,4)]) # point estimate anbd 95% CU **Behav response**
+</code></pre>
+
+<pre><code>##   estimate      lcl      ucl
+## D 14.23485 10.41369 19.45813
+</code></pre>
+
+<pre><code class="r">  desnconv(d3[2,c(1,3,4)]) # point estimate anbd 95% CU **Time specific detection and behavioral response**
+</code></pre>
+
+<pre><code>##   estimate      lcl      ucl
+## D 13.60402 9.931035 18.63546
+</code></pre>
+
+<pre><code class="r">  desnconv(d4[2,c(1,3,4)]) # point estimate anbd 95% CU **Time trend and behavioral response**
+</code></pre>
+
+<pre><code>##   estimate      lcl      ucl
+## D 14.60867 10.66001 20.01999
+</code></pre>
+
+<h4>Calculate detection functions for the go~t, sigma~sex model</h4>
+
+<pre><code class="r">  x&lt;-seq(0,5, length=100)
+  lx&lt;-length(x)
+  bet&lt;-secr0$fit$par
+  g0s&lt;-plogis(rep(bet[1],6)+c(0,bet[2:6]))
+  sigs&lt;-c(exp(bet[7]), exp(bet[7]+bet[8]))
+  phat&lt;-NULL
+  for(i in 1:6){
+    pfemale&lt;-g0s[i]*exp(-x^2/(2*sigs[1]))
+    pmale&lt;-g0s[i]*exp(-x^2/(2*sigs[2]))
+    phat&lt;-rbind(phat, data.frame(x=rep(x,2),sex=rep(c(&quot;F&quot;,&quot;M&quot;),each=lx), p=c(pfemale, pmale), period=as.factor(rep(i,each=2*lx))))  
+  }
+</code></pre>
+
+<p>Plot fitted detection functions.  Looks like the &ldquo;time effect&rdquo; is much bigger than then sex effect. </p>
+
+<pre><code class="r">  ggplot(phat, aes(x, p, shape=sex, colour=period)) +geom_line()+facet_wrap(~sex)+xlab(&quot;Distance from HR center (km)&quot;)+ ylab(&quot;Detection Probability&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAJFBMVEUAAAAAujkAvsZjnv97fXu1ngDOz87n5+f3Zef38/f/dWv///+WmxSiAAAACXBIWXMAAAsSAAALEgHS3X78AAAef0lEQVR4nO3diYLcKA4A0Oo6xnb8//875QMQAoygfEhY2k2m0lFo8GvwDY9R45bxuLoCGteEwt80FP6mofA3DYW/aSj8TUPhbxoKf9NQ+JuGwt80FP6mofA3DYW/aRTC/yc62miBwhdHGy1Q+OJoowUKXxxttEDhi6ONFrQH//jGod/g4BY8wO8HRaPwh5b+3/HwD/PbYaHwVaHwTOEPHumPH+qX/x0YjcIfWvp/Cq/wx4TCV4Z8+PX/x0Wb8IdHGy1Q+OJoowUKXxxttOAS+M6E+7TGgL+Qz6gppOb72AzYAobVI6QofFUhCq/wHKtHSFH4qkIUXuE5Vo+QovBVhSi8wnOsHiFF4asKUXiF51g9QorCVxWi8ArPsXqEFIWvKkThFZ5j9QgpCl9ViMIrPMfqEVIUvqoQhVd4jtUjpCh8VSEKr/Acq0dIUfiqQhT+d/jn8/cWXwr/nIJX9Qgp18OPmF4a/PwBNuH66hFSOMCjXi8SHjbh+uoRUnjAb283EfCgCddXj5DCBb6TD2/pr68eIYUNvJOXC98pfAV8lxwp5cAvbbi+eoQURvBGXjL8PNpfXz1CCif41EgpCX5qxPXVI6Swgk+MlLLgu+f11SOk8IKf5aXDd/hSpMIr/EnVI6Qwg+9ix0bS4IdAXuEV/pTqEVK4wccOisXBB4O9wt8EHssrvMKfUj1CCjv4yGmwQHgkr/C3gfflFZ4AH54GK/wBhSh8VSF5eK8ZCk+BD06DZcJDeYVX+FOqR0jhCF9+MsQSHjRD4RX+lOoRUljCF58F84R3zVB4hT+leoQUnvClZ8FM4W0zFF7hT6keIUXhqwohwpt2KDwVvvC6l8IXF3IG/Pv9Rh9uA7+2457w7/WX+6Dw94I3f5h6/juVbeK5S6Wuj1bakQ4KPH2oL7vSzbfHL+3QHk8e6ssueDKGn9txc/iSfbzCy4dfD+bfRUf17cBPDbkpfDTy7Sm40q3wxYUofFUhCn8gfMGVbtbw33YovMKfUj1CisJXFaLwR8LTb3Hwhu+eCq/wp1SPkKLwVYWUwYfviCj8dnuo97YUvrgQha8qpBB+LJ+aXeEVvrx6hBSFryqkFB4P9gqfaQ/xbrbCFxei8FWFKLzCE6tXuvyKwit8efUIKczhic+vCID35RVe4Y+oHiFF4asKUfij4WnPr0iA316aTuEVfofqEVKuh399Y6Oy/OFfL9QEhSfBT5+2thvl+RUGPR40QeHJ8FvbTQg8aEKqekBe4W1V5MNbeoUvgXfyuLKEB5eYwHfb8EXLqN4H3g6VguEXeYUvg091GEnw809vunoF6+cqPOWJNT7wUyMUvhQ+MVLKgu9eG9WjL5x8L/hZXjp898JfUPgsfBfbReYfVeQFPwTyCn93ePpS6XeDjx0biYMPBnuFvwk8lgcpzzOqR0hhBx85KBYIj+QVvg4++3AyP3hfXuEJ8OHZkEh4rxkKT4EPDoplwkN5hVf4pS0KTzkbEgoPmqHwlfC591AUvrgQlvDhyZBIeNcMhVf4pS0KT7n+IRbeNkPha+EzLyCJgp/aovCp9uDLHzLhTTMU/m7wazsUvhp++z0UWfDftih8sj34updQ+KUdCn8/+LkhOOWp8On24OteWy8gKXxxIQpfVUgB/NQQhS+Ax9e9WoIPnxhXeIXfoXqEFMbw6LqXWPhvOxTexWDCfcLx8jOeycStQugZJYXAFmT/2SuSghuzb/UIKZfBE36Q0ZXujZeMeff47hWm4C5/nx5PaY9/pVvhizMU/lr48MFhhd9uj3eluyl4fHh3Q/jPN1KV9W9xpKcVuBT+80FNiFQPyyv8UpXUdhMBv3wATVB4Mnxyu3n3tljDgybEqofkFR5st1hlJcFbehI8kr8xfBfrMP7d7OR8Ekzg1zZEqxfM16vw9tMnrKw0+LnTK3whfBcZKb272QLgp0bEq+fJTylPnLFf9QgprOAjI6U8+O6j8MXws7xfWe+mZmoGGVbw3Qd/QeGz8F2wixQIPwTyc0owJ/8TZ+xWPUKKwlcVsg0f9HmFz8KHx0YvgfBYPg4P5RU+ODbynl9JTCTCDh7JLykvP0Xh/QgOil8S4X15hSfABzvIZuDD5VeeOGOn6hFSGMLjg2Lv+ZX4fBIM4T15ha+B946K5MBDeZOC191ReL+yuMuDz4LgQTNS8E5e4SNnQ+3A26YoPAV+xPJC4F0zFD4C//cXqax/TMwb/m+K+D8zzXAloyXW7gw/dmjDSYOfP8AmKDwRfgq83byTIQHwHWgC+GefoGS0xJqRvy38d7t5lfXPgoE8X3hLD//ZB5es8EFVvA6ThI/OGcUEfm2DwpfBG/ngwpcg+LnTe//sg1P8RRUVfgo4UgqFnxrh/7NPtwVv5O8N742U3uUPfyfPGr77U/hi+FleOjy+MvFR+Dx8B3aR8LqXKPhhEx6vn/s8oHqEFCHwvjx3+A7LK3wWHh4bwetesuB9eQSP1s9V+DX+WoBH8lvwi7zCw20GL3g6eRHwnjyCR+vnKryprN1mcfjIhKAM4X15P0Hh4+3BXV4mPJQfsbxX8nP36hFSOMJ3qMsvGWCslwEP5BWeBm83WRw+nBCUPTx+mEzhM2dD4BaHPHjXjHHrMUKFB5X1urxYeNsMhb8vvC8/YHmFR6fB4N4WeA8lP+s3D3jTDIW/G/zaDoUvhgf3tkTCLw2ZU/zZO9GzJczgH8k/ZOEfmfRce0CXFw0/NyQD/5VnBr8lm/3rx6Z9rj2gy5sM8OZZdtZvhvBQnhv8Y8Gaf59+s38wf1P4c7Hxj7LtcV1eNvzUkBx897wafv4Ff/f/UAS//sTUwjv5VuCB/IBP5XnAP2xvr4f/dR8fgQevHEqC/zZECjz4XA8f+2IRvJGPwWdn/WYJ78/QHVy92696hBSkBXboxrpqH/8wsQO821xC4bs//vDbtnT4fFG2Kn2frKzp8vYL7l1TRvA9bkEa3puavVH4XICq9P6mC+BH3OV5wY+zPWhC8M/wAwZrCpQfA3k+5/El8I8RDPXv93v5qv0wBkN9fLutFzzZw89hmxDCj1i+WXgY7/WX+xCB/263SGUxPHjXNDPP/yX7+JWeCg/lr4YPliLdE978Yer57zCvD7/0t/znY7/wsp+eBVU7LyJtWOLPfPiAL75gxrUN2gseHtVD+ORQP0Uf/pSutzjQWM+1x3dLp4/0eHyKEvb44PCuqR4P+nmststQuQXvXjlkCj81ggwP5NuGh+N7vLZ9Jx4eHK14/86Tj8BjeZnwkaP697xrTx/cLYFHyuXeliz4IZBPwTv5VuDzkahtHB7JzxnbS7pce+UOy88p8HKUDHga6U5P4PSosn8S4bE8hPcWXGINn7tIn4DfvlSfhO/6GLx/XM8fHskn4a385fD/YMzwj7oeX393DvWWP5HwfiuWFCAfg0fy1/f4s+HRsVEKfnsRp8vhPfk7wedu4W+1B8nPGVBeBDy8/bCmOPlm4X+8H+/JS4XvAnh3YO9KfrmMFuDzsdkePNhPYeTdRCJbizhxgHfNQPBwpS0A78szgKfFri9U+F1+/r0FeNvlQckvl9EG/E+PXvnHxPPmAmO9FHjbDAwPn7RuDf6RORHMtMc7JhYLb5rhUoKnySC8J38u/A8Rg69/yjaEB2O9ac7G6l1M4Nd2BPADlr8afuce/8Pj1UB+7LwuLwp+aQdIWWfobhd+Zq8f6jfg3QwyEuDnhmzCz/JrBpAXC5+JbHvgWbBk+KkhMGWdmh11eYWPXP8Y8QmdbU56ESeFz6QcB197dy4Gj7u8+SAC/tsQMjyQlwq/w7tz4Cw4uIazhER4sxiDL88QPvvS3GHw8CwYHdevIQO+6yXCE96TjcL/cnfORAp+COR5w4f3HqYU76kiW4iVPxn+A8MM9eXwu7wtCy9/eGO9OPgR33vgBx/bx59/d84EuO4Fu7xweLMKB5TnCE8UPRPe7uWlwOPbjWl426TL4amgu5/OTQEueAJ5gfBIfkkB8vzgM35J+D2O6vPwyWXbeMOj01OW8OQ4BB5c6fbgcZfnDx97tgRcklL4JDyQlw8/BF3efpIOv88+Hl7pFg7vyQ9Bl3d/9/y9eoSUAtlC+ExQ24PgzXsorcGPQZeX2uPJs17l2tO3Ag/lB3x4p/BpeDfWTxm+vMJHMy6B3+OS7Rx9K/BAfsDH9WNweCcVPhf09rh7W9PGkgzvzezld3mFj1TWbi7T5ZuEx/JC4bOX+wraswmfWJqVJ7xtypTiyTOEr3oQI38Xv6Q9nrx5ydjr8lLg4ZRuzOHrHsRQ+ETJcC4/KD8G13BOhv+D8cODGMfAr/IefHyhRq7wHZj1lBV8ZB9//VDfoS6/ZMAuLxIeyk8Z/lh/PfyFj16ZDHR4Jxm+A7N3JuGnNl0NX/2wZSaK2oPG+lbggTw/+NrHq3eFR2P9mgHkBcHDaVtZw1PjHHh79a5rAd5dhZ4zPHmFnzPwGd0UQuHhtK0Kn6vsFnxshU5J8G79XHhcLxZ+z6P6zsnPLyAFXV4UPJyv13R5DN89z4X/IY66H6/w5dUjpCCO/Xr83vBQXjo8mKjZjPVrBhjrFT4CHxzeCYNHZyltwe+8j28aPrJitlj4XJS3Z91Yy7umi7xY+AF3+QA+XHT07vDLK4d+l1f4eMaP8FXvzu31QkXXJny4l18jnO2jonqEFAI8cYmKY16hAhnuGk4AH24lhc+kYPgnDPOaNA941+Xbgl9W2grkB9ymk3t87W3Zg+Hx0d2uGyWf8Ts86vIM4akvyBfu4923wN8zCJvRr//9+/76LB9fy3+e9EJ+SbEZsAWVJff209+csTbItGgIGlVQPUJKFn67327AZ6LmBxletkVHd7v2hnwGbEFlj/e7vFtN0/Z43KgLTue4wNtnVP8wfLD8ugB4747jGMzixwGeFOhhy92v3E0B4P2dfJPwh66fexB8Purasz6jGoz1IuGhfDvwBxzVd+7hZDzWK3w044Khft/Hq20AeG+sH8tXZmUAD+SnDF9+SjlwGdUC2RL4A27LLmEeTv5TeJY9Ph+V7QngzZIuIuHdCSqEX5okFn6H2atjGevDyWisH8sX6GQFH5mWfU45bhnVw+CPObi7B3x8rXSFnzN8eanwbhWOoMsvKYctqngY/P7349fobwAfXTJbCnwmqtuTgi9dmZUHvFuFA3f5y+ErZ68+A97JK3w04zd4omRkqD/iqN6+gOR1ebnwbjGG6Dqqp8G/YJj78TXwj8yzO/Xt6RPwhSuzyoA/bDVNDB/0+B+ewDke3soLhreLMcTXUb0MPmJ6Mbx5AQl2+RbgUZe/Gr56KpSjTueag7eLMfCC5zEVih/LbhHelF9SipbkZQpvm2RSDlpNMw9PjZOu3E3hXqZqCj6+jqos+KPux68ZuMvLhrercGwvoCsC/rD78UsG7vKNwHvy58L/ECfu41uDt6twXAe/X48/7MrdnGHH+tTj9TLh4QFrsICuEPgDz+MtPH4ASyy8XYVD4TfbM3S4y7cCD+SDdVQV3sFbeenwkbfDpMIfeOUuAr+u3iUf3smLhc9EwUahwzt5afBj0OWHY9fdycMzvGQ7ZfjXcNqBh2usXQpffVs2cyO/ZKPEMvwub5Ztkwsf7OWnlAOXX8HwPYwfHsTIXao/CL5gEW7O8NE11kT0+Efsi7vC+2N9A/C4yys8DR6N9cLh8VJbCg8y4DWcEZ/KC4QHe6/oGmsijupPhV/mAG4GPrXUlojz+IPvx8+/I3h/rFf4TMpB8Pko3CixDCDfBLx/eKfwZfDk1ddlwB+2GINk+GVDWXivy4uE35jI72j4H+Iq+Pm4vn34vWfobgM+vDcrEx7KK/xGRvRxjEbggxWXFL5heLgaQ+qhS0L1CCmy4e3hXfAAllR4d/kuXHGJXgghpQX4aWJIvJOXDj9Nyo/g9529syl4MNaLhbddfjh2hm7h8EZe4aPf5gbw8ISuCfjwXH7f2TtbhJ82kFx4eHdW4ZMZPrzr8m3Ao4ma95zLTzo8OpVvAT61GoPC3wj+uPl6xcODW3R2E303kGR4Mzc76vIKf1/4HSdxlA+/TCGDx3rR8PG52eXBv99v+/FAeE++Mfj9p209Af7twN9HwC9TyPy1BA9mam4C/m3+C8aAHaKffvv7/vp8f73mLz13LP6SmNtkG2WaxbJhlB5/yFBvezy+bFvdG/IZsAVH9HgwYe9BEzW3AL/MHRScytdvlHzG4fDrvK3BtK27zeyl8AXf53x42OXFwa9H9e/j4Je5gzz5AcvLhffn8ttrupcz4KPxy0a5A3wwU7PCp+C/G8ld7WgFPlhFd69ZP9qAN9dtATzey4uDD2dqXv9C4UGYjWTH+qbgj5jZq1343Orr7OHxXn7EXV7hI3fl24I/YIKnRuBH782KRuDxXH54L6/wBh6M9Q3Buynd9pzupRV472WqVuATM3spPExBY/3QIXmR8ImZvfaYA6AZ+Hkbmd1hq/A7TvfSFrzr8o3AQ3mFT2zZvrsN/A5zADQGbw/vBrt5KjZKPuNkeDzPj8LDFHwq3wR8Yp6f318MbQgen9F1nrxs+P1n/WgVfsBdXiq86/L7zvrREjy8Odss/F6vgrcIP0/zj8d6sfBuupdd5wBoFh4f3smFN80a8V5e4W2KG+sHfHgnHX6a/AHN/qDwUXjU5QXDp9ZTFQ7/b46ijbINP8ufCP/vH2rC7vDoVfBd3g+8Hn75BDbcD/Cuyw/4VP74Hm/1D4IfY+fyBYX4KVzgu2XD0TZKFn6e5v9s+DmmRuwP788B0Br8FBP9L/C2yw8dkj9xH+/vuQpLjqfM8NHZmgsK8VKYwX+32i7w4WXbcw/uEP0x8D+9NMIOvvsXdJiiw2Zwc/ZCeNSMn+GXV8HRi6GNwYcdpgZ+sPIXwU/xL5+SzEjBw/cDf3lphCc82GbJjFSTF/kBd/lLzuPND/Dv8Mur4OjF0BbhoXw1POzyF13AWej3hN/pbSG28F3JHtJLmeWHDo31F8Ev9DvA2zeC3fFdo/BuRy8bfvoR3gM+nMlxyqh+rpAxvKUvhA8O7J+lGyWfUQSPT+5I3zsBD7t8u/DreC8evhsxfdVldvxm6JxR+1whc/hZvgZ+AK9MzxvnWnjc6+vur6A1t5aMyqeMuMN3pEMjlNLP8H6XvxreP0P9Ad5/d6Bd+G9XqYKHsyTwgO+27tzSque9Exzeq2kL3u8q8QxcSO/DR1dfPx8e0P8IH66lW1DI+kEA/IjlSfCoy7OAt/SV8H6X/+mBUhHwuM9n4efpAf0uzwS+2wcePEJe+ZSRDHgkT4WHh3dc4DviwyaJFCj/0wOlQuC77ZOhsJDlXB50eTbwxIdNUinhI+R1TxlJgd8+GUrBgy7PB36ir4cH8sMvj5eJgYfyBPjBdfnEc0oXwkcu4pbD//h4mRz4buMsOFZIH7luS9wo+Yxf4Yd6eO+BUn+wbxTeyVPhYZdnBo9PVErMwokAGofvkpc/ooX4XT5YhPti+NzjZVR4KN8svJEnw4Muzw7epy869lzlB9zl24VPXf7YgDfyDOE3nzLKwnd/A+7yDcMvvYS4Zb0uH6y+zgF+4znczeotXX7Ae/mW4btCeCvPE97KV8Cju3SF9yPEwXex616JQmCXH4MDexbwRr7w+lL8wL5t+NhLVhvw3d+ycbjCd4nnCjPVW58y8uUbh+/or6OCLj925cuvnwK/HLaUwpuHTbxrk63Dh09mJAvp8W35ou9zDnz88TIqPJQXAT+YcJ9SEWb8y6cs0X9/fU97vr+/pj8+C79PMgO2IP/Psin/KgqZmvZt29y4pXWZ5vmFXAZP7Q3xDPILtfby3RhcuOXT4799vrjHr2tReoN9ybUKofDZS922EDPY84aveufCm657zrgBPJLPwE+Tfgd3Z1nBB4+XEeE9+ZJrFWLhu+17HK6Q3kz6jbs8M/jsg4VhIXh9zXvAU1+hX0/p+MPnHixMwIPTlpJrFYLhqa/Q2+M7JM8Oviue7g8N9neBJ75C79+e5Qy//XxZrBB/rqeSi1Si4Ymv0M/yY9DlOcJvPV8WLcQ7sr8PfPrmVhTe7/Is4UvesgI3ohLrsbQLn7y55RUSH+x5wqefL0sUAuRLrlVIh0/d3PIL6SE8fYXOS+CTz5elCnHyJdcqxMOTJs2YZokLujxX+K5wSl93Nj92WL5leNKkGb2ZAhh0ebbwpVP6WvmbwZMmzejHYC/PGL5wSl8jPwavDbUNT5o0w+zmXZdnDR952mSjkOh0T9vfpwn4yF3NGLyTFwAfPm2Sv0g1BvKtwxNmSxmDLs8cfiiaxHu5VlFw5tIIfH62lDHo8tzh6beepwgmBMh8n1bgCTc1500Dju/4w5NvPU/hTllJxzHNwBNmEOz963cC4Ldfrwvhgz5/B3jCDIK9N9hLgC+ZxLvvxg49b30T+OxNTb/Ly4AvWOZimtgcySv8khGezJd9nyvgaXcg5whP528Cn7+bDeXza/nwgKfP3j4G8neBz9/NBvJi4FNvWaXOXLZm/mkVPntTE5zT5dfyYQNPnMR7BHfqcqNac/C5OUOdvCh40v2IscPy6Ta2B5+YNMNmwEP7zFo+nOBJl6W/v3rvEt6QbGOD8PFJM1xGj+/WVNTkCnjCZen5d/ig2ZQSb2OL8NFJM0DGKj9gee7w+AW7zeOY7vMxi1hE29gkfG6y2EV+wMe97OFzcznb4xj3DkmyjW3CZyaLNYMh2ioC4L12bR7HdH/zqJZsY6vw23OGLmsSfpYOkZ7unSE8pN8+jllGNXw+fwP4zbvZ8BatMHhHv3kcAw7x5p9uPMF1w/Cbd7PnFcqQvBR42vom844+vah2y/Cbd7P7fsCn83Lgc9cqlpjk/z4fT/4e8NuTxfb4Qo4g+Jk+W8i6CtsHHNzfBX5zsth+6RB2FygKPjZtTlCIW4zLHMbeBt5untiW7f2zOmHwlGUu+mW4nz6+Xt4ciM3Db84ZauSX7iAOHnf66A/31MaPfezoTvBbc4aaDuFvlHxNmMBPbfu3dRwzt7EHx3i3gp/pE1t26RCxGU83a8IGforspPfm8P71uht87EjIpEwdYrmqHcwPKAR+8zhmDrurf90OPryp6VL6ZSf43SjPZzwj+Da84M2Iv1GI2dXfED7o9C6ltyOhTy8Hfork7myJZVd/R/iNl22WkXDED+XIgt/YnS3Rz+9VmtLuBD8PidEUMxL68sLgv7uz9Kg2Rd/3d4Xvkk9gryc93+Hejfbi4Dt0fpdpwb3gLT1O+faHhf71fD4J75oeVT1ySjKDcsv+jvDriB9JmenN1U258G6XpvBBRuKxvInejvhy4bt1zFf4yJYNjoSWFDjiJwsRAD/Fv3+4kQo/p/jbxab0E/5k/3xuvI5wfPX2KSTexnvDdx3sFV7KNOT/gQM9P0MSfLe20Z8CVOHtlkEp/RyTvev4UuGXmBqp8LELX3iHOKz8r1X/KRveS1F4P+XfP+BvMqy+whfBv99v9IEv/Br/bNgv9fiC54XV26GQE+Df6y/3gT+8y/gHQ+F/g3/Drq8hPBrt8fEM2AKG1SOkKHxVIQqv8ByrR0g5AX49mH9LOqrPZSg8BT4av7Tn+i2r8ArPsXqEFIWvKkThFZ5j9QgpCl9ViMIrPMfqEVIUvqoQhVd4jtUjpCh8VSEKr/Acq0dIUfiqQhRe4TlWj5Ci8FWFKLzCc6weIeUyeBv5h7AIj2ldWQjz6hWnlIbC717yJYUUh8LvXvIlhRSHwu9e8iWFFEctvIbwUPibhsLfNBT+pqHwN406eMpbdNmMfCGkl/VyOdFX/mglZ7/zDm3MN+CYlxar4L2Xa1I52YRsIZRv803IwVeXTCj495R8A444mTsOPt8cU9BvGe/sT0+0w5NK3ucEO/+zUTNk/RyH9fhdNttRwwapAftknDNslMeV8DuMCe83pT8cBU/iyA9IexwwFceF8KSEn8eNA3s8rYSfvw+jHr/LUT3hR522c6spZI+jekpfPevsoTz0PP6mofA3DYW/aSj8TUPhbxq84R9TzB/clwj/KP1X5veHLXkrEX0Jf5H3tssE78oj9PBPqX+z+XcP8IFcyCPyRd4bbzt4192Dmruo+23qgssPxvr7mvx4LJ0TJpnOHYeHBZh8WIBXCVgi7423HbzrDrf5I/j0AF94eNkoCUlH/xgr1Hxh9L67/w2kBu+qY5kR/sdZjBh+9P4W/J3Zt8N9PJYNftDcX8PSFP7ACId68ymAt5Cb8DgDfBEXCr4wBhUYR4U/MtDQHPZFNGqP3t9k4P0xxOvZ0REG7VQU/sCwPngQfgRfGBFrEXzspyk21Cv8SeGdx68j7cIOBR6j/dsRsAYDczCCmH8R5sOjeq9Ybz/Pe+Nth+S6nxqxDSV540mu+7kRbinR20505TXqQ+FvGgp/01D4m4bC3zQU/qah8DcNhb9p/A/7O0vrF+/0UwAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-25"/> </p>
+
+<p>Some functions to look at</p>
+
+<ul>
+<li>reduce</li>
+<li>RMarkInput (to allow fitting of traditional M-R models in Program Mark, but from R)</li>
+<li>write.DA </li>
+<li>write.SPACECAP (to allow Bayesian fitting)</li>
+</ul>
+
+<p>Could also try:</p>
+
+<ul>
+<li>Other detection functions (exponential, etc)</li>
+<li>Resource selection map</li>
+<li>SPACECAP/JAGS models<br/></li>
+<li>Fit of models to data pooled across sessions (counts of individuals across occassions)</li>
+<li><p>Fit of models using count data at each session  </p>
+
+<p>For how to deal with &ldquo;non-habitat&rdquo; in JAGS, see: <a href="http://www.mikemeredith.net/blog/1309_SECR_in_JAGS_patchy_habitat.htm#fold">http://www.mikemeredith.net/blog/1309_SECR_in_JAGS_patchy_habitat.htm#fold</a>  </p></li>
+</ul>
+
+</body>
+
+</html>

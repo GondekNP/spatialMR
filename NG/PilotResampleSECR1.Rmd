@@ -1,0 +1,172 @@
+---
+title: "PilotSubsampleSecr1"
+author: "Nick Gondek"
+date: "December 27, 2015"
+output: html_document
+---
+
+** This is an adaptation of John Fieberg's script entitled SecrAll1.R, prepared for a projected entitled "Genetic Based estimates of Bear Population: maximizing bang for the buck". The purpose of this project is to derive density estimates using existing SECR models by subsampling the "analyzed samples" in different, relevant ways, to explore bias. This document is a pilot to that effect.**
+
+Loading necessary libraries.
+```{r warning=FALSE, message=FALSE} 
+library(dplyr) 
+   library(secr) 
+   library(secrdesign)
+   library(scrbook)
+   library(ggplot2)
+library(mosaic)
+```
+
+Data exploration, via J. Fieberg's "Data Exploration.R" file.
+```{r}
+#' Read in raw data on samples and individuals tab (saved as .csv files)
+  ind<-read.csv("../data/Individuals2.csv")
+  head(ind)
+  samps<-read.csv("../data/samples.csv")
+  head(samps)
+  
+#' Look at event IDs & Periods. Use strsplit to determine the site associated with each sample 
+   events<-unlist(strsplit(as.character(samps$Event.ID), "-"))
+   samps$site<-as.numeric(sapply(strsplit(as.character(samps$Event.ID), "-"), `[`, 1))
+   samps$cid<-as.numeric(sapply(strsplit(as.character(samps$Event.ID), "-"), `[`, 2))
+   sites<-table(samps$site)
+   
+   #' Update:  7/10/2015:  using a file named "Subsampling Minnesota bear hair_boxes 1 and 2.xls" file in directory, 
+#' C:\Users\jfieberg\Documents\MNDNR\Grand Rapids\Bear Group\DNA hair sampling\draft instructions plan, we were able to determine the period for
+#' 3 of these observations.  The code, below, will impute these values.
+  samps$Period[samps$Event.ID=="67-01" & samps$Period==""]<-1
+  samps$Period[samps$Event.ID=="33-04" & samps$Period==""]<-5
+  samps$Period[samps$Event.ID=="46-09" & samps$Period==""]<-3
+```
+
+samps constructed from original csv file, now creating a data frame with just the obs that were sucessfully sampled (assumed to be class==sample)
+```{r}
+sampobs<-filter(samps, Class=="sample")
+sampobs$Period[sampobs$Period=="6?"]<-"6"
+```
+
+first, counting number of samples at each site by period to see what would be a reasonable choice for randomly submitting samples from each site. 
+```{r}
+  tally(~Period, data=sampobs)
+tally(site~Period, data=sampobs)
+```
+
+pilot scenario - manager has enough funding to genotype 75 samples per period.
+```{r}
+selected<-NULL
+for (i in (1:6)){         ##For each of the six periods
+  new<-sample(sampobs[sampobs$Period==i,], size = 75)
+  selected<-rbind(selected, new)
+} 
+```
+
+Now output into a secr-able csv file. (Via Data Exploration.R)
+```{r}
+  sampobs2<-filter(selected, Period!="")
+#' Now, turn Period into a numeric variable  
+  sampobs2$Period<-droplevels(sampobs2$Period)  
+  sampobs2$Period<-as.numeric(sampobs2$Period)
+  table(sampobs2$Period)
+  
+#' Drop several of the columns that we will not need. 
+  sampobs3<-sampobs2[,c(1:9, 16,18,42:44)] 
+
+#' Write this file out for later use
+   write.csv(sampobs3, file="../NG/subsamps1.csv", row.names=FALSE)  
+```
+
+Now input new file into the same DataSummary.R script in order to compare estimates between this new subsample and John's full sample data. (*note: change in original code is the directory/location of csv data, as well as removal of "other checks" and whatnot that were used for original paper stat verification*)
+```{r message=FALSE}
+#' ## Create sample history files
+
+  rm(list = ls()) # clear out memory
+  
+#' Read in data created using "Data Exploration.R" file  
+  sampobs<-read.csv("../NG/subsamps1.csv")
+  
+#' Gender: Sex = 204.25 -> Male, Sex= 250.25 ->Female
+  sampobs$Group<-rep("M",nrow(sampobs))
+  sampobs$Group[sampobs$Sex==250.25]<-"F"  
+  
+#' Create a data set that contains a count of the number of times each bear was seen for each unique site x period combination.  Also determine
+#' sex of each individual and tabulate the number of males and femlaes
+  caphist<- sampobs%>%group_by(Individual, site, Period)%>%
+      summarize(Count= n())
+  sexid<-unique(select(sampobs, Individual, Group))
+  table(sexid$Group)
+  caphist2<-merge(caphist, sexid, all=FALSE)  
+  
+#' #### Distribution of counts of the **same** individual at each site x period sampling occassion.  
+#' 
+#' The largest count was 10 (same bear, same site, same period).(FULL SAMPLE=11)
+  table(caphist$Count)
+  tally(~Count, data=caphist, format="proportion")
+
+#' 33% of the time, bears were detected > 1 time at a site x Period combination.(FULL SAMPLE = 53%) 
+  prop(~caphist$Count>1) 
+  hist(caphist$Count, xlab="No. Observations per Individual x Site x Period combination", main="")  
+  
+#' #### Number of different unique (site x period) combinations that each bear was detected at.  
+  bearcap<-caphist%>%group_by(Individual)%>% summarize(ncap=n())
+  bearcap
+
+#' Wow! One bear was captured at ~45 unique site x period combinations!  Definitely some capture heterogeneity (and, I'd be surprised
+#' if it was all due to movement and placement of "home range center" relative to the trapping grid). (FULL SAMPLE=62)
+  table(bearcap$ncap)
+  hist(bearcap$ncap, xlab="No. unique sites capturing the same bear", main="")  
+ 
+#' Write out file in the format expected by SECR, proximity detector
+  bearCH<-data.frame(Session="BearMR", ID=caphist$Individual, Occassion=caphist2$Period, Detector=caphist2$site, Sex=caphist2$Group)
+  write.table(bearCH, file="../NG/BearCH.csv", row.names=FALSE, col.names=FALSE, sep=",")
+
+#' Write out the original sampobs data, with a line for each observation at a site and period so that we can also use a multi detector.  
+  bearCHP<-data.frame(Session="BearMR", ID=sampobs$Individual, Occassion=sampobs$Period, Detector=sampobs$site, Sex=sampobs$Group)
+  write.table(bearCHP, file="../NG/BearCHP.csv", row.names=FALSE, col.names=FALSE, sep=",")
+```
+
+Lastly, SECR fit on this subsampled data for comparison and proof of concept. (Via J. Fieberg "SecrAll.R")
+```{r}
+#' Read in data created using "Data Exploration.R" file, names(bearCH)<-c("Session", "ID", "Occasion", "Detector", "Count", "Sex")
+  bearCH<-read.capthist("../NG/BearCH.csv", "../data/detectorfileScaled.csv",  detector= 'proximity', covnames="Sex")
+  
+##For fun, the scrbook package spider plot, just to compare to full sample
+  enc<-read.csv("../NG/BearCH.csv", header=F) # Encounter data
+  enc[,1]<-as.numeric(1) # Treat individuals and periods as factor variables
+  enc[,2]<-as.numeric(enc[,2])
+  traps<-read.csv("../data/detectorfileScaled.csv", header=FALSE) # Trap data
+  traps.3d<-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+  y3d<-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+  spiderplot(y3d, traps[,2:3]) # plot centroids along with recpatures for each individual
+```
+
+Back to Secr analysis. For the purposes of this pilot, and for computational limits, SecrAll2.R's AIC-chosen model (go~b+t+Sex, sigma~Sex) will be used for comparison, by (eventually) many randomized selections from the original data.
+
+```{r}
+#' #### Time specific detection and behavioral response  
+  secr3 <- secr.fit(bearCH, model =list(g0~b+t+Sex, sigma~Sex), buffer = 10, trace = FALSE, CL=TRUE) # null model
+  (d3<-derived(secr3))
+  
+  ## Density estimates
+#'   
+#' Convert density esitmate to N/sq mile.  As reported on the help page for secr.fit:
+#' 
+#' - Density for the unscaled analysis is reported in terms of animals/ha (with distances measured in m). So...
+#' - For the scaled analysis, density will be reported in terms of animals/(1000x1000)ha (with distances measured 
+#' in terms of km).  
+#' 
+#' There are 3861.022 square miles in 1000x1000 ha.  To convert, we use:
+#' 
+#' D (per 100 $mi^2$) = (N/ha)*(1000ha/3.861022 mi^2)*100  
+#' 
+ desnconv<-function(x){
+   100*x/3861.022
+ }
+ 
+   (subdens<-desnconv(d3[2,c(1,3,4)])) # point estimate anbd 95% CU **Time specific detection and behavioral response**
+
+```
+
+
+
+```
+

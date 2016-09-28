@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1473527409644.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4EE25C92",
+    "lastKnownWriteTime" : 2,
+    "last_content_update" : 1473527409644,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "ixpas3w2x2",
+        "caption" : "BearCH",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=BearCH&cache_key=ixpas3w2x2",
+        "displayedObservations" : 507,
+        "environment" : "",
+        "object" : "BearCH",
+        "totalObservations" : 507,
+        "variables" : 5
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

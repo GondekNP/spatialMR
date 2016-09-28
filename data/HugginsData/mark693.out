@@ -1,0 +1,205 @@
+
+   Program  MARK  - Survival Rate Estimation with Capture-Recapture Data
+   gfortran(Win64) Vers. 8.1 Mar 2016   25-Mar-2016 13:30:23    Page  001
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+   This version was compiled by GCC version 5.3.0 using the options 
+   -m64 -mtune=generic -march=x86-64 -mthreads -O2 -fimplicit-none -fbounds-check -funroll-loops -ftree-vectorize -fopenmp.
+   This problem will use 7 of 8 possible threads.
+
+
+  INPUT --- proc title ;
+
+     CPU Time in seconds for last procedure was 0.00
+
+
+  INPUT --- proc chmatrix occasions= 6 groups= 1 etype= Huggins ICMeans 
+  INPUT --- NoHist hist= 20 ;
+
+  INPUT ---    time  interval 1 1 1 1 1 ;
+
+  INPUT ---    glabel(1)=Group 1;
+
+      Number of unique encounter histories read was 20.
+
+      Number of individual covariates read was 0.
+      Time interval lengths are all equal to 1.
+
+      Data type number is 12
+      Data type is Huggins' p and c                                                                                    
+
+     CPU Time in seconds for last procedure was 0.00
+
+  Program  MARK  - Survival Rate Estimation with Capture-Recapture Data
+   gfortran(Win64) Vers. 8.1 Mar 2016   25-Mar-2016 13:30:23    Page  002
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+
+
+  INPUT --- proc estimate link=Logit NOLOOP varest=2ndPart    ;
+
+
+  INPUT --- model={ p(~c + time)c() };
+
+  INPUT ---    group=1 p    rows=1 cols=6 Square ;
+  INPUT ---        1 2 3 4 5 6 ;
+
+  INPUT ---    group=1 c    rows=1 cols=5 Square ;
+  INPUT ---        7 8 9 10 11 ;
+
+  INPUT ---    design matrix constraints=11 covariates=7;
+  INPUT ---        1 0 0 0 0 0 0;
+  INPUT ---        1 0 1 0 0 0 0;
+  INPUT ---        1 0 0 1 0 0 0;
+  INPUT ---        1 0 0 0 1 0 0;
+  INPUT ---        1 0 0 0 0 1 0;
+  INPUT ---        1 0 0 0 0 0 1;
+  INPUT ---        1 1 1 0 0 0 0;
+  INPUT ---        1 1 0 1 0 0 0;
+  INPUT ---        1 1 0 0 1 0 0;
+  INPUT ---        1 1 0 0 0 1 0;
+  INPUT ---        1 1 0 0 0 0 1;
+
+  INPUT ---    blabel(1)=p:(Intercept);
+
+  INPUT ---    blabel(2)=p:c;
+
+  INPUT ---    blabel(3)=p:time2;
+
+  INPUT ---    blabel(4)=p:time3;
+
+  INPUT ---    blabel(5)=p:time4;
+
+  INPUT ---    blabel(6)=p:time5;
+
+  INPUT ---    blabel(7)=p:time6;
+
+  INPUT ---    rlabel(1)=p g1 t1;
+
+  INPUT ---    rlabel(2)=p g1 t2;
+
+  INPUT ---    rlabel(3)=p g1 t3;
+
+
+  Program  MARK  - Survival Rate Estimation with Capture-Recapture Data
+   gfortran(Win64) Vers. 8.1 Mar 2016   25-Mar-2016 13:30:23    Page  003
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+  INPUT ---    rlabel(4)=p g1 t4;
+
+  INPUT ---    rlabel(5)=p g1 t5;
+
+  INPUT ---    rlabel(6)=p g1 t6;
+
+  INPUT ---    rlabel(7)=c g1 t2;
+
+  INPUT ---    rlabel(8)=c g1 t3;
+
+  INPUT ---    rlabel(9)=c g1 t4;
+
+  INPUT ---    rlabel(10)=c g1 t5;
+
+  INPUT ---    rlabel(11)=c g1 t6;
+
+ Link Function Used is LOGIT        
+
+ Variance Estimation Procedure Used is 2ndPart 
+
+ M(t+1):
+      39
+
+
+ -2logL(saturated) = 7.3113508     
+ Effective Sample Size = 234
+
+ Number of function evaluations was 18 for 7 parameters.
+ Time for numerical optimization was 0.03 seconds.
+ -2logL { p(~c + time)c() } = 304.68309     
+ Penalty { p(~c + time)c() } = -0.0000000    
+ Gradient { p(~c + time)c() }:
+   0.000000      0.000000     0.4275714E-05 0.5360304E-05 0.5573851E-05
+  0.4323644E-05  0.000000    
+ S Vector { p(~c + time)c() }:
+   71.65129      10.92327      10.88648      10.46209      10.11503    
+   1.870138     0.2304804    
+ Time to compute number of parameters was 0.01 seconds.
+   Threshold =  0.1600000E-06     Condition index =  0.3216695E-02     New Threshold =  0.6097938    
+ New Guessimate of Estimated Parameters { p(~c + time)c() } = 1          
+ Conditioned S Vector { p(~c + time)c() }:
+   1.000000     0.1524504     0.1519370     0.1460140     0.1411703    
+  0.2610055E-01 0.3216695E-02
+ Number of Estimated Parameters { p(~c + time)c() } = 7          
+ DEVIANCE { p(~c + time)c() } = 297.37173                     
+ DEVIANCE Degrees of Freedom { p(~c + time)c() } = 13            
+ c-hat { p(~c + time)c() } = 22.874749                     
+ AIC { p(~c + time)c() } = 318.68309                  
+ AICc { p(~c + time)c() } = 319.17866                    
+ BIC { p(~c + time)c() } = 342.87033                    
+ Pearson Chisquare { p(~c + time)c() } = 140.30694                  
+ Possible Encounter Histories { p(~c + time)c() } = 63             
+ Pearson Chisquare df { p(~c + time)c() } = 55        
+ Pearson chat { p(~c + time)c() } = 2.5510352                  
+ Sum(Observed/Expected) { p(~c + time)c() } = 68.898208                  
+ Fletcher chat { p(~c + time)c() } = 2.3326473                  
+
+
+                     LOGIT Link Function Parameters of { p(~c + time)c() }
+                                                              95% Confidence Interval
+ Parameter                    Beta         Standard Error      Lower           Upper
+ -------------------------  --------------  --------------  --------------  --------------
+    1:p:(Intercept)         -1.3542357      0.6859276       -2.6986538      -0.0098175    
+
+  Program  MARK  - Survival Rate Estimation with Capture-Recapture Data
+   gfortran(Win64) Vers. 8.1 Mar 2016   25-Mar-2016 13:30:23    Page  004
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+    2:p:c                   1.8922540       1.2895439       -0.6352521      4.4197602     
+    3:p:time2               0.3294486       0.5562126       -0.7607281      1.4196254     
+    4:p:time3               0.0604515       0.7233173       -1.3572504      1.4781534     
+    5:p:time4               0.0198230       0.8531374       -1.6523263      1.6919723     
+    6:p:time5               -0.3147109      0.8859531       -2.0511789      1.4217572     
+    7:p:time6               -0.7512664      0.8868790       -2.4895493      0.9870166     
+
+
+                     Real Function Parameters of { p(~c + time)c() }
+                                                               95% Confidence Interval
+  Parameter                  Estimate       Standard Error      Lower           Upper
+ --------------------------  --------------  --------------  --------------  --------------
+     1:p g1 t1               0.2051788       0.1118614       0.0630528       0.4975456                           
+     2:p g1 t2               0.2640960       0.1864780       0.0518870       0.7017889                           
+     3:p g1 t3               0.2152130       0.2003526       0.0261139       0.7371596                           
+     4:p g1 t4               0.2084304       0.2212113       0.0186636       0.7847414                           
+     5:p g1 t5               0.1585647       0.1834281       0.0125730       0.7360729                           
+     6:p g1 t6               0.1085632       0.1327029       0.0082187       0.6415482                           
+     7:c g1 t2               0.7042184       0.1088585       0.4608644       0.8689603                           
+     8:c g1 t3               0.6453062       0.0843017       0.4691834       0.7892420                           
+     9:c g1 t4               0.6359529       0.0754857       0.4797077       0.7679723                           
+    10:c g1 t5               0.5555960       0.0784797       0.4013903       0.6997884                           
+    11:c g1 t6               0.4468891       0.0782926       0.3027858       0.6005053                           
+
+
+                     Estimates of Derived Parameters
+               Population Estimates of { p(~c + time)c() }
+                                                95% Confidence Interval
+     Group     N-hat        Standard Error      Lower           Upper
+ ---------  --------------  --------------  --------------  --------------
+       1    53.611777       25.428890       40.445091       186.74440     
+
+     CPU Time in seconds for last procedure was 0.05
+
+  Program  MARK  - Survival Rate Estimation with Capture-Recapture Data
+   gfortran(Win64) Vers. 8.1 Mar 2016   25-Mar-2016 13:30:23    Page  005
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+
+
+  INPUT --- proc stop;
+
+     CPU Time in minutes for this job was 0.00
+
+     Time Start = 13:30:23.889   Time End = 13:30:23.921
+
+     Wall Clock Time in minutes for this job was 0.00
+
+
+          E X E C U T I O N   S U C C E S S F U L 

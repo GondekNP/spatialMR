@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>First step is to create a systematic grid of traps 8x8 in dataframe</p>
+
+<pre><code class="r">library(secr)
+traplocs&lt;-make.grid(nx=10, ny=10, spacing = .8)
+</code></pre>
+
+<p>Genetically identified individuals (instead of 16-34-299, a letter for simplicity)</p>
+
+<pre><code class="r">known&lt;-c(letters, LETTERS, c(&quot;Aa&quot;, &quot;Bb&quot;, &quot;Cc&quot;, &quot;Dd&quot;, &quot;Ee&quot;, &quot;Ff&quot;, &quot;Gg&quot;,&quot;Hh&quot;, &quot;Ii&quot;, &quot;Jj&quot;))
+sig&lt;-sqrt(10/pi) #avg homerange 10 sq km (Sollman, Gardner, Belant 2012)
+</code></pre>
+
+<p>Defining &#39;observation window&#39; in spatstat</p>
+
+<pre><code class="r">library(spatstat)
+traprange&lt;-owin(xrange=c(min(traplocs$x)-1,max(traplocs$x)+1),
+                yrange=c(min(traplocs$y)-1,max(traplocs$y)+1))
+traprange$units$singular&lt;-&quot;kilometer&quot;
+traprange$units$plural&lt;-&quot;kilometers&quot;
+</code></pre>
+
+<p>Example simple sequential inhibition</p>
+
+<pre><code class="r">plot(traprange, main=&quot;Example Simulated Activity Centers \n(X), and Trap Locations (o)&quot;)
+points(traplocs)
+points(rSSI(r = sig/2, n=length(known), win = traprange, giveup = 10000), pch=&quot;X&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/></p>
+
+<pre><code class="r">sim.bear&lt;- function (known, sig, trapsxy, int.g0=.08, behav= -.02, IH=0, sessions=2, redun = 0){
+  library(sp)
+  library(mosaic)
+  library(LaplacesDemon)
+  #Simulating AC&#39;s for 15 bears, with inhibition range &#39;r&#39; defined by homerange radius 
+  ACs&lt;-data.frame(AC=rSSI(r = sig/2, n=length(known), win = traprange, giveup = 10000),
+                          ID=known, captured=rep(FALSE,length(known)), IHconstant = abs(rnorm(n = length(known), mean = 0, sd = IH)))
+  BearSamps&lt;-data.frame()
+
+
+  for (s in 1:sessions){ #Captures for each session
+
+     for (b in known){ #Captures for each bear in each session
+       bAC&lt;-as.numeric(filter(ACs, ID==b)[,c(&quot;AC.x&quot;,&quot;AC.y&quot;)])
+       #Euclidean distance between AC for this bear and each trap location, and subsequent half-normal capture prob
+       dists&lt;-data.frame(dist=spDistsN1(pts=as.matrix(trapsxy), pt = bAC), trapID=rownames(trapsxy))
+       # intercept capture prob + behavior effect + effect from individual heterogeneity
+       log.g0&lt;- log(int.g0 + behav*filter(ACs, ID==b)[,&quot;captured&quot;]) + filter(ACs, ID==b)[,&quot;IHconstant&quot;]
+       g0&lt;-exp(log.g0)
+       dists&lt;-mutate(dists, g = g0 * dhalfnorm(scale = 1.5*sig, x = dist)) 
+
+       for (h in 1:nrow(dists)){ #For each individual trap
+         capProb &lt;- dists$g[h] #Default capture probability
+         if ( rbinom(n=1, size=1, prob=capProb) == 1 ){ ##Coin flip - if captured (evals to 1), add a row to the samps
+           newSamp&lt;-data.frame(type=&quot;BearMR&quot;, ID = b, Period=s, Trap=dists$trapID[h]) #first (non-redundant) sample
+            for (v in (1:(rpois(1, redun) + 1))) {BearSamps&lt;-rbind(BearSamps, newSamp)} #if redun is 0, evals to 1, only one samp
+           ACs$captured[which(known==b)] &lt;- TRUE ##Bear is captured, next time the cap prob will change depending on &#39;behav&#39;
+         }
+
+       }
+
+     }
+
+  }
+  return(BearSamps)
+}
+</code></pre>
+
+<p>Testing it out - four scenarios. </p>
+
+<p>i) samples determined solely by half-normal</p>
+
+<p>ii) detections determined by halfnormal with variable g0 (which is CONSTANT for the simulation for each individual)</p>
+
+<p>iii) same as i or ii, but including a behavioral effect with captures being more (or less) likely following initial capture</p>
+
+<p>iv) same as above (i - iii), but with redundant data introduced by way of poisson distribution. </p>
+
+<p>i) samples determined solely by half-normal</p>
+
+<pre><code class="r">t1&lt;-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=6, redun=0)
+tally(~ID,data=t1)
+</code></pre>
+
+<pre><code>## ID
+##  a  b  c  e  f  j  m  p  r  t  w  B  D  F  H  K  N  S  U  Z Cc Dd Ee Gg Jj 
+##  9  7  4  6  4  4  4  5  4  3  6  4  1  3  4  5  3  3  6  3  2  3  3  4  5 
+##  g  h  k  v  x  y  z  A  L  Y Aa Ff Ii  s  C  E  G  I  O  d  M  J  P  T 
+##  1  7  1  2  3  1  5  3  3  4  2  7  3  2  2  2  3  2  2  3  3  1  1  1
+</code></pre>
+
+<pre><code class="r">tally(~Period, data=t1)
+</code></pre>
+
+<pre><code>## Period
+##  1  2  3  4  5  6 
+## 29 31 32 25 25 27
+</code></pre>
+
+<p>ii) detections determined by halfnormal with variable g0 (which is CONSTANT for the simulation for each individual)</p>
+
+<p>IH = .1 creates a random normal value on a normal dist with an sd of .1. That constant becomes an additive contstant for the log function g0.</p>
+
+<pre><code class="r">t2&lt;-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=.1, sessions=6, redun=0)
+tally(~ID,data=t2)
+</code></pre>
+
+<pre><code>## ID
+##  c  d  i  k  l  p  v  z  B  G  H  J  N  Q  T  V  X  Y  Z Aa Ff Hh Ii Jj  a 
+##  3  3  8  3  2  7  1  1  5  2  4  6  2  3  3  4  3  5  2  2  6  6  5  7  3 
+##  e  f  g  q  s  C  F  I  O  S  j  o  A  P  W Bb Dd  b  t  L Ee  u  x  U  h 
+##  1  4  1  1  3  4  3  7  3  3  4  3  2  2  3  2  1  1  2  1  1  1  1  1  1
+</code></pre>
+
+<pre><code class="r">tally(~Period, data=t2)
+</code></pre>
+
+<pre><code>## Period
+##  1  2  3  4  5  6 
+## 27 23 27 23 26 26
+</code></pre>
+
+<p>iii) same as i or ii, but including a behavioral effect with captures being more (or less) likely following initial capture</p>
+
+<p>If the bear has been captured previously (ie left a single sample already), the behavioral constant becomes a multiplier for the half-normal distribution of capture probabilties.</p>
+
+<pre><code class="r">t3&lt;-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav= -.04, IH=0, sessions=6, redun=0)
+tally(~ID,data=t3)
+</code></pre>
+
+<pre><code>## ID
+##  a  b  d  e  i  j  k  n  s  u  B  E  F  Q  S  U  W Bb Dd Ee Ff  f  h  o  v 
+##  4  2  2  2  5  3  2  8  6  4  2  3  4  5  3  1  5  2  1  4  2  5  3  2  2 
+##  w  x  J  K  N  O  R Ii Jj  c  y  L  V  Y  D  H  P  X  Z Cc Gg  l  p  q  A 
+##  4  1  1  4  7  2  3  1  2  2  4  3  1  1  1  2  2  1  1  1  2  1  1  1  1 
+##  I  g 
+##  1  1
+</code></pre>
+
+<pre><code class="r">tally(~Period, data=t3)
+</code></pre>
+
+<pre><code>## Period
+##  1  2  3  4  5  6 
+## 26 25 23 23 20 17
+</code></pre>
+
+<p>iv) same as above (i - iii), but with redundant data introduced by way of poisson distribution.</p>
+
+<p>After a bear is detected at a trap, redundant samples are added by way of a random value taken from a poisson distribution with lambda equal to &#39;redun&#39;</p>
+
+<pre><code class="r">t4&lt;-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=6, redun=1.5)
+tally(~ID,data=t4)
+</code></pre>
+
+<pre><code>## ID
+##  a  b  h  j  t  E  H  L  N  P  T  V  X Aa Dd Hh  n  q  y  G  J  K  M  Q  S 
+##  4 15  5 11 11 15 11  8  6  6  5 18 18  9 17 11  1  3  4 12  2 14  7 10  7 
+##  W  Z Jj  c  k  m  s  v  w  x  R  Y Ee Gg Ii  e  p  z  I Bb Cc  d  i  o  u 
+## 15 17  5  9 17  2  1  9  7  1  4  4  4  5 11  7  1  7  4  5  2  4  6  4  7 
+##  O 
+##  2
+</code></pre>
+
+<pre><code class="r">tally(~Period, data=t4)
+</code></pre>
+
+<pre><code>## Period
+##  1  2  3  4  5  6 
+## 52 58 89 69 63 59
+</code></pre>
+
+<p>Figuring out how to fit to sim data - start by building capture history from samps and detector locations</p>
+
+<pre><code class="r">#first need the names of traps as a col and not as rownames
+traplocs&lt;-make.grid(nx=10, ny=10, spacing = .8)
+traplocs[,3]&lt;-rownames(traplocs)
+colnames(traplocs)&lt;-c(&quot;x&quot;,&quot;y&quot;,&quot;detectorID&quot;)
+traplocs2&lt;-cbind(traplocs$detectorID, traplocs$x, traplocs$y)
+traplocs&lt;-as.data.frame(traplocs2)
+colnames(traplocs)&lt;-c(&quot;Detector&quot;, &quot;X&quot;, &quot;Y&quot;) #Mimicing efford documentation to HOPEFULLY get it to work...
+
+trapPath&lt;-tempfile(fileext = &quot;.csv&quot;)
+write.table(x = traplocs, file = trapPath, sep=&quot;,&quot;, col.names = FALSE, row.names = FALSE) #needed to drop rownames and colnames!
+
+head(read.csv(trapPath))
+</code></pre>
+
+<pre><code>##   A.1  X0 X0.1
+## 1 A 2 0.8    0
+## 2 A 3 1.6    0
+## 3 A 4 2.4    0
+## 4 A 5 3.2    0
+## 5 A 6 4.0    0
+## 6 A 7 4.8    0
+</code></pre>
+
+<p>Now, fit the models in parallel like in original project</p>
+
+<pre><code class="r">library(doParallel)
+library(foreach)
+
+
+secr.from.samples &lt;- function (samps, trapcsv)  { 
+
+  #use all but one processor
+  cl&lt;-makeCluster(detectCores())
+  registerDoParallel(cl)
+  times&lt;-data.frame()
+
+  for (d in 1:3){
+  #foreach(d=1:3) %dopar% {
+      #in parallel, libraries need to be loaded independently
+      library(secr)
+      fitted&lt;-list(NULL, NULL, NULL)
+      models&lt;-list(list(g0~b+t), list(g0~t), list(g0~b))
+      modelEval&lt;-models[[d]]
+      strt&lt;-Sys.time()
+      patht0&lt;-tempfile(fileext = &quot;.csv&quot;)
+      write.table(samps, file=patht0, sep = &quot;,&quot;) 
+
+      t0caphist&lt;-read.capthist(captfile = patht0, trapfile = trapcsv, detector = &#39;proximity&#39;)
+      try({fitted[[d]]&lt;-secr.fit(t0caphist, model = modelEval, buffer = 10, trace = FALSE, CL=TRUE, detectfn = 0)})
+
+      outcome&lt;-TRUE
+      if(is.null(fitted[[d]])){outcome&lt;-FALSE; print(&quot;Model fit failed.&quot;)}
+      time&lt;-Sys.time() - strt
+      newTime&lt;-data.frame(time, as.character(modelEval), outcome)
+      times&lt;-rbind(times, newTime)
+
+    }
+
+  print(times)
+  return(fitted)
+}
+
+
+secr.from.samples(t1, trapcsv = trapPath)
+</code></pre>
+
+<pre><code>## No errors found :-)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 34 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 33 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 32 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 31 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 30 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 29 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 28 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 27 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## No errors found :-)
+## No errors found :-)
+##             time as.character.modelEval. outcome
+## 1  6.620532 mins              g0 ~ b + t    TRUE
+## 2  5.839181 mins                  g0 ~ t    TRUE
+## 3 53.496895 mins                  g0 ~ b    TRUE
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## 
+## secr.fit(capthist = t0caphist, model = modelEval, buffer = 10, 
+##     CL = TRUE, detectfn = 0, trace = FALSE)
+## secr 2.10.3, 11:15:07 13 Sep 2016
+## 
+## Detector type     proximity 
+## Detector number   100 
+## Average spacing   0.8 m 
+## x-range           0 7.2 m 
+## y-range           0 7.2 m 
+## 
+## N animals       :  49  
+## N detections    :  169 
+## N occasions     :  6 
+## Mask area       :  0.06553075 ha 
+## 
+## Model           :  g0~b sigma~1 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  3 
+## Log likelihood  :  -564.0315 
+## AIC             :  1134.063 
+## AICc            :  1134.596 
+## 
+## Beta parameters (coefficients) 
+##                beta    SE.beta        lcl        ucl
+## g0       -0.7575678 0.25013797 -1.2478292 -0.2673064
+## g0.bTRUE  0.0197212 0.25407243 -0.4782516  0.5176940
+## sigma    -0.7906698 0.04534672 -0.8795478 -0.7017919
+## 
+## Variance-covariance matrix of beta parameters 
+##                    g0      g0.bTRUE         sigma
+## g0        0.062569002 -0.0486660788 -0.0052337894
+## g0.bTRUE -0.048666079  0.0645527993  0.0002113205
+## sigma    -0.005233789  0.0002113205  0.0020563251
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate       lcl       ucl
+## g0    logit 0.3191745  0.05435552 0.2230761 0.4335685
+## sigma   log 0.4535409  0.02057717 0.4149705 0.4956963
+</code></pre>
+
+<pre><code class="r">secr.from.samples(t2, trapcsv = trapPath)
+</code></pre>
+
+<pre><code>## No errors found :-)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 13 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 12 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 11 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 10 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 9 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 8 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 7 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 6 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## No errors found :-)
+## No errors found :-)
+##             time as.character.modelEval. outcome
+## 1  9.008773 mins              g0 ~ b + t    TRUE
+## 2  5.278936 mins                  g0 ~ t    TRUE
+## 3 58.634305 mins                  g0 ~ b    TRUE
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## 
+## secr.fit(capthist = t0caphist, model = modelEval, buffer = 10, 
+##     CL = TRUE, detectfn = 0, trace = FALSE)
+## secr 2.10.3, 11:30:20 13 Sep 2016
+## 
+## Detector type     proximity 
+## Detector number   100 
+## Average spacing   0.8 m 
+## x-range           0 7.2 m 
+## y-range           0 7.2 m 
+## 
+## N animals       :  50  
+## N detections    :  152 
+## N occasions     :  6 
+## Mask area       :  0.06553075 ha 
+## 
+## Model           :  g0~b sigma~1 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  3 
+## Log likelihood  :  -544.175 
+## AIC             :  1094.35 
+## AICc            :  1094.872 
+## 
+## Beta parameters (coefficients) 
+##                 beta    SE.beta        lcl        ucl
+## g0       -1.10961627 0.26359572 -1.6262544 -0.5929781
+## g0.bTRUE -0.07338612 0.26033653 -0.5836363  0.4368641
+## sigma    -0.68458106 0.05073162 -0.7840132 -0.5851489
+## 
+## Variance-covariance matrix of beta parameters 
+##                    g0     g0.bTRUE        sigma
+## g0        0.069482704 -0.054125604 -0.006226105
+## g0.bTRUE -0.054125604  0.067775107  0.000572753
+## sigma    -0.006226105  0.000572753  0.002573697
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate       lcl       ucl
+## g0    logit 0.2479424   0.0491519 0.1643441 0.3559518
+## sigma   log 0.5043015   0.0256005 0.4565700 0.5570229
+</code></pre>
+
+<pre><code class="r">secr.from.samples(t3, trapcsv = trapPath)
+</code></pre>
+
+<pre><code>## No errors found :-)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 21 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 20 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 19 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 18 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 17 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 16 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 15 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## Warning: closing unused connection 14 (&lt;-Nick-VAIO:11013)
+</code></pre>
+
+<pre><code>## No errors found :-)
+## No errors found :-)
+##             time as.character.modelEval. outcome
+## 1  9.150566 mins              g0 ~ b + t    TRUE
+## 2  6.008701 mins                  g0 ~ t    TRUE
+## 3 52.322298 mins                  g0 ~ b    TRUE
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## 
+## secr.fit(capthist = t0caphist, model = modelEval, buffer = 10, 
+##     CL = TRUE, detectfn = 0, trace = FALSE)
+## secr 2.10.3, 11:46:29 13 Sep 2016
+## 
+## Detector type     proximity 
+## Detector number   100 
+## Average spacing   0.8 m 
+## x-range           0 7.2 m 
+## y-range           0 7.2 m 
+## 
+## N animals       :  52  
+## N detections    :  134 
+## N occasions     :  6 
+## Mask area       :  0.06553075 ha 
+## 
+## Model           :  g0~b sigma~1 
+## Fixed (real)    :  none 
+## Detection fn    :  halfnormal
+## N parameters    :  3 
+## Log likelihood  :  -484.1173 
+## AIC             :  974.2345 
+## AICc            :  974.7345 
+## 
+## Beta parameters (coefficients) 
+##                beta    SE.beta        lcl         ucl
+## g0       -0.8599486 0.25587951 -1.3614633 -0.35843402
+## g0.bTRUE -0.5773021 0.25288675 -1.0729510 -0.08165315
+## sigma    -0.7303306 0.05628136 -0.8406401 -0.62002122
+## 
+## Variance-covariance matrix of beta parameters 
+##                    g0      g0.bTRUE         sigma
+## g0        0.065474323 -0.0469851771 -0.0076940956
+## g0.bTRUE -0.046985177  0.0639517090  0.0009978858
+## sigma    -0.007694096  0.0009978858  0.0031675911
+## 
+## Fitted (real) parameters evaluated at base levels of covariates 
+##        link  estimate SE.estimate       lcl       ucl
+## g0    logit 0.2973501  0.05346168 0.2040026 0.4113387
+## sigma   log 0.4817497  0.02713501 0.4314343 0.5379330
+</code></pre>
+
+<pre><code class="r">secr.from.samples(t4, trapcsv = trapPath)
+</code></pre>
+
+<pre><code>## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## [1] &quot;Model fit failed.&quot;
+## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## [1] &quot;Model fit failed.&quot;
+## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## Session BearMR 
+## More than one detection per detector per occasion at proximity detector(s)
+## [1] &quot;Model fit failed.&quot;
+##              time as.character.modelEval. outcome
+## 1 0.03119993 secs              g0 ~ b + t   FALSE
+## 2 0.03220010 secs                  g0 ~ t   FALSE
+## 3 0.04780006 secs                  g0 ~ b   FALSE
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+</code></pre>
+
+</body>
+
+</html>

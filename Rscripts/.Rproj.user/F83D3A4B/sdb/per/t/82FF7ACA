@@ -1,0 +1,17 @@
+{
+    "contents" : "rm(list=ls()) \ndata_dir<-\"C:/Users/mike/Dropbox/teaching/WILD8390/spring2015/exercises/wk6\"\n\n#data_dir<-\"C:/documents and settings/conroy/my documents/Dropbox/teaching/WILD8390/spring2014/week6\"\nsetwd(data_dir)\n#load in a saved capture history data object\nload(\"capt.hist\")\n\n\n#use this capture history database as input into RMark and run some models\n\nrequire(RMark)\n#\nrun.models=function(data)\n{\n#\n# Define parameter models\n#\npdotshared=list(formula=~1,share=TRUE)\n\nptimeshared=list(formula=~time,share=TRUE)\nptimeshared.c=list(formula=~time+c,share=TRUE)\np_cov<-list(formula=~x,share=TRUE)\np_cov.b<-list(formula=~x+c,share=TRUE)\n\nptime.c=list(formula=~time+c)\n# Run assortment of models\n#\n#\n# Capture Closed models\n#\n# constant p=c\nm_cov<-mark(data,model=\"Huggins\",model.parameters=list(p=p_cov))\n\nm0<-mark(data,model=\"Huggins\",model.parameters=list(p=pdotshared))\nmb<-mark(data,model=\"Huggins\")\nm_cov<-mark(data,model=\"Huggins\",model.parameters=list(p=p_cov))\nmt<-mark(data,model=\"Huggins\",model.parameters=list(p=ptimeshared))\n\nm_cov.b<-mark(data,model=\"Huggins\",model.parameters=list(p=p_cov.b))\n\nreturn(collect.models())\n\n}\n#results of models and model averaging \nresults=run.models(data=capt.hist)\n\n#display index value for p coefficients\nPIMS(results$mt,parameter=\"p\")\n\ndata.f<-data.frame(x=seq(0,1,0.10))\n#just p[1] because not time specific..\nest=covariate.predictions(results,data=data.f,indices=c(1))\n\n#plot prediction and ci\nx<-seq(0,1,0.10)\nplot(est$estimates$covdata,est$estimates$estimate,type=\"b\",ylim=c(0,1),xlab=\"Covariate\",ylab=\"Capture probability\",pch=1)\nmatlines(est$estimates$covdata,est$estimates$lcl,lty=2)\nmatlines(est$estimates$covdata,est$estimates$ucl,lty=2)\n\n\n\n\n#derived estimates of N\nnames=results$model.table$model\nN<-c(results$m_cov$results$derived$estimate,results$m_cov.b$results$derived$estimate,results$m0$results$derived$estimate,results$mb$results$derived$estimate,results$mt$results$derived$estimate)\nse<-c(results$m_cov$results$derived$se,results$m_cov.b$results$derived$se,results$m0$results$derived$se,results$mb$results$derived$se,results$mt$results$derived$se)\nwt<-results$model.table$weight\nderived<-data.frame(model=names,AIC.wt=wt,N=N,se=se)\nderived\n\n\n#model averaged estimates of  N\n\nNhat<-sum(N*wt)\nse<-sqrt(se^2+(N-Nhat)^2)\nse<-sum(se*wt)\nprint(\"Model averaged N and se\")\nNhat\nse\n\n\n",
+    "created" : 1453404887002.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1042643600",
+    "id" : "82FF7ACA",
+    "lastKnownWriteTime" : 1439143856,
+    "path" : "C:/Users/gonde012/Documents/Google Drive/spatialMR/Rscripts/huggins.R",
+    "project_path" : "huggins.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

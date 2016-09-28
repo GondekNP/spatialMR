@@ -1,0 +1,2 @@
+load("/Users/nick/Google Drive/spatialMR/data/SubsamplingData/Stratified/Model A/secrA1.rds")
+load("/Users/nick/Google Drive/spatialMR/data/SubsamplingData/Stratified/Model A/secr2.rds")

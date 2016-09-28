@@ -1,0 +1,512 @@
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "white", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "white", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "white", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("white", "blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Spread.one", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+tally(Period~site, data=sampobs2)[1,]
+sum(tally(Period~site, data=sampobs2)[1,])
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+#' Subsampling of the sampobs data.
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Stratified", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3))
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 6")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 6")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 5")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 4")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1")
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 2")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[3,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 3")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 4")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 5")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 6")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1")
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="")
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 2", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[3,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 3", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 4", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 5", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 6", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 2", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[3,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 3", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 2", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 4", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 5", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 6", xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", ps=30)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", ps=300)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", cex.main=2)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", cex.main=2)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", cex.main=2)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", cex.main=2)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main="Period 1", xlab="", ylab="", cex.main=2)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1", cex=2), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=3), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 5 - Simple Random", cex=2.5), xlab="", ylab="")
+tally(~site, data=sampobs)
+matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE
+)
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 20), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 5 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 40), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 5 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 40), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 40), col.regions = colorRampPalette(c("darkgreen", "cyan"))(1e3), main=list("Period 5 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 40), col.regions = colorRampPalette(c("orange", "cyan"))(1e3), main=list("ALL Periods - No Subsample", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 40), col.regions = colorRampPalette(c("yellow", "cyan"))(1e3), main=list("ALL Periods - No Subsample", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 30), col.regions = colorRampPalette(c("yellow", "cyan"))(1e3), main=list("ALL Periods - No Subsample", cex=2.5), xlab="", ylab="")
+source('C:/Users/gonde012/Google Drive/spatialMR/Presentation/ugly eg code.R')
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+sampobs2 <- BearSubsample(sampobs, "SimpleRandom", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(~site, data=sampobs)), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 30), col.regions = colorRampPalette(c("yellow", "cyan"))(1e3), main=list("ALL Periods - No Subsample", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 2 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[3,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 3 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 4 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 5 - Simple Random", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 6 - Simple Random", cex=2.5), xlab="", ylab="")
+sampobs2 <- BearSubsample(sampobs, "Spread.two", 450)
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[1,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 1 - Spread.two", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[2,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 2 - Spread.two", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[3,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 3 - Spread.two", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[4,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 4 - Spread.two", cex=2.5), xlab="", ylab="")
+source('C:/Users/gonde012/Google Drive/spatialMR/Presentation/ugly eg code.R')
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[5,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 5 - Spread.two", cex=2.5), xlab="", ylab="")
+levelplot(matrix(as.vector(tally(Period~site, data=sampobs2)[6,]), ncol=11, nrow=11, byrow = TRUE),
+at=seq(0, 10), col.regions = colorRampPalette(c("blue", "red"))(1e3), main=list("Period 6 - Spread.two", cex=2.5), xlab="", ylab="")
+source('C:/Users/gonde012/Google Drive/spatialMR/Presentation/ugly eg code.R')
+#' # Initial SECR models
+#'
+#+ echo=FALSE
+# wd <- ifelse(basename(getwd())=="Rscripts",
+#               gsub("/Rscripts", "", getwd()),
+#              getwd())
+#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)
+opts_knit$set(comment=NA, fig.height=8, fig.width=12, cache=TRUE)
+rm(list = ls()) # clear out memory
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(secr)
+library(secrdesign)
+library(scrbook)
+library(ggplot2)
+options(width=160)
+#' ## Initial data explorations
+#' Lets look at the trapping grid.
+#'
+trap.gr<-read.csv("../data/detectorfileScaled.csv", header=FALSE)
+names(trap.gr)<-c("Trap", "X", "Y")
+plot(trap.gr$X, trap.gr$Y, main="Trap Grid", xlab="X", ylab="Y")
+#' Read in data created using "Data Exploration.R" file, names(bearCH)<-c("Session", "ID", "Occasion", "Detector", "Count", "Sex")
+bearCH<-read.capthist("../data/BearCH.csv", "../data/detectorfileScaled.csv",  detector= 'proximity', covnames="Sex")
+#' Try plotting method from scrbook package
+enc<-read.csv("../data/BearCH.csv", header=F) # Encounter data
+enc[,1]<-as.numeric(1) # Treat individuals and periods as factor variables
+enc[,2]<-as.numeric(enc[,2])
+traps<-read.csv("../data/detectorfileScaled.csv", header=FALSE) # Trap data
+traps.3d<-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+y3d<-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+spiderplot(y3d, traps[,2:3]) # plot centroids along with recpatures for each individual
+#' # Initial SECR models
+#'
+#+ echo=FALSE
+# wd <- ifelse(basename(getwd())=="Rscripts",
+#               gsub("/Rscripts", "", getwd()),
+#              getwd())
+#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)
+opts_knit$set(comment=NA, fig.height=8, fig.width=12, cache=TRUE)
+rm(list = ls()) # clear out memory
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(secr)
+library(secrdesign)
+library(scrbook)
+library(ggplot2)
+options(width=160)
+#' ## Initial data explorations
+#' Lets look at the trapping grid.
+#'
+trap.gr<-read.csv("../data/detectorfileScaled.csv", header=FALSE)
+names(trap.gr)<-c("Trap", "X", "Y")
+plot(trap.gr$X, trap.gr$Y, main="Trap Grid", xlab="X", ylab="Y")
+#' Read in data created using "Data Exploration.R" file, names(bearCH)<-c("Session", "ID", "Occasion", "Detector", "Count", "Sex")
+bearCH<-read.capthist("../data/BearCH.csv", "../data/detectorfileScaled.csv",  detector= 'proximity', covnames="Sex")
+#' Try plotting method from scrbook package
+enc<-read.csv("../data/BearCH.csv", header=F) # Encounter data
+enc[,1]<-as.numeric(1) # Treat individuals and periods as factor variables
+enc[,2]<-as.numeric(enc[,2])
+traps<-read.csv("../data/detectorfileScaled.csv", header=FALSE) # Trap data
+traps.3d<-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+y3d<-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+spiderplot(y3d, traps[,2:3], main="Spider Plot of Bear Centroids and Detections") # plot centroids along with recpatures for each individual
+#' # Initial SECR models
+#'
+#+ echo=FALSE
+# wd <- ifelse(basename(getwd())=="Rscripts",
+#               gsub("/Rscripts", "", getwd()),
+#              getwd())
+#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)
+opts_knit$set(comment=NA, fig.height=8, fig.width=12, cache=TRUE)
+rm(list = ls()) # clear out memory
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(secr)
+library(secrdesign)
+library(scrbook)
+library(ggplot2)
+options(width=160)
+#' ## Initial data explorations
+#' Lets look at the trapping grid.
+#'
+trap.gr<-read.csv("../data/detectorfileScaled.csv", header=FALSE)
+names(trap.gr)<-c("Trap", "X", "Y")
+plot(trap.gr$X, trap.gr$Y, main="Trap Grid", xlab="X", ylab="Y")
+#' Read in data created using "Data Exploration.R" file, names(bearCH)<-c("Session", "ID", "Occasion", "Detector", "Count", "Sex")
+bearCH<-read.capthist("../data/BearCH.csv", "../data/detectorfileScaled.csv",  detector= 'proximity', covnames="Sex")
+#' Try plotting method from scrbook package
+enc<-read.csv("../data/BearCH.csv", header=F) # Encounter data
+enc[,1]<-as.numeric(1) # Treat individuals and periods as factor variables
+enc[,2]<-as.numeric(enc[,2])
+traps<-read.csv("../data/detectorfileScaled.csv", header=FALSE) # Trap data
+traps.3d<-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+y3d<-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+spiderplot(y3d, traps[,2:3],) # plot centroids along with recpatures for each individual
+#' # Initial SECR models
+#'
+#+ echo=FALSE
+# wd <- ifelse(basename(getwd())=="Rscripts",
+#               gsub("/Rscripts", "", getwd()),
+#              getwd())
+#  opts_knit$set(root.dir=wd,comment=NA, fig.height=8, fig.width=12)
+opts_knit$set(comment=NA, fig.height=8, fig.width=12, cache=TRUE)
+rm(list = ls()) # clear out memory
+#' Load libraries
+#+ warning=FALSE, message=FALSE
+library(dplyr) # for data manipulation
+library(secr)
+library(secrdesign)
+library(scrbook)
+library(ggplot2)
+options(width=160)
+#' ## Initial data explorations
+#' Lets look at the trapping grid.
+#'
+trap.gr<-read.csv("../data/detectorfileScaled.csv", header=FALSE)
+names(trap.gr)<-c("Trap", "X", "Y")
+plot(trap.gr$X, trap.gr$Y, main="Trap Grid", xlab="X", ylab="Y")
+#' Read in data created using "Data Exploration.R" file, names(bearCH)<-c("Session", "ID", "Occasion", "Detector", "Count", "Sex")
+bearCH<-read.capthist("../data/BearCH.csv", "../data/detectorfileScaled.csv",  detector= 'proximity', covnames="Sex")
+#' Try plotting method from scrbook package
+enc<-read.csv("../data/BearCH.csv", header=F) # Encounter data
+enc[,1]<-as.numeric(1) # Treat individuals and periods as factor variables
+enc[,2]<-as.numeric(enc[,2])
+traps<-read.csv("../data/detectorfileScaled.csv", header=FALSE) # Trap data
+traps.3d<-cbind(traps, matrix(1, nrow(traps),6))  # add columns to say when traps were active
+y3d<-SCR23darray(enc[,1:4], traps.3d) # Create 3d array from capture history
+spiderplot(y3d, traps[,2:3]) # plot centroids along with recpatures for each individual
+plot(main="t")
+plot(1:12, y=1:2,main="t")
+plot(1:12, y=1:22,main="t")
+plot(1:12, y=1:12,main="t")
+plot(1:12, y=1:12,main="Bear Centroids and Detections")
+?cdata
+library(mosaic)
+read.csv("../data/SizeData/FinalBearEst.csv")
+sizesum<-read.csv("../data/SizeData/FinalBearEst.csv")
+sizesum
+View(sizesum)
+library(mosaic)
+sizesum<-read.csv("../data/SizeData/FinalBearEst.csv")
+library(mosaic)
+tally(Subtype~Size)
+tally(Subtype~Size, data=sizesum)
+colnames(sizesum)<-c("SubsampleID", "densEstimate", "lcl", "ucl", "Subtype", "Model", "Size")
+colnames(sizesum)<-c("SubsampleID", "densEstimate", "lcl", "ucl", "Subtype", "Model", "Size")
+tally(Subtype~Size, data=sizesum)
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+source('~/Google Drive/spatialMR/Rscripts/SizeSummary.R')
+source('~/Google Drive/spatialMR/Rscripts/MankatoScript.R')
+getwd()
+source('I:/spatialMR/Rscripts/Simulation/Spatial.R')
+bear.init()
+bear.setup()

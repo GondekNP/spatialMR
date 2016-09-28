@@ -1,0 +1,16 @@
+{
+    "contents" : "# File:  Make.R\n# Purpose:  to \"spin\" an R script file to create an RMarkdown file, from which we can create an html file, then clean up any mess.\n\n# Load knitr library\n  library(knitr)\n\n# Spin the Script of interest to create an R markdown file and html file\n  o<-spin(\"Data ExplorationUpdated.R\")\n  o<-spin(\"Data Summary.R\")\n  o<-spin(\"SecrAll1.R\")\n  o<-spin(\"HuggyBear.R\")\n  o<-spin(\"SecrAll2.R\")\n  \n# remove MARK files\n mfiles<-list.files(\"../Rscripts\", \"*.vcv\", recursive=T)\n file.remove(mfiles)\n  \n mfiles<-list.files(\"../Rscripts\", \"*.inp\", recursive=T)\n file.remove(mfiles)  \n\n mfiles<-list.files(\"../Rscripts\", \"*.res\", recursive=T)\n file.remove(mfiles)  \n  \n mfiles<-list.files(\"../Rscripts\", \"*.out\", recursive=T)\n file.remove(mfiles)  \n  \n#' Move files as needed\n mfiles<-list.files(\"../Rscripts\", \"*.csv\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"../Rscripts/\",mfiles[i], sep=\"\"), paste(\"\", mfiles[i], sep=\"\"))\n }  \n  \n \n  \n  \n# Copy md files to Output directory \n mfiles<-list.files(\"./\", \"*.md\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"./\",mfiles[i], sep=\"\"), paste(\"../Output/\", mfiles[i], sep=\"\"))\n }  \n  \n  \n# copy html files over to Output directory \n mfiles<-list.files(\"./\", \"*.html\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(mfiles[i], paste(\"../Output/\", mfiles[i], sep=\"\"))\n }  \n  \n#---------------------- End ------------------\n  \n  \n\n  \n# Problem is that Rstuio writes things out into multiple directories...\n#  The Rmd file is in the Scripts directory\n#  The md file is in the Data directory\n#  The .html file is in the Data directory (along w/ all Figures, withint a figure subdirectory)  \n",
+    "created" : 1435941493996.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "452796437",
+    "id" : "938828E2",
+    "lastKnownWriteTime" : 1439157799,
+    "path" : "C:/Users/jfieberg/Google Drive/spatialMR/Rscripts/Make.R",
+    "project_path" : "Make.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

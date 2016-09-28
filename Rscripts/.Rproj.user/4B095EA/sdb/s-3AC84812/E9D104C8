@@ -1,0 +1,16 @@
+{
+    "contents" : "source('~/Google Drive/spatialMR/Rscripts/BearSubParallelSECR.R')\nfor (iter in 150:1000){\n  BearSubParallelSECR(\"Stratified\", iterNo=iter)\n  BearSubParallelSECR(\"Spread.one\", iterNo=iter)\n  BearSubParallelSECR(\"Spread.two\", iterNo=iter)\n  BearSubParallelSECR(\"SimpleRandom\", iterNo=iter)\n}",
+    "created" : 1452986089484.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2973236745",
+    "id" : "E9D104C8",
+    "lastKnownWriteTime" : 1454303771,
+    "path" : "~/Google Drive/spatialMR/Rscripts/FloridaScript.R",
+    "project_path" : "FloridaScript.R",
+    "properties" : {
+    },
+    "source_on_save" : true,
+    "type" : "r_source"
+}

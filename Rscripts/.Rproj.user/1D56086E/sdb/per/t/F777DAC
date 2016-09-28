@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "setwd(\"/Users/nick/Google Drive/spatialMR/Rscripts/Simulation\")\n##Figure out what the last one was, start off there (so I don't have to do it manually)\n\n##Sep 20 progress report\n\n#kable(starts[,c(1:3,5)])\ncompile.secr.results <- function (){\nlibrary(secr)\ncompiled<-data.frame()\nfor(j in c(\"t1\",\"t2\",\"t3\",\"t4\",\"t5\",\"t6\")){\n  for (k in c(\"g0 tilde b\")){\n      path<-paste(\"~/Google Drive/spatialMR/data/SimulationData/\", j, \"/\", k, sep=\"\", collapse=\"\")\n      files<-list.files(path)\n      whichDesktop<-which(files==\"desktop.ini\")\n      whichIcon<-which(files==\"Icon\\r\")\n      files<-files[-c(whichDesktop, whichIcon)]\n      files<-paste(path, files, sep=\"/\")\n      \n      for (i in length(files)){\n        newSECR<-readRDS(files[i])\n        \n        for (i in 1:nrow(newSECR$fullsamps)){\n          newSECR$fullsamps$uniqueID[i]<-paste(newSECR$fullsamps$Period[i], newSECR$fullsamps$site[i], sep=\"\", collapse=\"\")\n          newSECR$fullsamps$INDuniqID[i]<-paste(newSECR$fullsamps$Period[i], newSECR$fullsamps$site[i], newSECR$fullsamps$ID[i],sep=\"\", collapse=\"\") \n        }\n        #Redundancy info\n        FullN.notRedun=length(!duplicated(newSECR$fullsamps$INDuniqID))\n        SubN.notRedun=length(!duplicated(newSECR$subsamps$INDuniqID))\n        FullProp.notRedun=FullN.notRedun/nrow(newSECR$fullsamps)\n        SubProp.notRedun=SubN.notRedun/nrow(newSECR$subsamps)\n        \n        #Nhat info\n        nhat = region.N(newSECR)[1,1]\n        nhat.SE = region.N()[1,2]\n        \n        #Basic info on which trial and subtype that I should have passed thru the functions themselves to model\n        fileSplit<-strsplit(files[i], split = \"/\")[[1]]\n        \n        sim<-fileSplit[8]\n        model<-fileSplit[7]\n        trial<-fileSplit[6]\n        \n        #Compiling\n        newLine<-data.frame(FullProp.notRedun, FullN.notRedun, SubProp.notRedun, SubN.notRedun, nhat, nhat.SE, sim, model, trial)\n        compiled<-rbind(compiled, newLine)\n      }\n      \n    }\n  }\n}\n",
+    "created" : 1474937109284.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3013009774",
+    "id" : "F777DAC",
+    "lastKnownWriteTime" : 1474939779,
+    "last_content_update" : 1474939779205,
+    "path" : "~/Google Drive/spatialMR/Rscripts/Simulation/SimSummary.R",
+    "project_path" : "Simulation/SimSummary.R",
+    "properties" : {
+        "docOutlineVisible" : "0",
+        "source_window_id" : "",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

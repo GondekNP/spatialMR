@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"README\"\noutput: html_document\nauthor: Nick Gondek\n---\n\nThis document is meant to explain various functions and scripts that were created in my (Nick Gondek) spring 2016 thesis project with John Fieberg and Dave Garshelis. Generally, the process is broken down into three \n\n```{r}\nsummary(cars)\n```\n\nYou can also embed plots, for example:\n\n```{r, echo=FALSE}\nplot(cars)\n```\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n",
+    "created" : 1458935356755.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2231771007",
+    "id" : "2B974CFC",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

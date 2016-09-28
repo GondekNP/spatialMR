@@ -1,0 +1,512 @@
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = FALSE)
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(a,b,c,d,e, nrow = 1)
+tally(Subtype~Model, data=BearEst)
+FullModels<-read.csv("VerificationObjects/FullModels.csv")
+fullModel<-FullModels[,1]
+names(fullModel)<-c("Model A", "Model B", "Model C", "Model D", "Model E")
+ggplot(BearEst, aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ylab("Density Estimate (Bears per Sq Mile)")+
+ggtitle("All Models") +
+theme(plot.title = element_text(size=22))
+library(mosaic)
+library(cowplot)
+BearEst<-read.csv("../data/SubsamplingData/FinalBearEst.csv")
+colnames(BearEst)<-c("SubID", "densEstimate", "ucl", "lcl", "Subtype", "Model")
+BearBWplot<-function(model="Model A", yl=TRUE){
+mod<-c("g0 ~ b + t + Sex", "g0 ~ t + Sex", "g0 ~ b + t", "g0 ~ t", "g0 ~ b")
+names(mod)<-c("Model A", "Model B", "Model C", "Model D", "Model E" )
+if(yl==TRUE){
+ggplot(filter(BearEst, Model==model), aes(x=seq(250,950,100), y=densEstimate))+
+geom_boxplot() +
+ggtitle("g0 ~ b + t + Sex") +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("Density Estimate (Bear / mi^2)") +
+xlab("")+
+ylim(10,16) +
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}else{
+ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ggtitle(mod[model]) +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("")+
+xlab("")+
+ylim(10,16)+
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}
+}
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = FALSE)
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(a,b,c,d,e, nrow = 1)
+b
+a
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = FALSE)
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(a,b,c,d,e, nrow = 1)
+ggplot(BearEst, aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ylab("Density Estimate (Bears per Sq Mile)")+
+ggtitle("All Models") +
+theme(plot.title = element_text(size=22))
+library(mosaic)
+library(cowplot)
+BearEst<-read.csv("../data/SubsamplingData/FinalBearEst.csv")
+colnames(BearEst)<-c("SubID", "densEstimate", "ucl", "lcl", "Subtype", "Model")
+FullModels<-read.csv("VerificationObjects/FullModels.csv")
+fullModel<-FullModels[,1]
+names(fullModel)<-c("Model A", "Model B", "Model C", "Model D", "Model E")
+tally(Subtype~Model, data=BearEst)
+BearBWplot<-function(model="Model A", yl=TRUE){
+mod<-c("g0 ~ b + t + Sex", "g0 ~ t + Sex", "g0 ~ b + t", "g0 ~ t", "g0 ~ b")
+names(mod)<-c("Model A", "Model B", "Model C", "Model D", "Model E" )
+if(yl==TRUE){
+ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ggtitle("g0 ~ b + t + Sex") +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("Density Estimate (Bear / mi^2)") +
+xlab("")+
+ylim(10,16) +
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}else{
+ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ggtitle(mod[model]) +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("")+
+xlab("")+
+ylim(10,16)+
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}
+}
+plot_grid(a,b,c,d,e, nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE)
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,0,0,0),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,0,0,0),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+library(ggplot2)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,0,0,0),"mm"))
+library(grid)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,0,0,0),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,0,0,0),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(10,0,10,0),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,10,0,10),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,30,10,30),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,40,0,40),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,30,10,30),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,30,0,30),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,30,10,20),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,30,0,40),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,30,0,30),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,40,0,40),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,40,0,20),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,20,0,40),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(0,20,0,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(0,40,0,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(10,20,10,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(10,40,10,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,30),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,30,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+BearBWplot<-function(model="Model A", yl=TRUE){
+mod<-c("g0 ~ b + t + Sex", "g0 ~ t + Sex", "g0 ~ b + t", "g0 ~ t", "g0 ~ b")
+names(mod)<-c("Model A", "Model B", "Model C", "Model D", "Model E" )
+if(yl==TRUE){
+ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ggtitle(mod[model]) +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("Density Estimate (Bear / mi^2)") +
+xlab("")+
+ylim(10,16) +
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}else{
+ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ggtitle(mod[model]) +
+geom_hline(yintercept=fullModel[model], col="red")+
+theme(plot.title = element_text(size=16)) +
+ylab("")+
+xlab("")+
+ylim(10,16)+
+theme_gray() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}
+}
+tally(Subtype~Model, data=BearEst)
+ggplot(BearEst, aes(x=Subtype, y=densEstimate))+
+geom_boxplot() +
+ylab("Density Estimate (Bears per Sq Mile)")+
+ggtitle("All Models") +
+theme(plot.title = element_text(size=22))
+FullModels<-read.csv("VerificationObjects/FullModels.csv")
+fullModel<-FullModels[,1]
+names(fullModel)<-c("Model A", "Model B", "Model C", "Model D", "Model E")
+library(mosaic)
+library(cowplot)
+library(ggplot2)
+library(grid)
+BearEst<-read.csv("../data/SubsamplingData/FinalBearEst.csv")
+colnames(BearEst)<-c("SubID", "densEstimate", "ucl", "lcl", "Subtype", "Model")
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,b,c, nrow = 1), plot_grid(d,e, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,c,e, nrow = 1), plot_grid(b,d, nrow = 1), nrow = 2, labels = c("A", "B"))
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE) +theme(plot.margin=unit(c(4,20,4,40),"mm"))
+e<-BearBWplot("Model E", yl = FALSE) +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+plot_grid(plot_grid(a,c,e, nrow = 1), plot_grid(b,d, nrow = 1), nrow = 2, labels = c("Behavioral Effect", "No Behavioral Effect"))
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = FALSE)+theme(plot.margin=unit(c(4,20,4,40),"mm"))
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = TRUE)  +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(plot_grid(a,c,e, nrow = 1), plot_grid(b,d, nrow = 1), nrow = 2)
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = TRUE)+theme(plot.margin=unit(c(4,20,4,40),"mm"))
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = FALSE)  +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(plot_grid(a,c,e, nrow = 1), plot_grid(b,d, nrow = 1), nrow = 2)
+?secr.fot
+?secr.fit
+library(secr
+)
+?secr.fit
+citation("RMark")
+.3*.3
+1.1*1.1
+1.1*1.1 - .09
+2.2^
+2
+1.12*4
+4.84 - 4.48
+.36^.5
+?sqrt
+sqrt(.36)
+3.5/.3
+4/.3
+.4*13.3
+11.6*.4
+4.64-3.5
+130-5.32
+35*4
+35*.3
+10/10.1
+35*.1
+exp(-100)
+exp(-10000000)
+exp(-10000)
+exp(-100)
+1.8/.2
+1.8/.02
+.5/.0002
+2500*-.5 + .0002*2500*120
+2500*1.8 - .02*2500*120
+90*-.5 + 4000*.0002 * 90
+1.8-.02*90
+sqrt(-.9)
+.2/.5
+.8^2
+.4 - 1.6*.4 - 8*.1
+-.8*.1
+-.8*.4
+.5*.1
+-.2+.5*.4
+-.2+(.5*.4)
+.32*.05
+.4 - 1.6*.4 - 8*.1
+.4 - 1.6*.4 - .8*.1
+1-/013
+1-013
+1-.013
+.995*.0005 + .013 *.9995
+.995*.0005
+(.995*.0005)/.013491
+.005 * .0005 / (1-.013491)
+180*.2
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0_A), col="red") +
+theme_gray()
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0b")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0b_A), col="red") +
+theme_gray()
+plot_grid(a,b,ncol = 1, nrow=2)
+library(ggplot2) ## <3 ggplot
+library(dplyr) ## Also <3 dplyr
+library(reshape2)
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0_A), col="red") +
+theme_gray()
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0b")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0b_A), col="red") +
+theme_gray()
+plot_grid(a,b,ncol = 1, nrow=2)
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+library(ggplot2) ## <3 ggplot
+library(dplyr) ## Also <3 dplyr
+library(reshape2)
+g0est<-read.csv("../data/SubsamplingData/g0bTRUE_est.csv", row.names = NULL)
+g0est<-g0est[2:4]
+fullg0b_A<-readRDS("VerificationObjects/ModelAFull.rds")$beta.vcv["g0.bTRUE", "g0"]
+fullg0b_C<-readRDS("VerificationObjects/ModelCFull.rds")$beta.vcv["g0.bTRUE", "g0"]
+fullg0b_E<-readRDS("VerificationObjects/ModelEFull.rds")$beta.vcv["g0.bTRUE", "g0"]
+fullg0_A<-readRDS("VerificationObjects/ModelAFull.rds")$beta.vcv["g0", "g0"]
+fullg0_B<-readRDS("VerificationObjects/ModelCFull.rds")$beta.vcv["g0", "g0"]
+fullg0_C<-readRDS("VerificationObjects/ModelEFull.rds")$beta.vcv["g0", "g0"]
+ggplot(g0est[g0est$Model == "Model A",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) +
+geom_boxplot(notch=TRUE) +
+ggtitle("Model A : g0~b+t+Sex") +
+geom_hline(aes(yintercept=fullg0b_A)) +
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none")
+ggplot(g0est[g0est$Model == "Model C",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) +
+geom_boxplot(notch=TRUE) +
+ggtitle("Model C : g0~b+t") +
+geom_hline(aes(yintercept=fullg0b_C)) +
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none")
+ggplot(g0est[g0est$Model == "Model E",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) +
+geom_boxplot(notch=TRUE) +
+ggtitle("Model E : g0~b") +
+geom_hline(aes(yintercept=fullg0b_E)) +
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none")
+g0est<-read.csv("../data/SizeData/g0bTRUE_est.csv", row.names = NULL)
+g0est<-g0est[2:6]
+colnames(g0est)<-c("g0","g0.bTRUE", "Model", "Subtype", "Size")
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0_A), col="red") +
+theme_gray()
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0b")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0b_A), col="red") +
+theme_gray()
+plot_grid(a,b,ncol = 1, nrow=2)
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0_A), col="red") +
+theme_gray()
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0b")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0b_A), col="red") +
+theme_gray()
+plot_grid(a,b,ncol = 1, nrow=2)
+library(cowplot)
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0_A), col="red") +
+theme_gray()
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) +
+geom_boxplot(notch=FALSE) +
+ggtitle("g0~b+t+Sex") +
+facet_grid(.~Subtype)+
+xlab("") +
+ylab("g0b")+
+theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+scale_color_brewer(palette="Dark2") +
+theme(legend.position="none") +
+geom_hline(aes(yintercept=fullg0b_A), col="red") +
+theme_gray()
+plot_grid(a,b,ncol = 1, nrow=2)
+Occassion=caphist2$Period, Detector=caphist2$site,
+Occassion=caphist2$Period, Detector=caphist2$site, +
+bearCH<-data.frame(Session="BearMR", ID=caphist$Individual,
+samps$site<-as.numeric(sapply(strsplit(
+e2<-ggplot(data=filter(sizesum, Model=="Model E", Subtype=="SimpleRandom"),
+source('~/Google Drive/spatialMR/Rscripts/Simulation/Spatial.R')
+derived()
+derived(e014[3])
+derived(e014[[3]])
+t1<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=12, redun=0)
+source('~/Google Drive/spatialMR/Rscripts/Simulation/Spatial.R')

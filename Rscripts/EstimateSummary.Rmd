@@ -1,0 +1,139 @@
+---
+output: html_document
+---
+This script will read in the existing Bear Est data and compare them, using a bwplot. 
+(1/21/16)
+
+```{r message=FALSE}
+library(mosaic)
+library(cowplot)
+library(ggplot2)
+library(grid)
+BearEst<-read.csv("../data/SubsamplingData/FinalBearEst.csv")
+colnames(BearEst)<-c("SubID", "densEstimate", "ucl", "lcl", "Subtype", "Model")
+```
+
+Number of Observations for each subtype X model. As of 1/21, there are ~16 for each. 
+As of 1/22, almost 25 for each. 100 should be attainable by around the 30th of Jan. 
+
+```{r }
+tally(Subtype~Model, data=BearEst)
+```
+
+Full models from VerificationSECR.Rmd.
+```{r }
+FullModels<-read.csv("VerificationObjects/FullModels.csv")
+fullModel<-FullModels[,1]
+names(fullModel)<-c("Model A", "Model B", "Model C", "Model D", "Model E")
+```
+
+A box-whisker plot function to streamline the process for each model. 
+
+```{r }
+BearBWplot<-function(model="Model A", yl=TRUE){
+  mod<-c("g0 ~ b + t + Sex", "g0 ~ t + Sex", "g0 ~ b + t", "g0 ~ t", "g0 ~ b")
+  names(mod)<-c("Model A", "Model B", "Model C", "Model D", "Model E" )
+    if(yl==TRUE){
+      ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+      geom_boxplot() +
+      ggtitle(mod[model]) +
+      geom_hline(yintercept=fullModel[model], col="red")+
+      theme(plot.title = element_text(size=16)) +
+      ylab("Density Estimate (Bear / mi^2)") +
+      xlab("")+
+      ylim(10,16) +
+      theme_gray() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    }else{
+      ggplot(filter(BearEst, Model==model), aes(x=Subtype, y=densEstimate))+
+      geom_boxplot() +
+      ggtitle(mod[model]) +
+      geom_hline(yintercept=fullModel[model], col="red")+
+      theme(plot.title = element_text(size=16)) +
+      ylab("")+
+      xlab("")+
+      ylim(10,16)+
+      theme_gray() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    }
+
+  }
+```
+
+Treating all models the same, how does the subtype affect estimate
+
+```{r }
+ggplot(BearEst, aes(x=Subtype, y=densEstimate))+
+  geom_boxplot() +
+  ylab("Density Estimate (Bears per Sq Mile)")+
+  ggtitle("All Models") +
+ theme(plot.title = element_text(size=22))
+```
+
+Constructing a bwplot to see the difference between the different subtypes for each model
+
+```{r }
+a<-BearBWplot("Model A")
+b<-BearBWplot("Model B", yl = TRUE)+theme(plot.margin=unit(c(4,20,4,40),"mm"))
+c<-BearBWplot("Model C", yl = FALSE)
+d<-BearBWplot("Model D", yl = FALSE)  +theme(plot.margin=unit(c(4,40,4,20),"mm"))
+e<-BearBWplot("Model E", yl = FALSE)
+plot_grid(plot_grid(a,c,e, nrow = 1), plot_grid(b,d, nrow = 1), nrow = 2)
+  
+```
+
+Look at the residuals between the full model and the means of the subtypes. First in a table...
+
+```{r }
+
+ResidTable<-as.data.frame(matrix(ncol=5, nrow=6))
+colnames(ResidTable)<-c("Model", "SimpleRandom", "Spread.one", "Spread.two", "Stratified")
+ResidTable[1,] <- c("Model A",mean(densEstimate~Subtype, data=filter(BearEst, Model=="Model A")) - fullModel["Model A"])
+ResidTable[2,] <- c("Model B",mean(densEstimate~Subtype, data=filter(BearEst, Model=="Model B")) - fullModel["Model B"])
+ResidTable[3,] <- c("Model C",mean(densEstimate~Subtype, data=filter(BearEst, Model=="Model C")) - fullModel["Model C"])
+ResidTable[4,] <- c("Model D",mean(densEstimate~Subtype, data=filter(BearEst, Model=="Model D")) - fullModel["Model D"])
+ResidTable[5,] <- c("Model E",mean(densEstimate~Subtype, data=filter(BearEst, Model=="Model E")) - fullModel["Model E"])
+ResidTable[6,] <- c("All Mod",mean(densEstimate~Subtype, data=BearEst) - mean(fullModel))
+ResidTable
+```
+
+.. Then in Bargraphs.
+```{r }
+BearResid<-function(model="Model A"){
+  resids<-mosaic::mean(densEstimate~Subtype, data=filter(BearEst, Model==model))-fullModel[model]
+  barplot(resids, ylim=c(-1,1), main=model, ylab="Residual")
+}
+BearResid("Model A")
+BearResid("Model B")
+BearResid("Model C")
+BearResid("Model D")
+BearResid("Model E")
+```
+
+Standard deviation, confint
+```{r}
+favstats(densEstimate~Subtype, data=BearEst)
+```
+
+
+Another useful look at the data: ANOVA to see if the estimates are significantly
+different from one another
+
+```{r }
+bearmod<-lm(densEstimate~Subtype, data=BearEst)
+Anova(bearmod)
+```
+
+Now by model - Interesting, they are only significantly different in A, C, E (as of
+1/22/16) and those are the three that have behavior as a parameter for g0!
+
+```{r }
+Anova(lm(densEstimate~Subtype, data=filter(BearEst, Model=="Model A")))
+Anova(lm(densEstimate~Subtype, data=filter(BearEst, Model=="Model B")))
+Anova(lm(densEstimate~Subtype, data=filter(BearEst, Model=="Model C")))
+Anova(lm(densEstimate~Subtype, data=filter(BearEst, Model=="Model D")))
+Anova(lm(densEstimate~Subtype, data=filter(BearEst, Model=="Model E")))
+```
+
+
+

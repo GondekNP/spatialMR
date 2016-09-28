@@ -1,0 +1,16 @@
+{
+    "contents" : "# This \"Make file\" can be used to create an html report from a script file using the knitr library\n\n# load knitr library\n  library(knitr)\n \n# Spin the Script of interest to create an R markdown file and html file\n  o<-spin(\"./Scripts/Multiple_Regression_Lecture.R\")\n\n\n# Copy Rmd files to Output directory \n mfiles<-list.files(\"./Scripts\", \"*.Rmd\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"./Scripts/\",mfiles[i], sep=\"\"), paste(\"./Output/\", mfiles[i], sep=\"\"))\n }  \n  \n  \n  \n# Copy md files to Output directory \n mfiles<-list.files(\"./\", \"*.md\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(paste(\"./\",mfiles[i], sep=\"\"), paste(\"./Output/\", mfiles[i], sep=\"\"))\n }  \n  \n  \n# copy html files over to Output directory \n mfiles<-list.files(\"./\", \"*.html\", recursive=T)\n nfiles<-length(mfiles)\n for(i in 1:nfiles){\n    file.rename(mfiles[i], paste(\"./Output/\", mfiles[i], sep=\"\"))\n }  ",
+    "created" : 1435940684814.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3912928628",
+    "id" : "4380BA7F",
+    "lastKnownWriteTime" : 1398118204,
+    "path" : "C:/Users/jfieberg/AppData/Local/Temp/Temp1_KnitExamples.zip/KnitExamples/Scripts/Make_html.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

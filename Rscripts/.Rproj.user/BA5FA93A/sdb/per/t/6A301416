@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1457567234689.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6A301416",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "z93ivsfdpf",
+        "caption" : "sampobs",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=sampobs&cache_key=z93ivsfdpf",
+        "displayedObservations" : "450",
+        "environment" : "",
+        "object" : "sampobs",
+        "totalObservations" : "450",
+        "variables" : "15"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

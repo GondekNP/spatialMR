@@ -1,0 +1,16 @@
+{
+    "contents" : "source('~/Google Drive/spatialMR/Rscripts/BearSubParallelSECR.R')\n\nfor (s in 130:1000)\n  {\ntestSizes<-seq(400, 160, -10)\n    for (x in 1:24){\n      try({BearSubParallelSECR(\"Spread.one\", iterNo=s, size = testSizes[x])})\n      try({BearSubParallelSECR(\"SimpleRandom\", iterNo=s, size = testSizes[x])})\n    }\n  }\n",
+    "created" : 1459804246604.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4177993249",
+    "id" : "51A7C22C",
+    "lastKnownWriteTime" : 1459624466,
+    "path" : "~/Google Drive/spatialMR/Rscripts/MankatoScript (1).R",
+    "project_path" : "MankatoScript (1).R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

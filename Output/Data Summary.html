@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Create sample history files</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Create sample history files</h2>
+
+<p>Load libraries</p>
+
+<pre><code class="r">   library(dplyr) # for data manipulation
+   library(mosaic) # for prop
+   options(width=160)
+</code></pre>
+
+<p>Read in data created using &ldquo;Data Exploration.R&rdquo; file  </p>
+
+<pre><code class="r">  sampobs&lt;-read.csv(&quot;../data/samps1.csv&quot;)
+</code></pre>
+
+<p>Gender: Sex = 204.25 -&gt; Male, Sex= 250.25 -&gt;Female</p>
+
+<pre><code class="r">  sampobs$Group&lt;-rep(&quot;M&quot;,nrow(sampobs))
+  sampobs$Group[sampobs$Sex==250.25]&lt;-&quot;F&quot;  
+</code></pre>
+
+<p>Create a data set that contains a count of the number of times each bear was seen for each unique site x period combination.  Also determine
+sex of each individual and tabulate the number of males and femlaes</p>
+
+<pre><code class="r">  caphist&lt;- sampobs%&gt;%group_by(Individual, site, Period)%&gt;%
+      summarize(Count= n())
+  sexid&lt;-unique(select(sampobs, Individual, Group))
+  table(sexid$Group)
+</code></pre>
+
+<pre><code>## 
+##  F  M 
+## 17 26
+</code></pre>
+
+<pre><code class="r">  caphist2&lt;-merge(caphist, sexid, all=FALSE)  
+</code></pre>
+
+<h4>Distribution of counts of the <strong>same</strong> individual at each site x period sampling occassion.</h4>
+
+<p>The largest count was 11 (same bear, same site, same period).   </p>
+
+<pre><code class="r">  table(caphist$Count)
+</code></pre>
+
+<pre><code>## 
+##   1   2   3   4   5   6   7   8   9  11 
+## 237 139  75  29  13   7   4   1   1   1
+</code></pre>
+
+<pre><code class="r">  tally(~Count, data=caphist, format=&quot;proportion&quot;)
+</code></pre>
+
+<pre><code>## 
+##           1           2           3           4           5           6           7           8           9          11 
+## 0.467455621 0.274161736 0.147928994 0.057199211 0.025641026 0.013806706 0.007889546 0.001972387 0.001972387 0.001972387
+</code></pre>
+
+<p>53% of the time, bears were detected &gt; 1 time at a site x Period combination.   </p>
+
+<pre><code class="r">  prop(~caphist$Count&gt;1) 
+</code></pre>
+
+<pre><code>##      TRUE 
+## 0.5325444
+</code></pre>
+
+<pre><code class="r">  hist(caphist$Count, xlab=&quot;No. Observations per Individual x Site x Period combination&quot;, main=&quot;&quot;)  
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7"/> </p>
+
+<h4>Number of <strong>individuals</strong> detected during each (site x period) combination.</h4>
+
+<p>Report from 2013 says: &ldquo;Thus 1019 samples (92%) were successfully genotyped; these were from 96 different sites and 333 site-sessions.  I see 346 unique
+combinations here [ <strong>update 7/10/2015</strong> after correcting the Period for 3 observations, I now have <strong>347</strong> unique combinations.&rdquo;</p>
+
+<pre><code class="r">  capnums&lt;-caphist%&gt;%group_by(site, Period)%&gt;% summarize(ncap=n() )
+  capnums
+</code></pre>
+
+<pre><code>## Source: local data frame [347 x 3]
+## Groups: site
+## 
+##    site Period ncap
+## 1     1      2    2
+## 2     1      4    1
+## 3     1      5    1
+## 4     2      1    2
+## 5     2      2    1
+## 6     2      3    1
+## 7     2      4    2
+## 8     2      5    2
+## 9     3      4    1
+## 10    4      3    2
+## ..  ...    ...  ...
+</code></pre>
+
+<pre><code class="r">  nrow(capnums)  
+</code></pre>
+
+<pre><code>## [1] 347
+</code></pre>
+
+<p>As many as 5 bears were detected at a site during the same sampling period. Most site x sampling period combinations
+  with at least 1 detection &ldquo;trapped&rdquo; only 1 or 2 bears.</p>
+
+<pre><code class="r">  table(capnums$ncap)
+</code></pre>
+
+<pre><code>## 
+##   1   2   3   4   5 
+## 229  85  26   5   2
+</code></pre>
+
+<h4>Number of different unique (site x period) combinations that each bear was detected at.</h4>
+
+<pre><code class="r">  bearcap&lt;-caphist%&gt;%group_by(Individual)%&gt;% summarize(ncap=n())
+  bearcap
+</code></pre>
+
+<pre><code>## Source: local data frame [43 x 2]
+## 
+##    Individual ncap
+## 1        0056   19
+## 2    10-86-01   35
+## 3   12-106-02   62
+## 4     120-4-2    1
+## 5   121-22-04    5
+## 6    13-27-05   49
+## 7  131-103-04    4
+## 8  133-116-01    5
+## 9  135-108-03    2
+## 10    17-2-02   14
+## ..        ...  ...
+</code></pre>
+
+<p>Wow! One bear was captured at 62 unique site x period combinations!  Definitely some capture heterogeneity (and, I&#39;d be surprised
+if it was all due to movement and placement of &ldquo;home range center&rdquo; relative to the trapping grid).</p>
+
+<pre><code class="r">  table(bearcap$ncap)
+</code></pre>
+
+<pre><code>## 
+##  1  2  3  4  5  6  7  8  9 11 13 14 19 24 35 36 37 41 49 62 
+## 10  4  3  4  2  2  3  1  1  1  1  2  1  1  1  1  1  1  2  1
+</code></pre>
+
+<pre><code class="r">  hist(bearcap$ncap, xlab=&quot;No. unique sites capturing the same bear&quot;, main=&quot;&quot;)  
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-11"/> </p>
+
+<h4>Number of bears captured during each period</h4>
+
+<p>Number of unique bears captured during eahc time period </p>
+
+<pre><code class="r">  timecap&lt;-caphist%&gt;%group_by(Period)%&gt;% summarize(nbears=n_distinct(Individual) )
+  timecap  
+</code></pre>
+
+<pre><code>## Source: local data frame [6 x 2]
+## 
+##   Period nbears
+## 1      1     14
+## 2      2     23
+## 3      3     24
+## 4      4     28
+## 5      5     25
+## 6      6     21
+</code></pre>
+
+<h4>Number of unique bears captured at each site (across the different sampling periods).</h4>
+
+<pre><code class="r">  sitecap&lt;-caphist%&gt;%group_by(site)%&gt;% summarize(nbears=n_distinct(Individual) )
+  sitecap  
+</code></pre>
+
+<pre><code>## Source: local data frame [100 x 2]
+## 
+##    site nbears
+## 1     1      3
+## 2     2      4
+## 3     3      1
+## 4     4      2
+## 5     5      3
+## 6     7      1
+## 7     8      4
+## 8     9      1
+## 9    10      4
+## 10   11      3
+## ..  ...    ...
+</code></pre>
+
+<p>100 of the sites had at least 1 capture, with one site capturing 7 unique bears.  This doesn&#39;t exactly agree with the 96 stated in the 2013
+ report, &ldquo;Thus 1019 samples (92%) were successfully genotyped; these were from 96 different sites and 333 site-sessions.&rdquo;</p>
+
+<pre><code class="r">  nrow(sitecap)
+</code></pre>
+
+<pre><code>## [1] 100
+</code></pre>
+
+<pre><code class="r">  table(sitecap$nbears)
+</code></pre>
+
+<pre><code>## 
+##  1  2  3  4  5  6  7 
+## 26 28 21 14  8  2  1
+</code></pre>
+
+<pre><code class="r">  hist(sitecap$nbears, xlab=&quot;No. Observations at each site&quot;, main=&quot;&quot;)  
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-14"/> </p>
+
+<p>Write out file in the format expected by SECR, proximity detector</p>
+
+<pre><code class="r">  bearCH&lt;-data.frame(Session=&quot;BearMR&quot;, ID=caphist$Individual, Occassion=caphist2$Period, Detector=caphist2$site, Sex=caphist2$Group)
+  write.table(bearCH, file=&quot;../data/BearCH.csv&quot;, row.names=FALSE, col.names=FALSE, sep=&quot;,&quot;)
+</code></pre>
+
+<p>Write out the original sampobs data, with a line for each observation at a site and period so that we can also use a multi detector.  </p>
+
+<pre><code class="r">  bearCHP&lt;-data.frame(Session=&quot;BearMR&quot;, ID=sampobs$Individual, Occassion=sampobs$Period, Detector=sampobs$site, Sex=sampobs$Group)
+  write.table(bearCHP, file=&quot;../data/BearCHP.csv&quot;, row.names=FALSE, col.names=FALSE, sep=&quot;,&quot;)
+</code></pre>
+
+<h3>Other checks</h3>
+
+<p>Look to see if summaries here match those in CAPTURE HETEROGENEITY IN HAIR-TRAPPING OF BEARS (Wildlife Research Summary from 2013) </p>
+
+<p><strong>Report</strong>: &ldquo;individual bears were detected up to 132 times each and up to 32 times in a single sampling session.&rdquo;</p>
+
+<pre><code class="r">  max(table(sampobs$Individual))
+</code></pre>
+
+<pre><code>## [1] 132
+</code></pre>
+
+<pre><code class="r">  max(table(sampobs$Individual, sampobs$Period))
+</code></pre>
+
+<pre><code>## [1] 32
+</code></pre>
+
+<p><strong>Report</strong>, &ldquo;About a third of both males (31%) and females (29%) were detected in only 1 sampling session.
+  A similar percent of males (31%) and females (24%) were detected at only 1 site during the study.&rdquo;</p>
+
+<pre><code class="r">  sitetemp&lt;-caphist2%&gt;%group_by(Individual, Group)%&gt;% summarize(nsite=n_distinct(site))
+  tally(nsite~Group, data=sitetemp, format=&quot;count&quot;)
+</code></pre>
+
+<pre><code>##      Group
+## nsite F M
+##    1  4 8
+##    2  3 3
+##    3  0 2
+##    4  3 4
+##    5  3 0
+##    6  0 1
+##    7  0 1
+##    9  1 0
+##    10 1 1
+##    14 0 1
+##    15 1 2
+##    18 0 1
+##    21 0 1
+##    23 1 0
+##    24 0 1
+</code></pre>
+
+<pre><code class="r">  tally(nsite~Group, data=sitetemp, format=&quot;proportion&quot;)  
+</code></pre>
+
+<pre><code>##      Group
+## nsite          F          M
+##    1  0.23529412 0.30769231
+##    2  0.17647059 0.11538462
+##    3  0.00000000 0.07692308
+##    4  0.17647059 0.15384615
+##    5  0.17647059 0.00000000
+##    6  0.00000000 0.03846154
+##    7  0.00000000 0.03846154
+##    9  0.05882353 0.00000000
+##    10 0.05882353 0.03846154
+##    14 0.00000000 0.03846154
+##    15 0.05882353 0.07692308
+##    18 0.00000000 0.03846154
+##    21 0.00000000 0.03846154
+##    23 0.05882353 0.00000000
+##    24 0.00000000 0.03846154
+</code></pre>
+
+<pre><code class="r">  histogram(~nsite|Group, data=sitetemp) # corraborates Figure 4
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-18"/> </p>
+
+<p>Nor for number of time periods  </p>
+
+<pre><code class="r">  ptemp&lt;-caphist2%&gt;%group_by(Individual, Group)%&gt;% summarize(nperiod=n_distinct(Period))
+  tally(nperiod~Group, data=ptemp, format=&quot;count&quot;)
+</code></pre>
+
+<pre><code>##        Group
+## nperiod F M
+##       1 5 8
+##       2 1 5
+##       3 2 1
+##       4 4 6
+##       5 2 3
+##       6 3 3
+</code></pre>
+
+<pre><code class="r">  tally(nperiod~Group, data=ptemp, format=&quot;proportion&quot;)  
+</code></pre>
+
+<pre><code>##        Group
+## nperiod          F          M
+##       1 0.29411765 0.30769231
+##       2 0.05882353 0.19230769
+##       3 0.11764706 0.03846154
+##       4 0.23529412 0.23076923
+##       5 0.11764706 0.11538462
+##       6 0.17647059 0.11538462
+</code></pre>
+
+<p><strong>Report</strong>:The number of hair traps that yielded bear hair ranged from 30-79 per session (Table 1). Numbers, below, differ a little from Table 1, probably
+because I required the hair to be processed OK.</p>
+
+<pre><code class="r">  apply(tally(site~Period, data=sampobs),2, FUN=function(x){sum(x&gt;0)})
+</code></pre>
+
+<pre><code>##  1  2  3  4  5  6 
+## 22 64 59 75 74 53
+</code></pre>
+
+<p>Lastly, Table 2: number of unqiue bears detected in each Period: checks out</p>
+
+<pre><code class="r">  phist&lt;-caphist2%&gt;%group_by(Period, Individual, Group)%&gt;%summarize(nbears=n_distinct(Individual))
+  tally(Period~Group, data=phist, format=&quot;count&quot;)
+</code></pre>
+
+<pre><code>##       Group
+## Period  F  M
+##      1  7  7
+##      2  9 14
+##      3  9 15
+##      4 12 16
+##      5 10 15
+##      6 10 11
+</code></pre>
+
+</body>
+
+</html>

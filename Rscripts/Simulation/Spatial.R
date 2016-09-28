@@ -1,0 +1,204 @@
+##'First step is to create a systematic grid of traps 10x10 in dataframe
+library(secr)
+library(mosaic)
+setwd("~/Google Drive/spatialMR/Rscripts/Simulation")
+traplocs<-make.grid(nx=10, ny=10, spacing = .8)
+
+##'Genetically identified individuals (instead of 16-34-299, a letter for simplicity)
+known<-c(letters, LETTERS, c("Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg","Hh", "Ii", "Jj"))
+sig<-sqrt(10/pi) #avg homerange 10 sq km (Sollman, Gardner, Belant 2012)
+
+#'Defining 'observation window' in spatstat
+library(spatstat)
+traprange<-owin(xrange=c(min(traplocs$x)-1,max(traplocs$x)+1),
+                yrange=c(min(traplocs$y)-1,max(traplocs$y)+1))
+traprange$units$singular<-"meter"
+traprange$units$plural<-"meters"
+
+#'Example simple sequential inhibition
+#plot(traprange, main="Example Simulated Activity Centers \n(X), and Trap Locations (o)")
+#points(traplocs)
+#points(rSSI(r = sig/2, n=length(known), win = traprange, giveup = 10000), pch="X")
+
+
+sim.bear<- function (known, sig, trapsxy, int.g0=.08, behav= -.02, IH=0, sessions=2, redun = 0){
+  library(sp)
+  library(mosaic)
+  library(LaplacesDemon)
+  #Simulating AC's for 15 bears, with inhibition range 'r' defined by homerange radius 
+  ACs<-data.frame(AC=rSSI(r = sig/2, n=length(known), win = traprange, giveup = 10000),
+                  ID=known, captured=rep(FALSE,length(known)), IHconstant = abs(rnorm(n = length(known), mean = 0, sd = IH)))
+  BearSamps<-data.frame()
+  
+  
+  for (s in 1:sessions){ #Captures for each session
+    
+    for (b in known){ #Captures for each bear in each session
+      bAC<-as.numeric(filter(ACs, ID==b)[,c("AC.x","AC.y")])
+      #Euclidean distance between AC for this bear and each trap location, and subsequent half-normal capture prob
+      dists<-data.frame(dist=spDistsN1(pts=as.matrix(trapsxy), pt = bAC), trapID=rownames(trapsxy))
+      # intercept capture prob + behavior effect + effect from individual heterogeneity
+      log.g0<- log(int.g0 + behav*filter(ACs, ID==b)[,"captured"]) + filter(ACs, ID==b)[,"IHconstant"]
+      g0<-exp(log.g0)
+      dists<-mutate(dists, g = g0 * dhalfnorm(scale = sig, x = dist)) 
+      
+      for (h in 1:nrow(dists)){ #For each individual trap
+        capProb <- dists$g[h] #Default capture probability
+        if ( rbinom(n=1, size=1, prob=capProb) == 1 ){ ##Coin flip - if captured (evals to 1), add a row to the samps
+          newSamp<-data.frame(type="BearMR", ID = b, Period=s, site=dists$trapID[h]) #first (non-redundant) sample
+          for (v in (1:(rpois(1, redun) + 1))) {BearSamps<-rbind(BearSamps, newSamp)} #if redun is 0, evals to 1, only one samp
+          ACs$captured[which(known==b)] <- TRUE ##Bear is captured, next time the cap prob will change depending on 'behav'
+        }
+        
+      }
+      
+    }
+    
+  }
+  BearSamps$Period<-as.numeric(BearSamps$Period)
+  return(BearSamps)
+}
+
+#' Testing it out - four scenarios. 
+#' 
+#' i) samples determined solely by half-normal
+#' 
+#' ii) detections determined by halfnormal with variable g0 (which is CONSTANT for the simulation for each individual)
+#' 
+#' iii) same as i or ii, but including a behavioral effect with captures being more (or less) likely following initial capture
+#' 
+#' iv) same as above (i - iii), but with redundant data introduced by way of poisson distribution. 
+
+
+#'
+#' i) samples determined solely by half-normal
+#t1<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=12, redun=0)
+#tally(~ID,data=t1)
+#tally(~Period, data=t1)
+
+#' ii) detections determined by halfnormal with variable g0 (which is CONSTANT for the simulation for each individual)
+#' 
+#' IH = .1 creates a random normal value on a normal dist with an sd of .1. That constant becomes an additive contstant for the log function g0.
+#t2<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=.1, sessions=12, redun=0)
+#tally(~ID,data=t2)
+#tally(~Period, data=t2)
+
+#' iii) same as i or ii, but including a behavioral effect with captures being more (or less) likely following initial capture
+#' 
+#' If the bear has been captured previously (ie left a single sample already), the behavioral constant becomes a multiplier for the half-normal distribution of capture probabilties.
+#t3<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav= -.04, IH=0, sessions=12, redun=0)
+#tally(~ID,data=t3)
+#tally(~Period, data=t3)
+
+#' iv) same as above (i - iii), but with redundant data introduced by way of poisson distribution.
+#' 
+#' After a bear is detected at a trap, redundant samples are added by way of a random value taken from a poisson distribution with lambda equal to 'redun'
+#t4<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=12, redun=1.5)
+#tally(~ID,data=t4)
+#tally(~Period, data=t4)
+
+
+#' Figuring out how to fit to sim data - start by building capture history from samps and detector locations
+
+#first need the names of traps as a col and not as rownames
+traplocs<-make.grid(nx=10, ny=10, spacing = .8)
+traplocs[,3]<-rownames(traplocs)
+colnames(traplocs)<-c("x","y","detectorID")
+traplocs2<-cbind(traplocs$detectorID, traplocs$x, traplocs$y)
+traplocs<-as.data.frame(traplocs2)
+colnames(traplocs)<-c("Detector", "X", "Y") #Mimicing efford documentation to HOPEFULLY get it to work...
+
+trapPath<-tempfile(fileext = ".csv")
+write.table(x = traplocs, file = trapPath, sep=",", col.names = FALSE, row.names = FALSE) #needed to drop rownames and colnames!
+
+head(read.csv(trapPath))
+
+#' Now, fit the models in parallel like in original project
+library(doParallel)
+library(foreach)
+
+
+subsecr.from.samples <- function (samps, trapcsv, modEval, trial, number, subtype, size=200)  { 
+  source('~/Google Drive/spatialMR/Rscripts/BearSubsample.R') ##subsampling functions
+  
+  if(trial!="t1" && trial!="t2" && trial!="t3" && trial!="t4"){return("invalid trial name: must be t1, t2, t3 or t4 for proper storage of fitted model")}
+  if(subtype!="SimpleRandom" && subtype!="Spread.one"){return("invalid subtype: must be SimpleRandom or Spread.one")}
+  
+  samps<-BearSubsample(samps, type = subtype, n=size)
+  ##todo: remove the redun samples at this point to make secr actually fit
+    library(secr)
+    fitted<-NULL
+
+    strt<-Sys.time()
+    patht0<-tempfile(fileext = ".csv")
+    write.table(samps, file=patht0, sep = ",") 
+    
+    t0caphist<-read.capthist(captfile = patht0, trapfile = trapcsv, detector = 'proximity')
+    try({fitted<-secr.fit(t0caphist, model = modEval, buffer = 10, trace = FALSE, CL=TRUE, detectfn = 0)})
+    if(!is.null(fitted)){outcome<-TRUE} else{outcome<-FALSE; print("Model fit failed.")}
+    fitted$timeElapsed<-Sys.time() - strt
+    fitted$samples<-samps
+    
+    #now save the object in some logical way as RDS
+    modEval<-Reduce(paste, deparse(modEval))
+    modelPathName<-gsub(pattern = "~", replacement = "tilde" , x = modEval)
+    pathRDS<-paste("~/Google Drive/spatialMR/data/SimulationData/", trial, "/" , modelPathName ,"/", subtype, "/", number, ".rds", collapse="", sep="")
+    saveRDS(fitted, file = pathRDS)
+}
+
+##Figure out what the last one was, start off there (so I don't have to do it manually)
+starts<-data.frame()
+for(j in c("t1", "t2", "t3", "t4")){
+    for (k in c("g0 tilde b", "g0 tilde b + t", "g0 tilde t")){
+          for (l in c("SimpleRandom", "Spread.one")){
+            path<-paste("~/Google Drive/spatialMR/data/SimulationData/", j, "/", k, "/", l, sep="", collapse="")
+            files<-list.files(path)
+            whichDesktop<-which(files=="desktop.ini")
+            files<-files[-whichDesktop]
+            print(path)
+            if (length(files)==0){
+              newLine<-data.frame(trial=j,model=k,subtype=l, startno=10001)
+            }
+            else{
+              last<-strsplit(max(files), "")[[1]][1:5]
+              last<-as.numeric(paste(last, sep="", collapse=""))
+              newLine<-data.frame(trial=j,model=k,subtype=l, startno=last+1)
+            }
+            starts<-rbind(starts, newLine)
+          }
+    }
+}
+colnames(starts)<-c("trial", "model", "subtype", "startno")
+##Start up the subsampling and secr fitting, with the new start numbers
+##Todo: make sure this works then try doParallel
+traplocs<-make.grid(nx=10, ny=10, spacing = .8)
+
+#setup parallel backend to use all processors - note that this is not generally recommended for
+#computers that are actually in use, but since this was run primarily on a server and/or broken
+#laptop, I opted to use all cores, because I didn't need any cores to run other tasks. 
+cl<-makeCluster(detectCores())
+registerDoParallel(cl)
+
+bear.init<-function(){
+
+foreach (l=c("SimpleRandom", "Spread.one")) %dopar% {
+  source('~/Google Drive/spatialMR/Rscripts/Simulation/Spatial.R')
+    for (j in c("t1")) {
+      for (k in c("g0 ~ b")) {
+        library(spatstat)
+        library(secr)
+        library(LaplacesDemon)
+        library(mosaic)
+        library(sp)
+        library(foreach)
+      
+        hairsamps<-sim.bear(known = known, sig = sig, int.g0 = .16, trapsxy = traplocs, behav=0, IH=0, sessions=12, redun=0)
+        notilde<-gsub(pattern = "~", replacement = "tilde" , x = k)
+        startno<-filter(starts, trial==j, model==notilde, subtype==l)[,4]
+        subsecr.from.samples(samps = hairsamps, trapcsv = trapPath, modEval = as.formula(k), trial = j, number = startno, subtype = l, size = 200)
+      }
+    }    
+  }
+}
+
+#for(p in 1:10000){bear.init()}

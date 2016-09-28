@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Look to see if those bears that tend to have large effects of firstcap also tend to have \n#'a lot of samples\nranefdat<-data.frame(Individual= rownames(ranef(mod)$Individual), firstcapEst= ranef(mod)$Individual[,2])\n\n#' Add on total number of samples by Individual\ntotN<-summaryBy(Sample~Individual, data=sampobs, FUN=length)\nranefdat2<-ranefdat%>%left_join(totN)\nwith(ranefdat2, plot(Sample.length,firstcapEst))\nwith(ranefdat2, lines(lowess(Sample.length,firstcapEst)))\n\n\n  \nggplot(behav.obs, aes(Sample.length))+geom_density()+facet_wrap(~Period)",
+    "created" : 1461896375157.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3352352505",
+    "id" : "C5A896EC",
+    "lastKnownWriteTime" : 1461896378,
+    "last_content_update" : 1461896378819,
+    "path" : "~/Advisees/Undergrads/Nick/codescraps/scraps.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

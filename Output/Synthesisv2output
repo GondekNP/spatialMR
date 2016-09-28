@@ -1,0 +1,23 @@
+[1] "2015-12-31 11:04:48 CST"
+       estimate SE.estimate      lcl      ucl      CVn        CVa       CVD
+esa   0.0758244          NA       NA       NA       NA         NA        NA
+D   540.7230270    91.78831 388.6042 752.3887 0.163586 0.04533272 0.1697511
+Time difference of 2.550165 hours
+        estimate SE.estimate      lcl      ucl       CVn       CVa       CVD
+esa   0.08011154          NA       NA       NA        NA        NA        NA
+D   511.78641610    84.81956 370.6566 706.6524 0.1636252 0.0263437 0.1657323
+[1] "2015-12-31 12:37:09 CST"
+        estimate SE.estimate      lcl      ucl       CVn       CVa       CVD
+esa   0.07497998          NA       NA       NA        NA        NA        NA
+D   546.81263755    93.74967 391.7038 763.3422 0.1633206 0.0521597 0.1714475
+Time difference of 4.50365 hours
+        estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+esa   0.08075221          NA       NA       NA        NA         NA        NA
+D   507.72604911    84.07227 367.8193 700.8488 0.1628096 0.03019483 0.1655859
+[1] "2015-12-31 13:50:16 CST"
+        estimate SE.estimate      lcl      ucl       CVn        CVa       CVD
+esa   0.07175139          NA       NA       NA        NA         NA        NA
+D   571.41746707    96.93088 410.7571 794.9174 0.1635842 0.04489239 0.1696323
+Time difference of 4.705599 hours
+Warning message:
+In eval(expr, envir, enclos) : NAs introduced by coercion

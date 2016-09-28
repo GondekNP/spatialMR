@@ -1,0 +1,205 @@
+---
+title: "beta_vis"
+author: "Nick Gondek"
+date: "April 4, 2016"
+output: html_document
+---
+
+This rmd will take in the file created by g0b_summary.R (and perhaps the equivalent versions for the models without a behavior parameter, yet to exist) and look at the g0's versus size and sub
+
+```{r message=FALSE}
+library(ggplot2) ## <3 ggplot
+library(dplyr) ## Also <3 dplyr
+library(reshape2)
+library(cowplot)
+```
+
+Read in aforementioned csv file - rownames null because they're all 1, we'll drop that column
+```{r, echo=TRUE}
+g0est<-read.csv("../data/SubsamplingData/g0bTRUE_est.csv", row.names = NULL)
+g0est<-g0est[2:4]
+```
+
+get the g0 from the full models in order to compare with subsamples. g0.bTRUE by g0 on the variance covariance matrix.
+```{r}
+fullg0b_A<-readRDS("VerificationObjects/ModelAFull.rds")$beta.vcv["g0.bTRUE", "g0"] 
+fullg0b_C<-readRDS("VerificationObjects/ModelCFull.rds")$beta.vcv["g0.bTRUE", "g0"]
+fullg0b_E<-readRDS("VerificationObjects/ModelEFull.rds")$beta.vcv["g0.bTRUE", "g0"]
+
+fullg0_A<-readRDS("VerificationObjects/ModelAFull.rds")$beta.vcv["g0", "g0"] 
+fullg0_B<-readRDS("VerificationObjects/ModelCFull.rds")$beta.vcv["g0", "g0"]
+fullg0_C<-readRDS("VerificationObjects/ModelEFull.rds")$beta.vcv["g0", "g0"]
+```
+
+
+ggplot boxplot of subtype versus g0bTRUE.
+```{r}
+ggplot(g0est[g0est$Model == "Model A",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) + 
+  geom_boxplot(notch=TRUE) +
+  ggtitle("Model A : g0~b+t+Sex") +
+  geom_hline(aes(yintercept=fullg0b_A)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(g0est[g0est$Model == "Model C",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) + 
+  geom_boxplot(notch=TRUE) +
+  ggtitle("Model C : g0~b+t") +
+  geom_hline(aes(yintercept=fullg0b_C)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(g0est[g0est$Model == "Model E",], aes(x=Subtype, y=g0.bTRUE, col=Subtype)) + 
+  geom_boxplot(notch=TRUE) +
+  ggtitle("Model E : g0~b") +
+  geom_hline(aes(yintercept=fullg0b_E)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+```
+
+Now looking at size.
+```{r}
+g0est<-read.csv("../data/SizeData/g0bTRUE_est.csv", row.names = NULL)
+g0est<-g0est[2:6]
+colnames(g0est)<-c("g0","g0.bTRUE", "Model", "Subtype", "Size")
+```
+
+g0 and g0bTRUE on one facet graph 
+```{r}
+g0melt<-melt(g0est, na.rm = FALSE, id.vars = c("Model","Subtype", "Size"))
+dummyA<-data.frame(var = c("g0", "g0b_TRUE"), full=c(fullg0b_A, fullg0_A))
+
+
+a<-ggplot(filter(g0melt, Model=="Model A", variable=="g0"), aes(x=as.factor(Size), y=value)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("g0~b+t+Sex") +
+  facet_grid(.~Subtype)+
+  xlab("") +
+  ylab("g0")+
+  theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none") +
+  geom_hline(aes(yintercept=fullg0_A), col="red") +
+  theme_gray()
+
+
+b<-ggplot(filter(g0melt, Model=="Model A", variable=="g0.bTRUE"), aes(x=as.factor(Size), y=value)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("g0~b+t+Sex") +
+  facet_grid(.~Subtype)+
+  xlab("") +
+  ylab("g0b")+
+  theme(strip.text.x = element_text(size=16),axis.text.x = element_text(angle = 90, hjust = 1))+
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none") +
+  geom_hline(aes(yintercept=fullg0b_A), col="red") +
+  theme_gray()
+
+plot_grid(a,b,ncol = 1, nrow=2)
+```
+
+ggplots of size data.
+```{r}
+ggplot(filter(g0est, Model=="Model C", Subtype == "Spread.one"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model C : g0~b+t, Spread.one") +
+  geom_hline(aes(yintercept=fullg0b_C)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(filter(g0est, Model=="Model C", Subtype == "Spread.one"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model C : g0~b+t, Spread.one") +
+  geom_hline(aes(yintercept=fullg0b_C)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(filter(g0est, Model=="Model E", Subtype == "Spread.one"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model E : g0~b, Spread.one") +
+  geom_hline(aes(yintercept=fullg0b_E)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+#Now for simplerandom
+ggplot(filter(g0est, Model=="Model A", Subtype == "SimpleRandom"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model A : g0~b+t+Sex, SimpleRandom") +
+  geom_hline(aes(yintercept=fullg0b_A)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(filter(g0est, Model=="Model C", Subtype == "SimpleRandom"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model C : g0~b+t, SimpleRandom") +
+  geom_hline(aes(yintercept=fullg0b_C)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+
+ggplot(filter(g0est, Model=="Model E", Subtype == "SimpleRandom"), aes(x=as.factor(Size), y=g0.bTRUE)) + 
+  geom_boxplot(notch=FALSE) +
+  ggtitle("Model E : g0~b, SimpleRandom") +
+  geom_hline(aes(yintercept=fullg0b_E)) +
+  scale_color_brewer(palette="Dark2") +
+  theme(legend.position="none")
+```
+
+so what does the subsampling actually do to those 250 size subsamples that are wildly different? 
+```{r}
+g0b_sum_outliers <- function(subtype,treatment, mod, high=TRUE, size=250){
+  if(high==TRUE){MAX<-0}else{MAX<-1}
+  secrMAX<-NULL
+    for(j in 4:30){ ##eyeball this upper bound... highest secr number goes here
+       if(treatment=="Sub"){
+        pathin<-paste("../data/SubsamplingData/", subtype,"/", mod,"/secr", j,"_", size,".rds", sep="")
+      }
+      
+      if(treatment=="Size"){
+        pathin<-paste("../data/SizeData/", subtype,"/", mod,"/secr", j,"_", size, ".rds", sep="")
+      }
+      
+      try({ ##try() used because secr###.rds numbers have gaps, this is easiest/ugliest solution
+        secrMod<-readRDS(pathin)
+        bTru<-secrMod$beta.vcv["g0.bTRUE", "g0"] ##g0.bTRUE by g0 on the variance covariance matrix
+        if (abs(bTru)>MAX & high==TRUE){secrMAX<-secrMod; MAX<-abs(bTru)}
+        if (abs(bTru)<MAX & high==FALSE){secrMAX<-secrMod; MAX<-abs(bTru)}
+          })
+      
+    }
+        return(secrMAX)
+}
+```
+
+Let's pull the highest and lowest 250 from either subsampling type.
+```{r}
+##high values
+hi.spread<-vector(mode = "list", length = 3)
+hi.spread[[1]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model A", high = TRUE, size = 250)
+hi.spread[[2]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model C", high = TRUE, size = 250)
+hi.spread[[3]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model E", high = TRUE, size = 250)
+
+hi.rand<-vector(mode = "list", length = 3)
+hi.rand[[1]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model A", high = TRUE, size = 250)
+hi.rand[[2]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model C", high = TRUE, size = 250)
+hi.rand[[3]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model E", high = TRUE, size = 250)
+
+##low values
+lo.spread<-vector(mode = "list", length = 3)
+lo.spread[[1]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model A", high = FALSE, size = 250)
+lo.spread[[2]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model C", high = FALSE, size = 250)
+lo.spread[[3]]<-g0b_sum_outliers(subtype = "Spread.one", treatment = "Size", mod = "Model E", high = FALSE, size = 250)
+
+lo.rand<-vector(mode = "list", length = 3)
+lo.rand[[1]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model A", high = FALSE, size = 250)
+lo.rand[[2]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model C", high = FALSE, size = 250)
+lo.rand[[3]]<-g0b_sum_outliers(subtype = "SimpleRandom", treatment = "Size", mod = "Model E", high = FALSE, size = 250)
+```
+
+So now we have the models, but we need the subsamples, and I neglected to use a unique ID ket for each subsample and model, so... 
+```{r eval=FALSE}
+desnconv<-function(x){
+   100*x/3861.022
+}
+desnconv(hi.rand[[1]])[2,c(1,3,4)]
+
+```
+

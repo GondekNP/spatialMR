@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1473529677576.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2C3659BD",
+    "lastKnownWriteTime" : -4294967294,
+    "last_content_update" : 1473529677576,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8casa28kqh",
+        "caption" : "traplocs",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=traplocs&cache_key=8casa28kqh",
+        "displayedObservations" : "100",
+        "environment" : "",
+        "object" : "traplocs",
+        "totalObservations" : "100",
+        "variables" : "3"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

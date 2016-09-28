@@ -1,0 +1,9 @@
+{
+    "path" : "~/umn_Research/spatialMR/data",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
