@@ -1,8 +1,8 @@
 {
-    "path" : "~/Google Drive/spatialMR/Rscripts",
+    "path" : "~/Google Drive/spatialMR/data/SimulationData/t2/g0 tilde b",
     "sortOrder" : [
         {
-            "ascending" : false,
+            "ascending" : true,
             "columnIndex" : 2
         },
         {

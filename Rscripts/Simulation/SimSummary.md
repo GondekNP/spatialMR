@@ -1,3 +1,6 @@
+
+
+```r
 setwd("/Users/nick/Google Drive/spatialMR/Rscripts/Simulation")
 compile.secr.results <- function (){
 library(secr)
@@ -53,8 +56,17 @@ return(compiled)
 compiled<-readRDS("secr.sim.resultsOct3.rds")
 library(mosaic)
 bwplot(nhat~trial, data=compiled)
-bwplot(SubProp.notRedun~trial, data=compiled)
+```
 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+
+```r
+bwplot(SubProp.notRedun~trial, data=compiled)
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)
+
+```r
 #need to split up sim into simnumber and subtype 
 split<-strsplit(as.character(compiled$sim), split = "")
 simNo<-NULL
@@ -66,6 +78,15 @@ for (j in 1:nrow(compiled)){
   subtype<-c(subtype, subNew)
   simNo<- c(simNo, simNoNew)
 }
+```
+
+```
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+```
+
+```r
 compiled$subtype<-subtype
 compiled$simNo<-simNo
 
@@ -73,9 +94,23 @@ compiled$simNo<-simNo
 compiled<-compiled[-c(7313, 8532),]
 
 bwplot(nhat~trial|subtype, data=compiled)
-bwplot(SubProp.notRedun~trial|subtype, data=compiled)
-bwplot(nhat.SE~trial|subtype, data=compiled)
+```
 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)
+
+```r
+bwplot(SubProp.notRedun~trial|subtype, data=compiled)
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-4.png)
+
+```r
+bwplot(nhat.SE~trial|subtype, data=compiled)
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-5.png)
+
+```r
 #Now we need the discrepancy for each individual simulation
 discrep<-NULL
 for (h in c("t1", "t2", "t3", "t4", "t5", "t6")){
@@ -93,5 +128,19 @@ for (h in c("t1", "t2", "t3", "t4", "t5", "t6")){
 }
 
 bwplot(Spread.nhatBias~trial,data=discrep,ylim=c(-6,3))
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-6.png)
+
+```r
 bwplot(SimpRand.nhatBias~trial,data=discrep, ylim=c(-6,3))
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-7.png)
+
+```r
 bwplot(dSubN.notRedun~trial, data=discrep, ylim=c(-70,70))
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-8.png)
+
