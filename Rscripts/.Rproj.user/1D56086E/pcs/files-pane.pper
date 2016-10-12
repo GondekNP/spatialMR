@@ -1,13 +1,13 @@
 {
-    "path" : "~/Google Drive/spatialMR/data/SimulationData/t2/g0 tilde b",
+    "path" : "~/Google Drive/spatialMR/data/SimulationData/t8/g0 tilde b",
     "sortOrder" : [
-        {
-            "ascending" : true,
-            "columnIndex" : 2
-        },
         {
             "ascending" : false,
             "columnIndex" : 4
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
         }
     ]
 }

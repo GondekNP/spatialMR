@@ -1,4 +1,4 @@
-sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions=2, redun = 0, inhib=.2){
+sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions=2, redun = 0, inhib=.2, stratDensity=0){
   library(sp)
   library(mosaic)
   library(LaplacesDemon)
@@ -10,9 +10,21 @@ sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions
   traprange$units$singular<-"meter"
   traprange$units$plural<-"meters"
   
-  #Simulating AC's for 15 bears, with inhibition range 'r' defined by homerange radius 
-  ACs<-data.frame(AC=rSSI(r = inhib, n=length(known), win = traprange, giveup = 10000),
-                  ID=known, captured=rep(FALSE,length(known)), IHconstant = abs(rnorm(n = length(known), mean=0, sd = IH)))
+  #Simulating AC's for 15 bears, with inhibition range 'r' defined by homerange radius.
+  #If strat density is nonzero, create disproportionate grid 
+  if(stratDensity!=0){
+    #Get some AC's for the whole grid first
+    AC <- rSSI(r = inhib, n=round(length(known)*(1-stratDensity)), win = traprange, giveup = 10000)
+    #Half the size of the grid
+    traprange$xrange<-c(0, max(traprange$xrange)/2)
+    #Generate the rest of the points on the half grid
+    AC2 <- rSSI(r = inhib, n=round(length(known)*stratDensity), win = traprange, giveup = 10000)
+    AC <- rbind(data.frame(AC), data.frame(AC2))
+  }
+  
+  else {AC <- rSSI(r = inhib, n=length(known), win = traprange, giveup = 10000)}
+  
+  ACs<-data.frame(AC, ID=known, captured=rep(FALSE,length(known)), IHconstant = rnorm(n = length(known), mean=0, sd = IH))
   
   BearSamps<-data.frame()
   
@@ -20,7 +32,7 @@ sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions
   for (s in 1:sessions){ #Captures for each session
     
     for (b in known){ #Captures for each bear in each session
-      bAC<-as.numeric(filter(ACs, ID==b)[,c("AC.x","AC.y")])
+      bAC<-as.numeric(filter(ACs, ID==b)[,c("x","y")])
       #Euclidean distance between AC for this bear and each trap location, and subsequent half-normal capture prob
       trapMatrix<-data.matrix(traplocs[,c("X", "Y")])
       dists<-data.frame(dist=spDistsN1(pts=trapMatrix, pt = bAC), trapID=traplocs$Detector)
@@ -41,7 +53,7 @@ sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions
           if (redun!=0){
             for (v in (1:(rpois(1, (redun + exp(IHc)))))) {BearSamps<-rbind(BearSamps, newSamp)} #if redun is 0, evals to 1, only one samp
           }
-          ACs$captured[which(known==b)] <- TRUE ##Bear is captured, next time the cap prob will change depending on 'behav'
+          ACs$captured[which(ACs$ID==b)] <- TRUE ##Bear is captured, next time the cap prob will change depending on 'behav'
           
         }
         
@@ -54,9 +66,9 @@ sim.bear <- function (known, sig, traplocs, int.g0=1, behav= -.7, IH=0, sessions
   return(BearSamps)
 }
 
-secr.from.samples<-function (full, samps, trapcsv, subtype, modEval, trial, number, size=200)  { 
+secr.from.samples<-function (full, samps, trapcsv, subtype, modEval, trial, number, size=200, fullN)  { 
   
-  if(trial!="t1" && trial!="t2" && trial!="t3" && trial!="t4" && trial!="t5" && trial!="t6"){return("invalid trial name: must be t1 to t6 for proper storage of fitted model")}
+  if(trial!="t1" && trial!="t2" && trial!="t3" && trial!="t4" && trial!="t5" && trial!="t6" && trial!="t7" && trial!="t8"){return("invalid trial name: must be t1 to t8 for proper storage of fitted model")}
   
   samps<-samps[!duplicated(samps$INDuniqID),]
   
@@ -74,6 +86,7 @@ secr.from.samples<-function (full, samps, trapcsv, subtype, modEval, trial, numb
   fitted$subsamps<-samps
   fitted$outcome<-outcome
   fitted$fullsamps<-full
+  fitted$fullN<-fullN
   
   #now save the object in some logical way as RDS
   modEval<-Reduce(paste, deparse(modEval))
@@ -84,7 +97,7 @@ secr.from.samples<-function (full, samps, trapcsv, subtype, modEval, trial, numb
 
 get.rds.starts <- function(){
   starts<-data.frame()
-  for(j in c("t1", "t2", "t3", "t4", "t5", "t6")){
+  for(j in c("t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8")){
     for (k in c("g0 tilde b", "g0 tilde b + t", "g0 tilde t")){
       
       path<-paste("~/Google Drive/spatialMR/data/SimulationData/", j, "/", k, sep="", collapse="")
@@ -108,14 +121,16 @@ get.rds.starts <- function(){
   return(starts)
 }
 
-bear.init <- function(known, trial, model, sig, n=200, traplocs, trapPath, behav=0, IH=0, sessions=12, redun=0, int.g0=.16){
+bear.init <- function(known, trial, model, sig, n=200, traplocs, trapPath, behav=0, IH=0, sessions=12, redun=0, int.g0=.16, stratDensity=0){
   #' Now, fit the models in parallel like in original project
   library(doParallel)
   library(foreach)
   
   #Single simulation for both fittings 
-  fullsamps<-sim.bear(known = known, sig = sig, int.g0, traplocs=traplocs, behav, IH, sessions, redun)
-  
+  fullsamps<-sim.bear(known = known, sig = sig, int.g0, traplocs=traplocs, behav, IH, sessions, redun, stratDensity)
+  while (nrow(fullsamps)<200){ #Make sure at least 200
+    fullsamps<-sim.bear(known = known, sig = sig, int.g0, traplocs=traplocs, behav, IH, sessions, redun, stratDensity)
+  }
   #setup parallel backend to use all processors - note that this is not generally recommended for
   #computers that are actually in use, but since this was run primarily on a server and/or broken
   #laptop, I opted to use all cores, because I don't need any cores to run other tasks. 
@@ -133,13 +148,13 @@ bear.init <- function(known, trial, model, sig, n=200, traplocs, trapPath, behav
     library(sp)
     library(foreach)
     
-    
+    fullN<-nrow(fullsamps)
     starts<-get.rds.starts()
     notilde<-gsub(pattern = "~", replacement = "tilde" , x = k)
     startno<-filter(starts, trial==j, model==notilde)[,"startno"]
     hairsamps<-BearSubsample(data = fullsamps, type = l, n)
     secr.from.samples(full=fullsamps, samps = hairsamps, trapcsv = trapPath, modEval = as.formula(k),
-                      trial = j, number = startno, subtype = l, size = 200)
+                      trial = j, number = startno, subtype = l, size = 200, fullN=fullN)
     
   }
   stopCluster(cl)
@@ -164,14 +179,16 @@ bear.setup <- function(){
     trapPath<-tempfile(fileext = ".csv")
     write.table(x = traplocs, file = trapPath, sep=",", col.names = FALSE, row.names = FALSE) #needed to drop rownames and colnames!  
     ##Genetically identified individuals (instead of 16-34-299 for eg, letters for simplicity)
-    known<-c(letters, LETTERS, c("Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg","Hh"))[1:30] ##60 known bears
+    known<-c(letters, LETTERS, c("Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg","Hh"))[1:30] ##30 known bears
     sig<-sqrt(3/pi) / 1000
     
     bear.init(known, sig, model="g0 ~ b", trial = "t1", int.g0 = 1, behav = 0, IH=0, redun=0, sessions=4, traplocs = traplocs, trapPath = trapPath)
-    bear.init(known, sig, model="g0 ~ b", trial = "t4", int.g0 = 1, behav = 0, IH=0, redun=1, sessions=3, traplocs = traplocs, trapPath = trapPath)
-    bear.init(known, sig, model="g0 ~ b", trial = "t3", int.g0 = 1, behav = 0, IH=1.25, redun=0, sessions=3, traplocs = traplocs, trapPath = trapPath)
+    bear.init(known, sig, model="g0 ~ b", trial = "t4", int.g0 = 1, behav = 0, IH=0, redun=1, sessions=4, traplocs = traplocs, trapPath = trapPath)
+    bear.init(known, sig, model="g0 ~ b", trial = "t3", int.g0 = 1, behav = 0, IH=1.25, redun=0, sessions=4, traplocs = traplocs, trapPath = trapPath)
     bear.init(known, sig, model="g0 ~ b", trial = "t2", int.g0 = 1, behav = -.7, IH=0, redun=0, sessions=4, traplocs = traplocs, trapPath = trapPath)
-    bear.init(known, sig, model="g0 ~ b", trial = "t5", int.g0 = 1, behav = 0, IH=1.25, redun=1, sessions=3, traplocs = traplocs, trapPath = trapPath)
-    bear.init(known, sig, model="g0 ~ b", trial = "t6", int.g0 = 1, behav = -.7, IH=1.25, redun=1, sessions=3, traplocs = traplocs, trapPath = trapPath)
+    bear.init(known, sig, model="g0 ~ b", trial = "t5", int.g0 = 1, behav = 0, IH=1.25, redun=1, sessions=4, traplocs = traplocs, trapPath = trapPath)
+    bear.init(known, sig, model="g0 ~ b", trial = "t6", int.g0 = 1, behav = -.7, IH=1.25, redun=1, sessions=4, traplocs = traplocs, trapPath = trapPath)
+    bear.init(known, sig, model="g0 ~ b", trial = "t7", int.g0 = 1, behav = -.7, IH=1.25, redun=1, sessions=4, traplocs = traplocs, trapPath = trapPath, stratDensity = .75)
+    bear.init(known, sig, model="g0 ~ b", trial = "t8", int.g0 = 1, behav = 0, IH=0, redun=0, sessions=4, traplocs = traplocs, trapPath = trapPath, stratDensity = .75)
   }
 }

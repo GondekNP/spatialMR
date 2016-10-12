@@ -55,6 +55,9 @@ return(compiled)
 #or read in old one
 compiled<-readRDS("secr.sim.resultsOct3.rds")
 library(mosaic)
+
+
+
 bwplot(nhat~trial, data=compiled)
 ```
 
@@ -93,6 +96,22 @@ compiled$simNo<-simNo
 #Two weird simulations that saved as SimpleRandom10001 (1).rds ... removing those two rows
 compiled<-compiled[-c(7313, 8532),]
 
+#Tally our simulations
+tally(trial~model, data=compiled)
+```
+
+```
+##      model
+## trial g0 tilde b
+##    t1       2442
+##    t2       2434
+##    t3       2436
+##    t4       2436
+##    t5       2434
+##    t6       2428
+```
+
+```r
 bwplot(nhat~trial|subtype, data=compiled)
 ```
 

@@ -67,3 +67,4 @@ t3<-sim.bear(known, sig, traplocs, int.g0=1, behav=0, IH=1.25, sessions = 4, red
 t4<-sim.bear(known, sig, traplocs, int.g0=1, behav=0, IH=0, sessions = 4, redun=1, inhib=.2)
 t5<-sim.bear(known, sig, traplocs, int.g0=1, behav=0, IH=1.25, sessions = 4, redun=1, inhib=.2)
 t6<-sim.bear(known, sig, traplocs, int.g0=1, behav=-.7, IH=1.25, sessions = 4, redun=1, inhib=.2)
+t7<-sim.bear(known, sig, traplocs, int.g0=1, behav=0, IH=0, sessions = 4, redun=0, inhib=.2, stratDensity = .75)
