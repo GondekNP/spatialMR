@@ -3,7 +3,7 @@ compile.secr.results <- function (){
 library(secr)
 compiled<-data.frame()
 for(j in c("t1","t2","t3","t4","t5","t6", "t7", "t8")){
-  for (k in c("g0 tilde b")){
+  for (k in c("g0tildeb", "g0tilde1")){
       path<-paste("~/Google Drive/spatialMR/data/SimulationData/", j, "/", k, sep="", collapse="")
       files<-list.files(path)
       whichDesktop<-which(files=="desktop.ini")
@@ -36,9 +36,16 @@ for(j in c("t1","t2","t3","t4","t5","t6", "t7", "t8")){
         model<-fileSplit[7]
         trial<-fileSplit[6]
         
-        g0<-newSECR$fit$par[1]
-        g0.bTRUE<-newSECR$fit$par[2]
-        sigma<-newSECR$fit$par[3]
+        
+        if (length(newSECR$fit$par)==2){
+          g0<-newSECR$fit$par[1]
+          g0.bTRUE<-NA
+          sigma<-newSECR$fit$par[2]
+        } else {
+          g0<-newSECR$fit$par[1]
+          g0.bTRUE<-newSECR$fit$par[2]
+          sigma<-newSECR$fit$par[3]
+        }
         fullN<-newSECR$fullN
         #Compiling
         newLine<-data.frame(FullN.notRedun, SubProp.notRedun, SubN.notRedun, nhat, nhat.SE, g0, g0.bTRUE, sigma, sim, model, trial, fullN)
@@ -86,6 +93,7 @@ bwplot(SubProp.notRedun~trial|subtype, data=compiled)
 bwplot(nhat.SE~trial|subtype, data=compiled)
 
 #Now we need the discrepancy for each individual simulation
+#Todo: fix for two diff models
 discrep<-NULL
 for (h in c("t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8")){
   j<-10001

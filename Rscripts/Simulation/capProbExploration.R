@@ -1,17 +1,17 @@
 #' This document will explore possible capture probabilities using different behavioral and IH parameters.
 
 #' Sourcing logit stuff from Spatial.R with some modification for simplicity
-behav <- -.7
-int.g0<- 1
+behav <- -1
+int.g0<- .5
 IH <- 0
-sig <- sqrt(3/pi)/1000
+sig <- sqrt((1500*1500)/pi)
 captured<-FALSE
 g0frame<-data.frame()
-xdists<-seq(0,3000, 10)
+xdists<-seq(0,3000, 2)
 #'control
 logit.g0<- int.g0 + behav*captured + IH
 g0<-plogis(logit.g0)
-g0dists <- g0 * dhalfnorm(scale = sig, x = xdists) * 1000
+g0dists <- g0 * exp((-xdists^2)/(2*sig^2))
 new<-data.frame(xdists, g0dists, type="control")
 g0frame<-rbind(g0frame, new)
 
@@ -20,7 +20,7 @@ captured<-TRUE
 
 logit.g0<- int.g0 + behav*captured + IH
 g0<-plogis(logit.g0)
-g0dists <- g0 * dhalfnorm(scale = sig, x = xdists) * 1000
+g0dists <- g0 * exp((-xdists^2)/(2*sig^2))
 new<-data.frame(xdists, g0dists, type="captured")
 g0frame<-rbind(g0frame, new)
 
@@ -31,7 +31,7 @@ IH<-2.25
 
 logit.g0<- int.g0 + behav*captured + IH
 g0<-plogis(logit.g0)
-g0dists <- g0 * dhalfnorm(scale = sig, x = xdists) * 1000
+g0dists <- g0 * exp((-xdists^2)/(2*sig^2))
 new<-data.frame(xdists, g0dists, type="IH.hi")
 g0frame<-rbind(g0frame, new)
 
@@ -41,7 +41,7 @@ IH<- -2.25
 
 logit.g0 <- int.g0 + behav*captured + IH
 g0<-plogis(logit.g0)
-g0dists <- g0 * dhalfnorm(scale = sig, x = xdists) * 1000
+g0dists <- g0 * exp((-xdists^2)/(2*sig^2))
 new<-data.frame(xdists, g0dists, type="IH.lo")
 g0frame<-rbind(g0frame, new)
 
@@ -51,7 +51,7 @@ IH<- -2.25
 
 logit.g0 <- int.g0 + behav*captured + IH
 g0<-plogis(logit.g0)
-g0dists <- g0 * dhalfnorm(scale = sig, x = xdists) * 1000
+g0dists <- g0 * exp((-xdists^2)/(2*sig^2))
 new<-data.frame(xdists, g0dists, type="IH.lo and captured")
 g0frame<-rbind(g0frame, new)
 
