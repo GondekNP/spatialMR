@@ -151,7 +151,7 @@ bear.init <- function(known, trial, model, sig, n=200, traplocs, trapPath, behav
     
     fullN<-nrow(fullsamps)
     starts<-get.rds.starts()
-    notilde<-gsub(pattern = "~", replacement = "tilde" , x = k)
+    notilde<-gsub(pattern = " ~ ", replacement = "tilde" , x = k)
     startno<-filter(starts, trial==j, model==notilde)[,"startno"]
     hairsamps<-BearSubsample(data = fullsamps, type = l, n)
     secr.from.samples(full=fullsamps, samps = hairsamps, trapcsv = trapPath, modEval = as.formula(k),
